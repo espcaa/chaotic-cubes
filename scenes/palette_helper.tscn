@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dnlawjp8cb33b"]
+
+[ext_resource type="Script" uid="uid://bft05bo7f2wmj" path="res://palette_helper.gd" id="1_3krl3"]
+
+[node name="PaletteHelper" type="Node"]
+script = ExtResource("1_3krl3")
+seed_color = Color(0, 1, 0.45, 1)

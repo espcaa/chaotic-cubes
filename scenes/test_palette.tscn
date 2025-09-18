@@ -1,0 +1,49 @@
+[gd_scene load_steps=6 format=3 uid="uid://ljyi5i8uw0ox"]
+
+[ext_resource type="Script" uid="uid://cqgcc62240x3f" path="res://scenes/test_ui.gd" id="1_vpoxv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fmaql"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bafd1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mu4oa"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lc104"]
+
+[node name="test-ui" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vpoxv")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="primary" type="PanelContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_fmaql")
+
+[node name="secondary" type="PanelContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_bafd1")
+
+[node name="background" type="PanelContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_mu4oa")
+
+[node name="accent" type="PanelContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_lc104")

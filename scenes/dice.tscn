@@ -1,0 +1,88 @@
+[gd_scene load_steps=10 format=3 uid="uid://bmqb4ae43griq"]
+
+[ext_resource type="Texture2D" uid="uid://cbnx838cbi6ov" path="res://assets/base_dice.png" id="1_27nyo"]
+[ext_resource type="Script" uid="uid://b2o3fq7ce2s02" path="res://scenes/dice.gd" id="1_mg5ex"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oi81l"]
+atlas = ExtResource("1_27nyo")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o1ht6"]
+atlas = ExtResource("1_27nyo")
+region = Rect2(0, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yk8ku"]
+atlas = ExtResource("1_27nyo")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tannu"]
+atlas = ExtResource("1_27nyo")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pb8pk"]
+atlas = ExtResource("1_27nyo")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ocjtb"]
+atlas = ExtResource("1_27nyo")
+region = Rect2(0, 80, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ocjtb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oi81l")
+}],
+"loop": true,
+"name": &"1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o1ht6")
+}],
+"loop": true,
+"name": &"2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yk8ku")
+}],
+"loop": true,
+"name": &"3",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tannu")
+}],
+"loop": true,
+"name": &"4",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pb8pk")
+}],
+"loop": true,
+"name": &"5",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ocjtb")
+}],
+"loop": true,
+"name": &"6",
+"speed": 5.0
+}]
+
+[node name="dice" type="Node2D"]
+script = ExtResource("1_mg5ex")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_ocjtb")
+animation = &"1"

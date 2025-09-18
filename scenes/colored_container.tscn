@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://c4x5tkis316mh"]
+
+[ext_resource type="Script" uid="uid://h085y5sroe7c" path="res://scenes/colored_container.gd" id="1_5oybi"]
+
+[node name="colored_container" type="PanelContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_5oybi")
