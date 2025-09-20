@@ -1,0 +1,84 @@
+[gd_scene load_steps=8 format=3 uid="uid://dvjg3cj7yf33n"]
+
+[ext_resource type="Script" uid="uid://d35k6akxxextn" path="res://scenes/transitioner.gd" id="1_v62jg"]
+[ext_resource type="Shader" uid="uid://3ffgjfing44r" path="res://assets/transition.gdshader" id="1_vp66p"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v62jg"]
+shader = ExtResource("1_vp66p")
+shader_parameter/spacing = 100.0
+shader_parameter/animation_progress = 0.0
+shader_parameter/dot_size = 1.0
+shader_parameter/dot_color = Color(0.62929, 0.392551, 0.325089, 1)
+
+[sub_resource type="Animation" id="Animation_vp66p"]
+resource_name = "in"
+length = 0.75
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("in:material:shader_parameter/animation_progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.75),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_v62jg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("in:material:shader_parameter/animation_progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_8wy5d"]
+resource_name = "out"
+length = 0.75
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("in:material:shader_parameter/animation_progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.75),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8wy5d"]
+_data = {
+&"RESET": SubResource("Animation_v62jg"),
+&"in": SubResource("Animation_vp66p"),
+&"out": SubResource("Animation_8wy5d")
+}
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_v62jg")
+
+[node name="in" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_v62jg")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_8wy5d")
+}
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

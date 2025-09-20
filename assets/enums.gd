@@ -1,0 +1,3 @@
+extends Node
+
+enum ColorRole { PRIMARY, ACCENT, BACKGROUND, SECONDARY, CUSTOM }

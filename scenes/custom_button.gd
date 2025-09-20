@@ -8,9 +8,10 @@ enum ColorRole { CUSTOM, PRIMARY, ACCENT, BACKGROUND, SECONDARY }
 # Optional custom colors
 @export var custom_bg_color: Color = Color.TRANSPARENT
 @export var custom_text_color: Color = Color.WHITE
+@export var custom_hover_color: Color = Color(0.9, 0.9, 0.9)  # New export for hover color
 
 # Hover + pressed background colors
-@export var hover_color: Color = Color(0.9, 0.9, 0.9)
+@export var hover_color: ColorRole = ColorRole.CUSTOM  # Changed to use ColorRole
 @export var pressed_color: Color = Color(0.7, 0.7, 0.7)
 
 @export var font_size: int = 16
@@ -37,6 +38,7 @@ func _process(_delta: float) -> void:
 func _update_styles() -> void:
 	var bg_color_real = get_palette_color(bg_color, custom_bg_color)
 	var font_color_real = get_palette_color(text_color, custom_text_color)
+	var hover_color_real = get_palette_color(hover_color, custom_hover_color)
 
 	cached_bg = bg_color_real
 	cached_font = font_color_real
@@ -58,13 +60,9 @@ func _update_styles() -> void:
 
 	# Hover
 	var style_hover := style_normal.duplicate() as StyleBoxFlat
-	style_hover.bg_color = hover_color
+	style_hover.bg_color = hover_color_real
 	add_theme_stylebox_override("hover", style_hover)
 
-	# Pressed
-	var style_pressed := style_normal.duplicate() as StyleBoxFlat
-	style_pressed.bg_color = pressed_color
-	add_theme_stylebox_override("pressed", style_pressed)
 
 
 func get_palette_color(role: ColorRole, custom: Color) -> Color:
