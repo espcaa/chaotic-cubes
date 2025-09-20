@@ -1,8 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://bfu41rido3bca"]
+[gd_scene load_steps=9 format=3 uid="uid://bfu41rido3bca"]
 
 [ext_resource type="Script" uid="uid://blbae1p8nj3sr" path="res://scenes/game_ui.gd" id="1_rns2u"]
 [ext_resource type="PackedScene" uid="uid://c4x5tkis316mh" path="res://scenes/colored_container.tscn" id="1_yubou"]
 [ext_resource type="PackedScene" uid="uid://bmqb4ae43griq" path="res://scenes/dice.tscn" id="3_u001w"]
+[ext_resource type="FontFile" uid="uid://dplyku4eceytx" path="res://assets/fonts/monogram-extended.ttf" id="4_bt76a"]
+[ext_resource type="AudioStream" uid="uid://s6rpy78m0p8u" path="res://assets/sound_dice.ogg" id="5_bt76a"]
+[ext_resource type="PackedScene" uid="uid://cbmn5tiw3fr6c" path="res://scenes/custom_label.tscn" id="5_djwj0"]
+[ext_resource type="Shader" uid="uid://dx46vnd285ptf" path="res://scenes/post_proc.gdshader" id="8_o3bws"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3huio"]
+shader = ExtResource("8_o3bws")
+shader_parameter/pixel_scale = 1.0
+shader_parameter/scanline_strength = 0.99
+shader_parameter/aberration_strength = 0.0095
 
 [node name="game_ui" type="Control"]
 layout_mode = 3
@@ -31,7 +41,7 @@ theme_override_constants/separation = 0
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-color_role = 3
+color_role = 1
 
 [node name="center_dice_point" type="Node2D" parent="HBoxContainer/VBoxContainer/game_container"]
 
@@ -71,3 +81,105 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.3
 color_role = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/colored_container2"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/colored_container2/MarginContainer"]
+layout_mode = 2
+
+[node name="colored_container" parent="HBoxContainer/colored_container2/MarginContainer/VBoxContainer" instance=ExtResource("1_yubou")]
+layout_mode = 2
+color_role = 3
+corner_radius = 2.0
+outline_enabled = true
+outline_color_role = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/colored_container2/MarginContainer/VBoxContainer/colored_container"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Label" type="Label" parent="HBoxContainer/colored_container2/MarginContainer/VBoxContainer/colored_container/MarginContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("4_bt76a")
+text = "Round 1"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/colored_container2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="colored_container" parent="HBoxContainer/colored_container2/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("1_yubou")]
+layout_mode = 2
+size_flags_horizontal = 3
+color_role = 3
+corner_radius = 2.0
+outline_enabled = true
+outline_color_role = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/colored_container2/MarginContainer/VBoxContainer/HBoxContainer/colored_container"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/colored_container2/MarginContainer/VBoxContainer/HBoxContainer/colored_container/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/colored_container2/MarginContainer/VBoxContainer/HBoxContainer/colored_container/MarginContainer/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("4_bt76a")
+text = "Money"
+
+[node name="CustomLabel" parent="HBoxContainer/colored_container2/MarginContainer/VBoxContainer/HBoxContainer/colored_container/MarginContainer/VBoxContainer" instance=ExtResource("5_djwj0")]
+layout_mode = 2
+font_size = 32
+label_text = "10$"
+
+[node name="colored_container2" parent="HBoxContainer/colored_container2/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("1_yubou")]
+layout_mode = 2
+size_flags_horizontal = 3
+color_role = 3
+corner_radius = 2.0
+outline_enabled = true
+outline_color_role = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/colored_container2/MarginContainer/VBoxContainer/HBoxContainer/colored_container2"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Label" type="Label" parent="HBoxContainer/colored_container2/MarginContainer/VBoxContainer/HBoxContainer/colored_container2/MarginContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("4_bt76a")
+text = "smth"
+
+[node name="audio" type="Node" parent="."]
+
+[node name="rollover_audio" type="AudioStreamPlayer" parent="audio"]
+stream = ExtResource("5_bt76a")
+volume_db = -20.0
+pitch_scale = 1.2
+
+[node name="post-proc" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_3huio")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

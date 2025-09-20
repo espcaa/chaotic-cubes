@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://cbmn5tiw3fr6c"]
+
+[ext_resource type="Script" uid="uid://grgtl20clee4" path="res://scenes/custom_label.gd" id="1_7bfa1"]
+[ext_resource type="FontFile" uid="uid://dplyku4eceytx" path="res://assets/fonts/monogram-extended.ttf" id="1_k74cl"]
+
+[node name="CustomLabel" type="Label"]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_fonts/font = ExtResource("1_k74cl")
+script = ExtResource("1_7bfa1")

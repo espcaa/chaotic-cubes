@@ -1,29 +1,29 @@
-[gd_scene load_steps=10 format=3 uid="uid://bmqb4ae43griq"]
+[gd_scene load_steps=14 format=3 uid="uid://bmqb4ae43griq"]
 
 [ext_resource type="Texture2D" uid="uid://cbnx838cbi6ov" path="res://assets/base_dice.png" id="1_27nyo"]
 [ext_resource type="Script" uid="uid://b2o3fq7ce2s02" path="res://scenes/dice.gd" id="1_mg5ex"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_oi81l"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_mg5ex"]
 atlas = ExtResource("1_27nyo")
 region = Rect2(0, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_o1ht6"]
-atlas = ExtResource("1_27nyo")
-region = Rect2(0, 64, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_yk8ku"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_dicg2"]
 atlas = ExtResource("1_27nyo")
 region = Rect2(0, 16, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_tannu"]
-atlas = ExtResource("1_27nyo")
-region = Rect2(0, 48, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_pb8pk"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_pgf55"]
 atlas = ExtResource("1_27nyo")
 region = Rect2(0, 32, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ocjtb"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_dlvbc"]
+atlas = ExtResource("1_27nyo")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skxya"]
+atlas = ExtResource("1_27nyo")
+region = Rect2(0, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4kp1s"]
 atlas = ExtResource("1_27nyo")
 region = Rect2(0, 80, 16, 16)
 
@@ -31,52 +31,93 @@ region = Rect2(0, 80, 16, 16)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_oi81l")
-}],
-"loop": true,
-"name": &"1",
-"speed": 5.0
+"texture": SubResource("AtlasTexture_mg5ex")
 }, {
-"frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_o1ht6")
-}],
-"loop": true,
-"name": &"2",
-"speed": 5.0
+"texture": SubResource("AtlasTexture_dicg2")
 }, {
-"frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_yk8ku")
-}],
-"loop": true,
-"name": &"3",
-"speed": 5.0
+"texture": SubResource("AtlasTexture_pgf55")
 }, {
-"frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_tannu")
-}],
-"loop": true,
-"name": &"4",
-"speed": 5.0
+"texture": SubResource("AtlasTexture_dlvbc")
 }, {
-"frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_pb8pk")
-}],
-"loop": true,
-"name": &"5",
-"speed": 5.0
+"texture": SubResource("AtlasTexture_skxya")
 }, {
-"frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ocjtb")
+"texture": SubResource("AtlasTexture_4kp1s")
 }],
 "loop": true,
-"name": &"6",
+"name": &"roll",
 "speed": 5.0
 }]
+
+[sub_resource type="Animation" id="Animation_mvkvt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_nkpnt"]
+resource_name = "new_animation"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 12.5664]
+}
+
+[sub_resource type="Animation" id="Animation_oi81l"]
+resource_name = "roll"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qxx4u"]
+_data = {
+&"RESET": SubResource("Animation_mvkvt"),
+&"new_animation": SubResource("Animation_nkpnt"),
+&"roll": SubResource("Animation_oi81l")
+}
 
 [node name="dice" type="Node2D"]
 script = ExtResource("1_mg5ex")
@@ -85,4 +126,12 @@ script = ExtResource("1_mg5ex")
 texture_filter = 1
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_ocjtb")
-animation = &"1"
+animation = &"roll"
+speed_scale = 0.5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_qxx4u")
+}
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

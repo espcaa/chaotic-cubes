@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://drgxxuxiofbpy"]
+
+[ext_resource type="Shader" uid="uid://dx46vnd285ptf" path="res://scenes/post_proc.gdshader" id="1_8aafg"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6klmq"]
+shader = ExtResource("1_8aafg")
+shader_parameter/pixel_scale = 0.5
+shader_parameter/scanline_strength = 0.4
+shader_parameter/aberration_strength = 0.005
+
+[node name="post-pro-rec" type="ColorRect"]
+material = SubResource("ShaderMaterial_6klmq")
+offset_right = 40.0
+offset_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(1, 1, 1, 0)

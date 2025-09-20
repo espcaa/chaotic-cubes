@@ -1,0 +1,7 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://c3bwf6f35sy5s"]
+
+[ext_resource type="Shader" uid="uid://bhow2t35womdh" path="res://scenes/dice.gdshader" id="1_phixv"]
+
+[resource]
+shader = ExtResource("1_phixv")
+shader_parameter/hue_shift_speed = 1.0

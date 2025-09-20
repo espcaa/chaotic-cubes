@@ -149,10 +149,12 @@ func _input(event: InputEvent) -> void:
 
 	if Input.is_action_just_pressed("left"):
 		select_index(selected_index - 1)
+		play_audio_rollover()
 		redraw_screen()
 
 	if Input.is_action_just_pressed("right"):
 		select_index(selected_index + 1)
+		play_audio_rollover()
 		redraw_screen()
 
 	if Input.is_action_just_pressed("ui_accept") and not playing_move:
@@ -162,3 +164,9 @@ func _input(event: InputEvent) -> void:
 			dice_refresh_blocked = true
 			playing_move = true
 			move_active_dice()
+
+
+func play_audio_rollover():
+	var pitch = randf_range(1, 1.5)
+	$audio/rollover_audio.pitch_scale = pitch
+	$audio/rollover_audio.play()
