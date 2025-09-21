@@ -12,6 +12,8 @@ var playing_move := false
 var dice_refresh_blocked := false
 var active_dice: Node = null
 
+var dice_queue := []
+
 
 func _ready() -> void:
 	Palette.assign_new_palette()
@@ -20,6 +22,9 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
+	$HBoxContainer/colored_container2/MarginContainer/VBoxContainer/colored_container2/MarginContainer/VBoxContainer/ScoreLabel.label_text = str(
+		UserData.score
+	)
 	update_on_resize()
 
 
@@ -75,13 +80,30 @@ func _on_dice_reached_center() -> void:
 
 	active_dice.roll()
 	await active_dice.roll_finished
-	# =ove to 10, 10 local position
+
+	UserData.score += active_dice.value[0]
+
+	await get_tree().create_timer(0.5).timeout  # wait a bit before moving to played area
 
 	var tween = active_dice.create_tween()
 
 	active_dice.reparent($"HBoxContainer/VBoxContainer/game_container/old_dices_container")
-	tween.tween_property(active_dice, "position", Vector2(10, 10), 0.3)
+	var dice_size = 16 * active_dice.get_node("AnimatedSprite2D").scale
+	update_dices_in_queue()
+
+	# get the point where it should go :
+	var new_pos_x = $MarginContainer/alr_played_container.size.x - dice_size.x + 5
+	var new_pos_y = $MarginContainer/alr_played_container.size.y / 2 - 5
+
+	tween.tween_property(active_dice, "global_position", Vector2(new_pos_x, new_pos_y), 0.3)
+
 	await tween.finished
+
+	# reparent
+
+	active_dice.reparent($MarginContainer/alr_played_container)
+	dice_queue.append(active_dice)
+
 	active_dice = null
 	playing_move = false
 	dice_refresh_blocked = false
@@ -92,8 +114,23 @@ func _on_dice_reached_center() -> void:
 	redraw_screen()
 
 
+func update_dices_in_queue():
+	for i in dice_queue:
+		var tween = i.create_tween()
+		# Move the dices to the left by 16*scale pixel + 10px margin
+		tween.tween_property(
+			i, "position:x", i.position.x - (16 * i.get_node("AnimatedSprite2D").scale.x + 20), 0.2
+		)
+
+	if dice_queue.size() > 3:
+		var first_dice = dice_queue.pop_front()
+		first_dice.queue_free()
+
+
 func update_playing_pos() -> void:
-	dice_playing_pos = cached_game_container_size / 2
+	dice_playing_pos = Vector2(
+		cached_game_container_size.x / 2, cached_game_container_size.y / 2 + 60
+	)
 	$"HBoxContainer/VBoxContainer/game_container/center_dice_point".position = dice_playing_pos
 
 

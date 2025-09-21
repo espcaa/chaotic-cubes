@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 Palette="*res://scenes/palette_helper.tscn"
 Transitioner="*res://scenes/transitioner.tscn"
 Enums="*res://assets/enums.gd"
+UserData="*res://scenes/user_data.tscn"
 
 [display]
 

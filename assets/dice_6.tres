@@ -1,0 +1,14 @@
+[gd_resource type="SpriteFrames" load_steps=2 format=3 uid="uid://cgjvbocjrtvku"]
+
+[ext_resource type="Texture2D" uid="uid://b6es6h6d3hcec" path="res://assets/dice_6.png" id="1_xtntp"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_xtntp")
+}],
+"loop": true,
+"name": &"roll",
+"speed": 5.0
+}]

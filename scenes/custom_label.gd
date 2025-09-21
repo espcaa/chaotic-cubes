@@ -6,11 +6,14 @@ enum ColorRole { PRIMARY, ACCENT, BACKGROUND, SECONDARY }
 @export var font_size: int = 16
 @export var label_text: String = "Label"
 
+var cached_text: String = ""
+
 var cached_color: Color = Color.WHITE
 
 
 func _ready() -> void:
 	text = label_text
+	cached_text = label_text
 
 	# Font size via DynamicFont + theme override
 	add_theme_font_size_override("font_size", font_size)
@@ -25,6 +28,10 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
+	if cached_text != label_text:
+		cached_text = label_text
+		text = label_text
+
 	var palette_color = get_palette_color()
 
 	if cached_color != palette_color:

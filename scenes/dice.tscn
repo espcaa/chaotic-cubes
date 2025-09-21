@@ -1,57 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://bmqb4ae43griq"]
+[gd_scene load_steps=8 format=3 uid="uid://bmqb4ae43griq"]
 
-[ext_resource type="Texture2D" uid="uid://cbnx838cbi6ov" path="res://assets/base_dice.png" id="1_27nyo"]
-[ext_resource type="Script" uid="uid://b2o3fq7ce2s02" path="res://scenes/dice.gd" id="1_mg5ex"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_mg5ex"]
-atlas = ExtResource("1_27nyo")
-region = Rect2(0, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_dicg2"]
-atlas = ExtResource("1_27nyo")
-region = Rect2(0, 16, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_pgf55"]
-atlas = ExtResource("1_27nyo")
-region = Rect2(0, 32, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_dlvbc"]
-atlas = ExtResource("1_27nyo")
-region = Rect2(0, 48, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_skxya"]
-atlas = ExtResource("1_27nyo")
-region = Rect2(0, 64, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4kp1s"]
-atlas = ExtResource("1_27nyo")
-region = Rect2(0, 80, 16, 16)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_ocjtb"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_mg5ex")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_dicg2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_pgf55")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_dlvbc")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_skxya")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4kp1s")
-}],
-"loop": true,
-"name": &"roll",
-"speed": 5.0
-}]
+[ext_resource type="SpriteFrames" uid="uid://bls147mhxpgiy" path="res://assets/dice_normal.tres" id="2_mg5ex"]
+[ext_resource type="PackedScene" uid="uid://cbmn5tiw3fr6c" path="res://scenes/custom_label.tscn" id="3_ycnvv"]
 
 [sub_resource type="Animation" id="Animation_mvkvt"]
 length = 0.001
@@ -78,6 +28,83 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [0.0]
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CustomLabel:position:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(4, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CustomLabel:position:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-7, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CustomLabel:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("CustomLabel:modulate:r")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("CustomLabel:modulate:g")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/7/type = "bezier"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("CustomLabel:modulate:b")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/8/type = "bezier"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("CustomLabel:modulate:a")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
 }
 
 [sub_resource type="Animation" id="Animation_nkpnt"]
@@ -112,20 +139,101 @@ tracks/0/keys = {
 "values": [0.0, 6.28319]
 }
 
+[sub_resource type="Animation" id="Animation_ycnvv"]
+resource_name = "text"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CustomLabel:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(4, -0.25, 0, 0.25, 0, 42.41, -0.264564, -38, 0.25, 0),
+"times": PackedFloat32Array(0, 0.266667)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CustomLabel:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-7, -0.25, 0, 0.25, 0, -21.36, -0.197897, -20, 0.25, 0),
+"times": PackedFloat32Array(0, 0.266667)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CustomLabel:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -0.402167, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.47)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CustomLabel:modulate:r")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.193541, 0.673925, 0.822705)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CustomLabel:modulate:g")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.193541, 0.673925, 0.822705)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("CustomLabel:modulate:b")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.193541, 0.673925, 0.822705)
+}
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("CustomLabel:modulate:a")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.193541, 0.673925, 0.966667)
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qxx4u"]
 _data = {
 &"RESET": SubResource("Animation_mvkvt"),
 &"new_animation": SubResource("Animation_nkpnt"),
-&"roll": SubResource("Animation_oi81l")
+&"roll": SubResource("Animation_oi81l"),
+&"text": SubResource("Animation_ycnvv")
 }
 
 [node name="dice" type="Node2D"]
-script = ExtResource("1_mg5ex")
+z_index = 10
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 scale = Vector2(4, 4)
-sprite_frames = SubResource("SpriteFrames_ocjtb")
+sprite_frames = ExtResource("2_mg5ex")
 animation = &"roll"
 speed_scale = 0.5
 
@@ -133,5 +241,17 @@ speed_scale = 0.5
 libraries = {
 &"": SubResource("AnimationLibrary_qxx4u")
 }
+
+[node name="CustomLabel" parent="." instance=ExtResource("3_ycnvv")]
+modulate = Color(1, 1, 1, 0)
+offset_left = 42.41
+offset_top = -21.36
+offset_right = 90.41
+offset_bottom = 4.64
+theme_override_font_sizes/font_size = 32
+text = "+1!!"
+color_role = 3
+font_size = 32
+label_text = "+5!!"
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

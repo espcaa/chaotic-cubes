@@ -1,0 +1,12 @@
+[gd_scene load_steps=4 format=3 uid="uid://cr4uhm3qq7x2w"]
+
+[ext_resource type="PackedScene" uid="uid://bmqb4ae43griq" path="res://scenes/dice.tscn" id="1_502n6"]
+[ext_resource type="SpriteFrames" uid="uid://cgjvbocjrtvku" path="res://assets/dice_6.tres" id="2_502n6"]
+[ext_resource type="Script" uid="uid://yr366pc86ruf" path="res://scenes/dice_6.gd" id="2_pqdgp"]
+
+[node name="dice_6" instance=ExtResource("1_502n6")]
+script = ExtResource("2_pqdgp")
+dice_frames = ExtResource("2_502n6")
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = ExtResource("2_502n6")
