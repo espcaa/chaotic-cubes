@@ -19,10 +19,14 @@ func _ready() -> void:
 	Palette.assign_new_palette()
 	cached_game_container_size = $HBoxContainer/VBoxContainer/game_container.size
 	update_playing_pos()
+	await get_tree().process_frame
+	$HBoxContainer/VBoxContainer/game_container/drawing.position.y = (
+		$HBoxContainer/VBoxContainer/separartor.position.y - 56*2
+	)
 
 
 func _process(_delta: float) -> void:
-	$HBoxContainer/colored_container2/MarginContainer/VBoxContainer/colored_container2/MarginContainer/VBoxContainer/ScoreLabel.label_text = str(
+	$HBoxContainer/menu_bar/MarginContainer/VBoxContainer/colored_container2/MarginContainer/VBoxContainer/ScoreLabel.label_text = str(
 		UserData.score
 	)
 	update_on_resize()

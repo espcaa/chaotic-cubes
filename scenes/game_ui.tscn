@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://bfu41rido3bca"]
+[gd_scene load_steps=9 format=3 uid="uid://bfu41rido3bca"]
 
 [ext_resource type="Script" uid="uid://blbae1p8nj3sr" path="res://scenes/game_ui.gd" id="1_rns2u"]
 [ext_resource type="PackedScene" uid="uid://c4x5tkis316mh" path="res://scenes/colored_container.tscn" id="1_yubou"]
-[ext_resource type="PackedScene" uid="uid://bmqb4ae43griq" path="res://scenes/dice.tscn" id="3_u001w"]
+[ext_resource type="PackedScene" uid="uid://d1tvr6ct2mujc" path="res://assets/drawing.tscn" id="2_o3bws"]
+[ext_resource type="PackedScene" uid="uid://bdto7x5d0a4by" path="res://scenes/dice_normal.tscn" id="3_u001w"]
 [ext_resource type="FontFile" uid="uid://dplyku4eceytx" path="res://assets/fonts/monogram-extended.ttf" id="4_bt76a"]
 [ext_resource type="PackedScene" uid="uid://cr4uhm3qq7x2w" path="res://scenes/dice_6.tscn" id="4_e0pfi"]
 [ext_resource type="AudioStream" uid="uid://s6rpy78m0p8u" path="res://assets/sound_dice.ogg" id="5_bt76a"]
@@ -40,7 +41,10 @@ size_flags_vertical = 3
 
 [node name="old_dices_container" type="Node2D" parent="HBoxContainer/VBoxContainer/game_container"]
 
-[node name="colored_container3" parent="HBoxContainer/VBoxContainer" instance=ExtResource("1_yubou")]
+[node name="drawing" parent="HBoxContainer/VBoxContainer/game_container" instance=ExtResource("2_o3bws")]
+position = Vector2(224, 142)
+
+[node name="separartor" parent="HBoxContainer/VBoxContainer" instance=ExtResource("1_yubou")]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.02
@@ -56,65 +60,63 @@ color_role = 1
 [node name="point" type="Node2D" parent="HBoxContainer/VBoxContainer/dice_container"]
 
 [node name="dice" parent="HBoxContainer/VBoxContainer/dice_container/point" instance=ExtResource("3_u001w")]
-position = Vector2(100, 0)
 
 [node name="dice2" parent="HBoxContainer/VBoxContainer/dice_container/point" instance=ExtResource("3_u001w")]
-position = Vector2(100, 0)
 
 [node name="dice3" parent="HBoxContainer/VBoxContainer/dice_container/point" instance=ExtResource("3_u001w")]
-position = Vector2(100, 0)
 
 [node name="dice_6" parent="HBoxContainer/VBoxContainer/dice_container/point" instance=ExtResource("4_e0pfi")]
 
 [node name="dice4" parent="HBoxContainer/VBoxContainer/dice_container/point" instance=ExtResource("3_u001w")]
-position = Vector2(100, 0)
 
 [node name="dice5" parent="HBoxContainer/VBoxContainer/dice_container/point" instance=ExtResource("3_u001w")]
-position = Vector2(100, 0)
-scale = Vector2(1.00659, 1.00423)
 
-[node name="colored_container2" parent="HBoxContainer" instance=ExtResource("1_yubou")]
+[node name="dice6" parent="HBoxContainer/VBoxContainer/dice_container/point" instance=ExtResource("3_u001w")]
+
+[node name="dice7" parent="HBoxContainer/VBoxContainer/dice_container/point" instance=ExtResource("3_u001w")]
+
+[node name="menu_bar" parent="HBoxContainer" instance=ExtResource("1_yubou")]
 z_index = 20
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.3
 color_role = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/colored_container2"]
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/menu_bar"]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/colored_container2/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/menu_bar/MarginContainer"]
 layout_mode = 2
 
-[node name="colored_container" parent="HBoxContainer/colored_container2/MarginContainer/VBoxContainer" instance=ExtResource("1_yubou")]
+[node name="colored_container" parent="HBoxContainer/menu_bar/MarginContainer/VBoxContainer" instance=ExtResource("1_yubou")]
 layout_mode = 2
 color_role = 3
 corner_radius = 2.0
 outline_enabled = true
 outline_color_role = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/colored_container2/MarginContainer/VBoxContainer/colored_container"]
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/menu_bar/MarginContainer/VBoxContainer/colored_container"]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="Label" type="Label" parent="HBoxContainer/colored_container2/MarginContainer/VBoxContainer/colored_container/MarginContainer"]
+[node name="Label" type="Label" parent="HBoxContainer/menu_bar/MarginContainer/VBoxContainer/colored_container/MarginContainer"]
 texture_filter = 1
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_fonts/font = ExtResource("4_bt76a")
 text = "Round 1"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/colored_container2/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/menu_bar/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="colored_container" parent="HBoxContainer/colored_container2/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("1_yubou")]
+[node name="colored_container" parent="HBoxContainer/menu_bar/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("1_yubou")]
 layout_mode = 2
 size_flags_horizontal = 3
 color_role = 3
@@ -122,29 +124,29 @@ corner_radius = 2.0
 outline_enabled = true
 outline_color_role = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/colored_container2/MarginContainer/VBoxContainer/HBoxContainer/colored_container"]
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/menu_bar/MarginContainer/VBoxContainer/HBoxContainer/colored_container"]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/colored_container2/MarginContainer/VBoxContainer/HBoxContainer/colored_container/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/menu_bar/MarginContainer/VBoxContainer/HBoxContainer/colored_container/MarginContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="HBoxContainer/colored_container2/MarginContainer/VBoxContainer/HBoxContainer/colored_container/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="HBoxContainer/menu_bar/MarginContainer/VBoxContainer/HBoxContainer/colored_container/MarginContainer/VBoxContainer"]
 texture_filter = 1
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_fonts/font = ExtResource("4_bt76a")
 text = "Money"
 
-[node name="CustomLabel" parent="HBoxContainer/colored_container2/MarginContainer/VBoxContainer/HBoxContainer/colored_container/MarginContainer/VBoxContainer" instance=ExtResource("5_djwj0")]
+[node name="CustomLabel" parent="HBoxContainer/menu_bar/MarginContainer/VBoxContainer/HBoxContainer/colored_container/MarginContainer/VBoxContainer" instance=ExtResource("5_djwj0")]
 layout_mode = 2
 font_size = 32
 label_text = "0$"
 
-[node name="colored_container2" parent="HBoxContainer/colored_container2/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("1_yubou")]
+[node name="colored_container2" parent="HBoxContainer/menu_bar/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("1_yubou")]
 layout_mode = 2
 size_flags_horizontal = 3
 color_role = 3
@@ -152,54 +154,54 @@ corner_radius = 2.0
 outline_enabled = true
 outline_color_role = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/colored_container2/MarginContainer/VBoxContainer/HBoxContainer/colored_container2"]
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/menu_bar/MarginContainer/VBoxContainer/HBoxContainer/colored_container2"]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="Label" type="Label" parent="HBoxContainer/colored_container2/MarginContainer/VBoxContainer/HBoxContainer/colored_container2/MarginContainer"]
+[node name="Label" type="Label" parent="HBoxContainer/menu_bar/MarginContainer/VBoxContainer/HBoxContainer/colored_container2/MarginContainer"]
 texture_filter = 1
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_fonts/font = ExtResource("4_bt76a")
 text = "smth"
 
-[node name="colored_container2" parent="HBoxContainer/colored_container2/MarginContainer/VBoxContainer" instance=ExtResource("1_yubou")]
+[node name="colored_container2" parent="HBoxContainer/menu_bar/MarginContainer/VBoxContainer" instance=ExtResource("1_yubou")]
 layout_mode = 2
 color_role = 3
 corner_radius = 2.0
 outline_enabled = true
 outline_color_role = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/colored_container2/MarginContainer/VBoxContainer/colored_container2"]
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/menu_bar/MarginContainer/VBoxContainer/colored_container2"]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/colored_container2/MarginContainer/VBoxContainer/colored_container2/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/menu_bar/MarginContainer/VBoxContainer/colored_container2/MarginContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="HBoxContainer/colored_container2/MarginContainer/VBoxContainer/colored_container2/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="HBoxContainer/menu_bar/MarginContainer/VBoxContainer/colored_container2/MarginContainer/VBoxContainer"]
 texture_filter = 1
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_fonts/font = ExtResource("4_bt76a")
 text = "Score"
 
-[node name="ScoreLabel" parent="HBoxContainer/colored_container2/MarginContainer/VBoxContainer/colored_container2/MarginContainer/VBoxContainer" instance=ExtResource("5_djwj0")]
+[node name="ScoreLabel" parent="HBoxContainer/menu_bar/MarginContainer/VBoxContainer/colored_container2/MarginContainer/VBoxContainer" instance=ExtResource("5_djwj0")]
 layout_mode = 2
 color_role = 1
 font_size = 32
 label_text = "1222323"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="HBoxContainer/colored_container2/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="HBoxContainer/menu_bar/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="colored_container" parent="HBoxContainer/colored_container2/MarginContainer/VBoxContainer/HBoxContainer2" instance=ExtResource("1_yubou")]
+[node name="colored_container" parent="HBoxContainer/menu_bar/MarginContainer/VBoxContainer/HBoxContainer2" instance=ExtResource("1_yubou")]
 layout_mode = 2
 size_flags_horizontal = 3
 color_role = 3
@@ -207,29 +209,29 @@ corner_radius = 2.0
 outline_enabled = true
 outline_color_role = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/colored_container2/MarginContainer/VBoxContainer/HBoxContainer2/colored_container"]
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/menu_bar/MarginContainer/VBoxContainer/HBoxContainer2/colored_container"]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/colored_container2/MarginContainer/VBoxContainer/HBoxContainer2/colored_container/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/menu_bar/MarginContainer/VBoxContainer/HBoxContainer2/colored_container/MarginContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="HBoxContainer/colored_container2/MarginContainer/VBoxContainer/HBoxContainer2/colored_container/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="HBoxContainer/menu_bar/MarginContainer/VBoxContainer/HBoxContainer2/colored_container/MarginContainer/VBoxContainer"]
 texture_filter = 1
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_fonts/font = ExtResource("4_bt76a")
 text = "Rolls"
 
-[node name="CustomLabel" parent="HBoxContainer/colored_container2/MarginContainer/VBoxContainer/HBoxContainer2/colored_container/MarginContainer/VBoxContainer" instance=ExtResource("5_djwj0")]
+[node name="CustomLabel" parent="HBoxContainer/menu_bar/MarginContainer/VBoxContainer/HBoxContainer2/colored_container/MarginContainer/VBoxContainer" instance=ExtResource("5_djwj0")]
 layout_mode = 2
 font_size = 32
 label_text = "inf"
 
-[node name="colored_container2" parent="HBoxContainer/colored_container2/MarginContainer/VBoxContainer/HBoxContainer2" instance=ExtResource("1_yubou")]
+[node name="colored_container2" parent="HBoxContainer/menu_bar/MarginContainer/VBoxContainer/HBoxContainer2" instance=ExtResource("1_yubou")]
 layout_mode = 2
 size_flags_horizontal = 3
 color_role = 3
@@ -237,24 +239,24 @@ corner_radius = 2.0
 outline_enabled = true
 outline_color_role = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/colored_container2/MarginContainer/VBoxContainer/HBoxContainer2/colored_container2"]
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/menu_bar/MarginContainer/VBoxContainer/HBoxContainer2/colored_container2"]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/colored_container2/MarginContainer/VBoxContainer/HBoxContainer2/colored_container2/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/menu_bar/MarginContainer/VBoxContainer/HBoxContainer2/colored_container2/MarginContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="HBoxContainer/colored_container2/MarginContainer/VBoxContainer/HBoxContainer2/colored_container2/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="HBoxContainer/menu_bar/MarginContainer/VBoxContainer/HBoxContainer2/colored_container2/MarginContainer/VBoxContainer"]
 texture_filter = 1
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_fonts/font = ExtResource("4_bt76a")
 text = "+ Dice"
 
-[node name="CustomLabel" parent="HBoxContainer/colored_container2/MarginContainer/VBoxContainer/HBoxContainer2/colored_container2/MarginContainer/VBoxContainer" instance=ExtResource("5_djwj0")]
+[node name="CustomLabel" parent="HBoxContainer/menu_bar/MarginContainer/VBoxContainer/HBoxContainer2/colored_container2/MarginContainer/VBoxContainer" instance=ExtResource("5_djwj0")]
 layout_mode = 2
 font_size = 32
 label_text = "inf"

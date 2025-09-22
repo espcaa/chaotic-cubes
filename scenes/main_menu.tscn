@@ -114,7 +114,7 @@ label_text = ""
 [node name="custom_button4" parent="Control/MarginContainer/VBoxContainer/button_container" instance=ExtResource("4_wu84c")]
 layout_mode = 2
 bg_color = 0
-custom_bg_color = Color(0.466667, 0.8, 0.698039, 1)
+custom_bg_color = Color(0.411765, 0.831373, 0.478431, 1)
 font_size = 32
 label_text = ""
 

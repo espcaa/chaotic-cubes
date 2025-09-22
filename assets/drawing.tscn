@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://d1tvr6ct2mujc"]
+
+[ext_resource type="Texture2D" uid="uid://bv34my6bscv5f" path="res://assets/bg.png" id="1_kyqvf"]
+[ext_resource type="Shader" uid="uid://i16c8p8if4x0" path="res://assets/drawing.gdshader" id="1_poxbo"]
+[ext_resource type="Script" uid="uid://c2en3c8ckpd5v" path="res://assets/drawing.gd" id="1_ufyng"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ufyng"]
+shader = ExtResource("1_poxbo")
+
+[node name="drawing" type="Node2D"]
+script = ExtResource("1_ufyng")
+
+[node name="Bg" type="Sprite2D" parent="."]
+texture_filter = 1
+material = SubResource("ShaderMaterial_ufyng")
+instance_shader_parameters/first_replace_color = Color(0.701961, 0.219608, 0.192157, 1)
+instance_shader_parameters/second_replace_color = Color(0.921569, 0.309804, 0.211765, 1)
+scale = Vector2(4, 4)
+texture = ExtResource("1_kyqvf")
