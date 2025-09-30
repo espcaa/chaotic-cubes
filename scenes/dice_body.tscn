@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://xyp2q26klpq5"]
+
+[ext_resource type="Script" uid="uid://dtwya48u8as6b" path="res://scenes/dice_body.gd" id="1_3ec41"]
+[ext_resource type="AudioStream" uid="uid://pxu8hypf31k7" path="res://assets/dice_down.mp3" id="2_djkjl"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_yj14f"]
+bounce = 0.5
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yj14f"]
+size = Vector2(64, 64)
+
+[node name="dice_body" type="RigidBody2D"]
+mass = 10.0
+physics_material_override = SubResource("PhysicsMaterial_yj14f")
+script = ExtResource("1_3ec41")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_yj14f")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_djkjl")
+volume_db = -20.0
+pitch_scale = 1.5
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -21,7 +21,7 @@ func _ready() -> void:
 	update_playing_pos()
 	await get_tree().process_frame
 	$HBoxContainer/VBoxContainer/game_container/drawing.position.y = (
-		$HBoxContainer/VBoxContainer/separartor.position.y - 56*2
+		$HBoxContainer/VBoxContainer/separartor.position.y - 56 * 2
 	)
 
 
@@ -206,8 +206,60 @@ func _input(event: InputEvent) -> void:
 			playing_move = true
 			move_active_dice()
 
+	if Input.is_action_just_pressed("draw"):
+		$HBoxContainer/menu_bar/MarginContainer/VBoxContainer/dice_machine.add_dice(
+			UserData.get_reserved_dice()
+		)
+
 
 func play_audio_rollover():
 	var pitch = randf_range(1, 1.5)
 	$audio/rollover_audio.pitch_scale = pitch
 	$audio/rollover_audio.play()
+
+
+func add_dice(dice: Node2D, start_pos: Vector2 = Vector2.ZERO) -> void:
+	# Block input while animating dice
+	dice_refresh_blocked = true
+
+	var point = $HBoxContainer/VBoxContainer/dice_container/point
+	dice.reparent(point)
+
+	# Start position can be passed in, default to origin
+	dice.position = start_pos
+	dice.scale = Vector2(1, 1)
+
+	# Determine target position in the queue
+	var idx = point.get_child_count() - 1
+	var target_pos = Vector2(idx * 85, cached_dice_container_height / 2)
+
+	# Tween dice to its proper position
+	var tween = dice.create_tween()
+	tween.tween_property(dice, "position", target_pos, 0.3).set_trans(Tween.TRANS_QUAD).set_ease(
+		Tween.EASE_OUT
+	)
+
+	# Optionally scale up slightly for visual effect, then back to normal
+	(
+		tween
+		. tween_property(dice, "scale", Vector2(1.2, 1.2), 0.15)
+		. set_trans(Tween.TRANS_QUAD)
+		. set_ease(Tween.EASE_OUT)
+	)
+	tween.tween_property(dice, "scale", Vector2(1, 1), 0.15).set_trans(Tween.TRANS_QUAD).set_ease(
+		Tween.EASE_OUT
+	)
+
+	dice_queue.append(dice)
+
+	# When finished, unblock input and update selection
+	tween.tween_callback(func(): _on_dice_added(dice))
+
+
+func _on_dice_added(dice: Node2D) -> void:
+	dice_refresh_blocked = false
+
+	# Select the new dice
+	var point = $HBoxContainer/VBoxContainer/dice_container/point
+	select_index(point.get_child_count() - 1)
+	redraw_screen()

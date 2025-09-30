@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bfu41rido3bca"]
+[gd_scene load_steps=10 format=3 uid="uid://bfu41rido3bca"]
 
 [ext_resource type="Script" uid="uid://blbae1p8nj3sr" path="res://scenes/game_ui.gd" id="1_rns2u"]
 [ext_resource type="PackedScene" uid="uid://c4x5tkis316mh" path="res://scenes/colored_container.tscn" id="1_yubou"]
@@ -8,8 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://cr4uhm3qq7x2w" path="res://scenes/dice_6.tscn" id="4_e0pfi"]
 [ext_resource type="AudioStream" uid="uid://s6rpy78m0p8u" path="res://assets/sound_dice.ogg" id="5_bt76a"]
 [ext_resource type="PackedScene" uid="uid://cbmn5tiw3fr6c" path="res://scenes/custom_label.tscn" id="5_djwj0"]
+[ext_resource type="PackedScene" uid="uid://7brptgis72d4" path="res://scenes/dice_machine.tscn" id="8_3huio"]
 
-[node name="game_ui" type="Control"]
+[node name="game_ui" type="Control" groups=["gameui"]]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -260,6 +261,13 @@ text = "+ Dice"
 layout_mode = 2
 font_size = 32
 label_text = "inf"
+
+[node name="spacer" type="Control" parent="HBoxContainer/menu_bar/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="dice_machine" parent="HBoxContainer/menu_bar/MarginContainer/VBoxContainer" instance=ExtResource("8_3huio")]
+layout_mode = 2
 
 [node name="audio" type="Node" parent="."]
 

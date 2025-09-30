@@ -93,6 +93,13 @@ size_flags_horizontal = 8
 [node name="custom_button" parent="Control/MarginContainer/VBoxContainer/button_container" instance=ExtResource("4_wu84c")]
 layout_mode = 2
 bg_color = 0
+custom_bg_color = Color(1, 0.775167, 0.29, 1)
+font_size = 32
+label_text = ""
+
+[node name="custom_button5" parent="Control/MarginContainer/VBoxContainer/button_container" instance=ExtResource("4_wu84c")]
+layout_mode = 2
+bg_color = 0
 custom_bg_color = Color(1.34766e-06, 0.623354, 0.912768, 1)
 font_size = 32
 label_text = ""
@@ -107,7 +114,7 @@ label_text = ""
 [node name="custom_button3" parent="Control/MarginContainer/VBoxContainer/button_container" instance=ExtResource("4_wu84c")]
 layout_mode = 2
 bg_color = 0
-custom_bg_color = Color(0.98, 0.4802, 0.63847, 1)
+custom_bg_color = Color(0.988199, 0.62469, 0.726808, 1)
 font_size = 32
 label_text = ""
 

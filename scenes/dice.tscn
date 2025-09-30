@@ -244,10 +244,10 @@ libraries = {
 
 [node name="CustomLabel" parent="." instance=ExtResource("3_ycnvv")]
 modulate = Color(1, 1, 1, 0)
-offset_left = 42.41
-offset_top = -21.36
-offset_right = 90.41
-offset_bottom = 4.64
+offset_left = 4.0
+offset_top = -7.0
+offset_right = 52.0
+offset_bottom = 19.0
 theme_override_font_sizes/font_size = 32
 text = "+1!!"
 color_role = 3

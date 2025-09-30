@@ -4,6 +4,7 @@ extends Node
 
 var palette = {}
 
+
 func generate_palette(seed: Color) -> Dictionary:
 	var palette: Dictionary = {}
 
@@ -11,7 +12,7 @@ func generate_palette(seed: Color) -> Dictionary:
 
 	# Primary: pastel
 	var s_primary = clamp(seed.s, 0.3, 0.5)  # lower saturation for pastel
-	var v_primary = clamp(seed.v * 2, 0.7, 1.0) # bright
+	var v_primary = clamp(seed.v * 2, 0.7, 1.0)  # bright
 	palette["primary"] = Color.from_hsv(h, s_primary, v_primary)
 
 	# Background: dark, saturated
@@ -25,18 +26,25 @@ func generate_palette(seed: Color) -> Dictionary:
 	palette["secondary"] = Color.from_hsv(h, s_secondary, v_secondary)
 
 	# Accent: pops
-	var accent_h = fmod(h + 0.02, 1.0) # slightly shifted hue
+	var accent_h = fmod(h + 0.02, 1.0)  # slightly shifted hue
 	var accent_s = clamp(seed.s * 1.0, 0.5, 1.0)
 	var accent_v = clamp(seed.v * 1.0, 0.7, 1.0)
 	palette["accent"] = Color.from_hsv(accent_h, accent_s, accent_v)
 
+	var tertiary_s = clamp(seed.s * 1.1, 0.4, 0.8)
+	var tertiary_v = clamp(seed.v * 1.3, 0.5, 0.9)
+	palette["tertiary"] = Color.from_hsv(h, tertiary_s, tertiary_v)
+
 	return palette
+
 
 func assign_new_palette():
 	palette = generate_palette(seed_color)
 
+
 func get_palette():
 	return palette
+
 
 func get_color(color_name: String) -> Color:
 	if palette.has(color_name):
@@ -45,6 +53,7 @@ func get_color(color_name: String) -> Color:
 		push_warning("Color name '" + color_name + "' not found in palette.")
 		return Color.BLACK
 
-func change_base_color(color : Color):
+
+func change_base_color(color: Color):
 	seed_color = color
 	assign_new_palette()

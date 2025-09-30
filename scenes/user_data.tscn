@@ -1,6 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://cwk38pk8qc8pv"]
+[gd_scene load_steps=3 format=3 uid="uid://cwk38pk8qc8pv"]
 
 [ext_resource type="Script" uid="uid://bfud0ytx6cqi5" path="res://scenes/user_data.gd" id="1_vllv0"]
+[ext_resource type="PackedScene" uid="uid://bdto7x5d0a4by" path="res://scenes/dice_normal.tscn" id="2_p50ql"]
 
 [node name="UserData" type="Node"]
 script = ExtResource("1_vllv0")
+
+[node name="DiceReserve" type="Node2D" parent="."]
+visible = false
+
+[node name="dice" parent="DiceReserve" instance=ExtResource("2_p50ql")]
+
+[node name="dice2" parent="DiceReserve" instance=ExtResource("2_p50ql")]
