@@ -41,7 +41,7 @@ func _process(delta: float) -> void:
 		$Bg.set_instance_shader_parameter("background_replaced_color", cached_background)
 
 	if current_dice and is_instance_valid(current_dice):
-		if is_dice_settled(current_dice):
+		if current_dice.stopped:
 			dice_settled(current_dice)
 
 
@@ -58,20 +58,10 @@ func add_dice(node: Node) -> void:
 		current_dice = newPhysicDice
 
 
-func is_dice_settled(dice: RigidBody2D) -> bool:
-	var linear_threshold = 0.1
-	var angular_threshold = 0.1
-	var on_ground = true  # optionally check if it’s touching the floor with a RayCast2D
-
-	return (
-		dice.linear_velocity.length() < linear_threshold
-		and abs(dice.angular_velocity) < angular_threshold
-		and on_ground
-	)
-
-
 func dice_settled(dice: RigidBody2D) -> void:
-	current_dice.get_child(0).z_index = 10
-	get_tree().get_first_node_in_group("gameui").add_dice(current_dice.get_child(0))
+	dice.get_child(2).z_index = 200
+
+	get_tree().get_first_node_in_group("gameui").add_dice(dice.get_child(2),dice.global_position)
+	dice.queue_free()
 	current_dice = null
 	adding_dice = false

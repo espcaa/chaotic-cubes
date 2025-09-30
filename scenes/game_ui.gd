@@ -207,9 +207,13 @@ func _input(event: InputEvent) -> void:
 			move_active_dice()
 
 	if Input.is_action_just_pressed("draw"):
-		$HBoxContainer/menu_bar/MarginContainer/VBoxContainer/dice_machine.add_dice(
-			UserData.get_reserved_dice()
-		)
+		var newDice = UserData.get_reserved_dice()
+		if newDice == null:
+			return
+		else:
+			$HBoxContainer/menu_bar/MarginContainer/VBoxContainer/dice_machine.add_dice(
+				newDice
+			)
 
 
 func play_audio_rollover():
@@ -219,27 +223,22 @@ func play_audio_rollover():
 
 
 func add_dice(dice: Node2D, start_pos: Vector2 = Vector2.ZERO) -> void:
-	# Block input while animating dice
 	dice_refresh_blocked = true
 
 	var point = $HBoxContainer/VBoxContainer/dice_container/point
 	dice.reparent(point)
 
-	# Start position can be passed in, default to origin
-	dice.position = start_pos
+	dice.global_position = start_pos
 	dice.scale = Vector2(1, 1)
 
-	# Determine target position in the queue
 	var idx = point.get_child_count() - 1
 	var target_pos = Vector2(idx * 85, cached_dice_container_height / 2)
 
-	# Tween dice to its proper position
 	var tween = dice.create_tween()
 	tween.tween_property(dice, "position", target_pos, 0.3).set_trans(Tween.TRANS_QUAD).set_ease(
 		Tween.EASE_OUT
 	)
 
-	# Optionally scale up slightly for visual effect, then back to normal
 	(
 		tween
 		. tween_property(dice, "scale", Vector2(1.2, 1.2), 0.15)
@@ -252,14 +251,13 @@ func add_dice(dice: Node2D, start_pos: Vector2 = Vector2.ZERO) -> void:
 
 	dice_queue.append(dice)
 
-	# When finished, unblock input and update selection
 	tween.tween_callback(func(): _on_dice_added(dice))
 
 
 func _on_dice_added(dice: Node2D) -> void:
 	dice_refresh_blocked = false
+	dice.z_index = 10
 
-	# Select the new dice
 	var point = $HBoxContainer/VBoxContainer/dice_container/point
 	select_index(point.get_child_count() - 1)
 	redraw_screen()
