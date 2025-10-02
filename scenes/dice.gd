@@ -1,6 +1,5 @@
 extends Node2D
 
-
 signal roll_finished
 
 @export var dice_frames: SpriteFrames = load("res://assets/dice_normal.tres")
@@ -8,6 +7,11 @@ signal roll_finished
 
 var value: Array = []
 var playing = false
+var dice_description: String = "[redacted]"
+var dice_name: String = "[redacted description]"
+
+var dice_tooltip_height: float = 0.0
+var dice_tooltip_width: float = 0.0
 
 
 func roll():
@@ -15,4 +19,33 @@ func roll():
 
 
 func _ready() -> void:
+	$colored_container/text_container/title.label_text = dice_name
+	$colored_container/text_container/description.label_text = dice_description
 	$AnimatedSprite2D.sprite_frames = dice_frames
+	dice_tooltip_width = $colored_container.size.x
+
+
+func focus():
+	var tween = create_tween()
+	tween.tween_property($colored_container, "scale", Vector2(1.0, 1.0), 0.2)
+	tween.parallel().tween_property(
+		$colored_container, "position", Vector2(-(dice_tooltip_width), -80), 0.2
+	)
+	tween.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	tween.tween_callback(Callable(self, "custom_focus"))
+
+
+func unfocus():
+	var tween = create_tween()
+	tween.tween_property($colored_container, "scale", Vector2(0.0, 0.0), 0.2)
+	tween.parallel().tween_property($colored_container, "position", Vector2(0.0, -40.0), 0.2)
+	tween.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+	tween.tween_callback(Callable(self, "custom_unfocus"))
+
+
+func custom_focus():
+	pass
+
+
+func custom_unfocus():
+	pass

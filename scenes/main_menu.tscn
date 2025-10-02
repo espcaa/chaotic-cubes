@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://bybb7ys5erhhf"]
+[gd_scene load_steps=6 format=3 uid="uid://bybb7ys5erhhf"]
 
 [ext_resource type="PackedScene" uid="uid://c4x5tkis316mh" path="res://scenes/colored_container.tscn" id="1_06t4h"]
 [ext_resource type="Script" uid="uid://6wb86ksbqkpe" path="res://scenes/main_menu.gd" id="1_fu7sn"]
 [ext_resource type="PackedScene" uid="uid://cbmn5tiw3fr6c" path="res://scenes/custom_label.tscn" id="2_7vrkn"]
+[ext_resource type="Theme" uid="uid://d3u7h5nd21qrb" path="res://scenes/plain_colored.tres" id="4_8ln24"]
 [ext_resource type="PackedScene" uid="uid://d26hs8spvqyjy" path="res://scenes/custom_button.tscn" id="4_wu84c"]
 
 [node name="main_menu" type="Control"]
@@ -45,6 +46,23 @@ label_text = "Chaotic Cubes!"
 [node name="CustomLabel2" parent="MarginContainer/VBoxContainer" instance=ExtResource("2_7vrkn")]
 layout_mode = 2
 label_text = "everything is still wip but whatever pf"
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.5
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer"]
+texture_filter = 1
+layout_mode = 2
+theme = ExtResource("4_8ln24")
+text = "uh is the communication stable?
+for this update i rolled my magic dice and got the drawing gameplay to add :)
+Try it by pressing \"tab\" in the game view
+Note : for now you can't progress much farther than this, 
+update coming soon :p"
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 1

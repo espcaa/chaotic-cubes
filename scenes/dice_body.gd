@@ -1,7 +1,5 @@
 extends RigidBody2D
 
-
-
 var bounce_count: int = 0
 var max_bounces: int = 3  # change as needed
 var stopped: bool = false
@@ -13,10 +11,11 @@ func _ready():
 	max_contacts_reported = 10
 
 
-func _on_body_entered(body: Node) -> void:
+func _on_body_entered(_body: Node) -> void:
 	$AudioStreamPlayer.play()
 	bounce_count += 1
 	print("Bounce!", bounce_count)
+
 
 func _integrate_forces(state) -> void:
 	if stopped:

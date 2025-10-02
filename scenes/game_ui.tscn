@@ -96,7 +96,6 @@ layout_mode = 2
 [node name="colored_container" parent="HBoxContainer/menu_bar/MarginContainer/VBoxContainer" instance=ExtResource("1_yubou")]
 layout_mode = 2
 color_role = 3
-corner_radius = 2.0
 outline_enabled = true
 outline_color_role = 0
 
@@ -121,7 +120,6 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 color_role = 3
-corner_radius = 2.0
 outline_enabled = true
 outline_color_role = 0
 
@@ -151,7 +149,6 @@ label_text = "0$"
 layout_mode = 2
 size_flags_horizontal = 3
 color_role = 3
-corner_radius = 2.0
 outline_enabled = true
 outline_color_role = 0
 
@@ -167,12 +164,11 @@ texture_filter = 1
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_fonts/font = ExtResource("4_bt76a")
-text = "smth"
+text = "Goal"
 
 [node name="colored_container2" parent="HBoxContainer/menu_bar/MarginContainer/VBoxContainer" instance=ExtResource("1_yubou")]
 layout_mode = 2
 color_role = 3
-corner_radius = 2.0
 outline_enabled = true
 outline_color_role = 0
 
@@ -206,7 +202,6 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 color_role = 3
-corner_radius = 2.0
 outline_enabled = true
 outline_color_role = 0
 
@@ -236,7 +231,6 @@ label_text = "inf"
 layout_mode = 2
 size_flags_horizontal = 3
 color_role = 3
-corner_radius = 2.0
 outline_enabled = true
 outline_color_role = 0
 
@@ -291,4 +285,4 @@ layout_mode = 2
 color_role = 1
 outline_enabled = true
 outline_color_role = 2
-outline_thickness = 5.0
+outline_thickness = 4

@@ -23,7 +23,7 @@ func _ready() -> void:
 	$HBoxContainer/VBoxContainer/game_container/drawing.position.y = (
 		$HBoxContainer/VBoxContainer/separartor.position.y - 56 * 2
 	)
-
+	select_index(0)
 
 func _process(_delta: float) -> void:
 	$HBoxContainer/menu_bar/MarginContainer/VBoxContainer/colored_container2/MarginContainer/VBoxContainer/ScoreLabel.label_text = str(
@@ -125,10 +125,16 @@ func update_dices_in_queue():
 		tween.tween_property(
 			i, "position:x", i.position.x - (16 * i.get_node("AnimatedSprite2D").scale.x + 20), 0.2
 		)
+		# do smth when tween is finished
+		tween.tween_callback(func(): old_dice_callback(i, i.get_index()))
 
-	if dice_queue.size() > 3:
-		var first_dice = dice_queue.pop_front()
-		first_dice.queue_free()
+
+func old_dice_callback(dice: Node2D, index) -> void:
+	# if the size > 3 and it's the last one, remove it
+
+	if dice_queue.size() > 3 and index == 0:
+		dice.queue_free()
+		dice_queue.pop_front()
 
 
 func update_playing_pos() -> void:
@@ -172,6 +178,7 @@ func draw_dices() -> void:
 
 
 func select_index(new_index: int) -> void:
+	var old_index = selected_index
 	var point = $HBoxContainer/VBoxContainer/dice_container/point
 	var count = point.get_child_count()
 
@@ -183,8 +190,20 @@ func select_index(new_index: int) -> void:
 			wrapped += count
 		selected_index = wrapped
 
+	# trigger focus() on the selected dice
 
-func _input(event: InputEvent) -> void:
+	for i in point.get_children():
+		if i.get_index() == selected_index:
+			i.focus()
+
+	# trigger unfocus()
+
+	for i in point.get_children():
+		if i.get_index() == old_index and i.get_index() != selected_index:
+			i.unfocus()
+
+
+func _input(_event: InputEvent) -> void:
 	if dice_refresh_blocked:
 		return
 
@@ -211,9 +230,7 @@ func _input(event: InputEvent) -> void:
 		if newDice == null:
 			return
 		else:
-			$HBoxContainer/menu_bar/MarginContainer/VBoxContainer/dice_machine.add_dice(
-				newDice
-			)
+			$HBoxContainer/menu_bar/MarginContainer/VBoxContainer/dice_machine.add_dice(newDice)
 
 
 func play_audio_rollover():

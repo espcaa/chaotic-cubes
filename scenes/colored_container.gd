@@ -1,25 +1,28 @@
 extends PanelContainer
 
-enum ColorRole { PRIMARY, ACCENT, BACKGROUND, SECONDARY }
+enum ColorRole { PRIMARY, ACCENT, BACKGROUND, SECONDARY, TERTIARY }
 
 @export var color_role: ColorRole = ColorRole.PRIMARY
-@export var corner_radius: float = 0.0       # 0 = no rounding
+@export var corner_radius: int = 0  # 0 = no rounding
 @export var outline_enabled: bool = false
 @export var outline_color_role: ColorRole = ColorRole.ACCENT
-@export var outline_thickness: float = 2.0   # thickness of outline
+@export var outline_thickness: int = 2  # thickness of outline
 
 var cached_color: Color = Color.ALICE_BLUE
-var style_box: StyleBoxFlat = StyleBoxFlat.new() 
+var style_box: StyleBoxFlat = StyleBoxFlat.new()
+
 
 func _ready() -> void:
 	cached_color = get_palette_color()
 	set_bg_color()
 
-func _process(delta: float) -> void:
+
+func _process(_delta: float) -> void:
 	var new_color = get_palette_color()
 	if cached_color != new_color:
 		cached_color = new_color
 		set_bg_color()
+
 
 func get_palette_color() -> Color:
 	match color_role:
@@ -31,8 +34,11 @@ func get_palette_color() -> Color:
 			return Palette.get_color("background")
 		ColorRole.SECONDARY:
 			return Palette.get_color("secondary")
+		ColorRole.TERTIARY:
+			return Palette.get_color("tertiary")
 		_:
-			return Color.ALICE_BLUE 
+			return Color.ALICE_BLUE
+
 
 func get_outline_color() -> Color:
 	match outline_color_role:
@@ -44,8 +50,11 @@ func get_outline_color() -> Color:
 			return Palette.get_color("background")
 		ColorRole.SECONDARY:
 			return Palette.get_color("secondary")
+		ColorRole.TERTIARY:
+			return Palette.get_color("tertiary")
 		_:
 			return Color.BLACK
+
 
 func set_bg_color():
 	# Base color

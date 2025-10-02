@@ -1,6 +1,5 @@
 extends "res://scenes/dice.gd"
 
-
 func roll():
 	if playing:
 		return  # prevent rolling multiple times

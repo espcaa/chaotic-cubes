@@ -22,7 +22,7 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	var primary = Palette.get_color("primary")
 	var accent = Palette.get_color("accent")
 	var secondary = Palette.get_color("tertiary")
@@ -61,7 +61,7 @@ func add_dice(node: Node) -> void:
 func dice_settled(dice: RigidBody2D) -> void:
 	dice.get_child(2).z_index = 200
 
-	get_tree().get_first_node_in_group("gameui").add_dice(dice.get_child(2),dice.global_position)
+	get_tree().get_first_node_in_group("gameui").add_dice(dice.get_child(2), dice.global_position)
 	dice.queue_free()
 	current_dice = null
 	adding_dice = false
