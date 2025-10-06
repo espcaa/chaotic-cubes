@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://ce1v0ur4eiv17"]
+
+[ext_resource type="FontFile" uid="uid://dplyku4eceytx" path="res://assets/fonts/monogram-extended.ttf" id="1_idgv7"]
+[ext_resource type="Script" uid="uid://d0d330w3qqixx" path="res://scenes/rich_text_label.gd" id="1_m5648"]
+[ext_resource type="Shader" uid="uid://hi56rfnncpf1" path="res://scenes/dice_machine.gdshader" id="1_xfbtq"]
+[ext_resource type="FontFile" uid="uid://if6adon6libj" path="res://assets/fonts/monogram-extended-italic.ttf" id="2_xfbtq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_id3mp"]
+shader = ExtResource("1_xfbtq")
+
+[node name="CustomRichLabel" type="RichTextLabel"]
+texture_filter = 1
+material = SubResource("ShaderMaterial_id3mp")
+instance_shader_parameters/replace_color_to_primary = Color(0.960784, 0.490196, 0.290196, 1)
+instance_shader_parameters/replace_color_to_secondary = Color(0.682353, 0.137255, 0.203922, 1)
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_fonts/normal_font = ExtResource("1_idgv7")
+theme_override_fonts/italics_font = ExtResource("2_xfbtq")
+theme_override_font_sizes/bold_italics_font_size = 16
+theme_override_font_sizes/italics_font_size = 16
+theme_override_font_sizes/mono_font_size = 16
+theme_override_font_sizes/normal_font_size = 16
+theme_override_font_sizes/bold_font_size = 16
+script = ExtResource("1_m5648")

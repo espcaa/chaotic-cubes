@@ -1,6 +1,6 @@
 extends PanelContainer
 
-enum ColorRole { PRIMARY, ACCENT, BACKGROUND, SECONDARY, TERTIARY }
+enum ColorRole { PRIMARY, ACCENT, BACKGROUND, SECONDARY, TERTIARY, ERROR }
 
 @export var color_role: ColorRole = ColorRole.PRIMARY
 @export var corner_radius: int = 0  # 0 = no rounding
@@ -36,6 +36,8 @@ func get_palette_color() -> Color:
 			return Palette.get_color("secondary")
 		ColorRole.TERTIARY:
 			return Palette.get_color("tertiary")
+		ColorRole.ERROR:
+			return Palette.get_color("error")
 		_:
 			return Color.ALICE_BLUE
 
@@ -52,6 +54,8 @@ func get_outline_color() -> Color:
 			return Palette.get_color("secondary")
 		ColorRole.TERTIARY:
 			return Palette.get_color("tertiary")
+		ColorRole.ERROR:
+			return Palette.get_color("error")
 		_:
 			return Color.BLACK
 

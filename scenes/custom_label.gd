@@ -26,7 +26,6 @@ func _ready() -> void:
 	# Color via theme override
 	add_theme_color_override("font_color", get_palette_color())
 
-
 func _process(_delta: float) -> void:
 	if cached_text != label_text:
 		cached_text = label_text

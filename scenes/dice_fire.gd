@@ -1,8 +1,5 @@
 extends "res://scenes/dice.gd"
 
-@export var custom_dice_name: String = "normal dice"
-@export var custom_dice_description: String = "just a regular dice.."
-
 
 func roll():
 	if playing:
@@ -25,12 +22,16 @@ func roll():
 
 	# Stop rolling
 	playing = false
-	$CustomLabel.label_text = str($AnimatedSprite2D.frame + 1) + " !!"
+	$CustomLabel.label_text = "FIIRE"
 	value.append($AnimatedSprite2D.frame + 1)  # +1 because frames are 0-based
 	emit_signal("roll_finished")
+	# get the game ui object
+
+	var game_ui = get_tree().get_first_node_in_group("gameui")
+	game_ui.empty_queue()
 	$AnimationPlayer.play("text")
 
 
 func set_dice_name():
-	dice_name = custom_dice_name
-	dice_description = custom_dice_description
+	dice_name = "fire dice"
+	dice_description = "burns the queue"

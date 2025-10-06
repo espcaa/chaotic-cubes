@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bfu41rido3bca"]
+[gd_scene load_steps=20 format=3 uid="uid://bfu41rido3bca"]
 
 [ext_resource type="Script" uid="uid://blbae1p8nj3sr" path="res://scenes/game_ui.gd" id="1_rns2u"]
 [ext_resource type="PackedScene" uid="uid://c4x5tkis316mh" path="res://scenes/colored_container.tscn" id="1_yubou"]
@@ -8,7 +8,129 @@
 [ext_resource type="PackedScene" uid="uid://cr4uhm3qq7x2w" path="res://scenes/dice_6.tscn" id="4_e0pfi"]
 [ext_resource type="AudioStream" uid="uid://s6rpy78m0p8u" path="res://assets/sound_dice.ogg" id="5_bt76a"]
 [ext_resource type="PackedScene" uid="uid://cbmn5tiw3fr6c" path="res://scenes/custom_label.tscn" id="5_djwj0"]
+[ext_resource type="PackedScene" uid="uid://blnpt5lk8cq3y" path="res://scenes/dice_romain.tscn" id="6_sjwyb"]
 [ext_resource type="PackedScene" uid="uid://7brptgis72d4" path="res://scenes/dice_machine.tscn" id="8_3huio"]
+[ext_resource type="PackedScene" uid="uid://d1pij81leeg4u" path="res://scenes/dice_fire.tscn" id="8_5kh4o"]
+[ext_resource type="Script" uid="uid://di7dxh1widv0i" path="res://scenes/tutorial.gd" id="12_g2v8e"]
+[ext_resource type="PackedScene" uid="uid://ce1v0ur4eiv17" path="res://scenes/custom_rich_label.tscn" id="12_s2npe"]
+
+[sub_resource type="Animation" id="Animation_sjwyb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("lose_menu/colored_container:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("lose_menu/MarginContainer:position:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-720, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("lose_menu/MarginContainer:position:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_3huio"]
+resource_name = "lose"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("lose_menu/colored_container:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.709804)]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("lose_menu/MarginContainer:position:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-720, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.306698)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("lose_menu/MarginContainer:position:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.306698)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sjwyb"]
+_data = {
+&"RESET": SubResource("Animation_sjwyb"),
+&"lose": SubResource("Animation_3huio")
+}
+
+[sub_resource type="Animation" id="Animation_1kaiv"]
+resource_name = "enter"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(0, -84), Vector2(0, -4)]
+}
+
+[sub_resource type="Animation" id="Animation_upmhx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -84)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ihktq"]
+_data = {
+&"RESET": SubResource("Animation_upmhx"),
+&"enter": SubResource("Animation_1kaiv")
+}
 
 [node name="game_ui" type="Control" groups=["gameui"]]
 layout_mode = 3
@@ -18,6 +140,74 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_rns2u")
+
+[node name="lose_menu" type="Control" parent="."]
+z_index = 100
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="colored_container" parent="lose_menu" instance=ExtResource("1_yubou")]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+color_role = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="lose_menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -720.0
+offset_right = -720.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 50
+
+[node name="colored_container" parent="lose_menu/MarginContainer" instance=ExtResource("1_yubou")]
+layout_mode = 2
+color_role = 5
+outline_enabled = true
+outline_color_role = 2
+outline_thickness = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="lose_menu/MarginContainer/colored_container"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="lose_menu/MarginContainer/colored_container/MarginContainer"]
+layout_mode = 2
+
+[node name="CustomLabel" parent="lose_menu/MarginContainer/colored_container/MarginContainer/VBoxContainer" instance=ExtResource("5_djwj0")]
+layout_mode = 2
+color_role = 2
+font_size = 32
+label_text = "You lost..."
+
+[node name="MarginContainer" type="MarginContainer" parent="lose_menu/MarginContainer/colored_container/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+
+[node name="CustomLabel2" parent="lose_menu/MarginContainer/colored_container/MarginContainer/VBoxContainer/MarginContainer" instance=ExtResource("5_djwj0")]
+layout_mode = 2
+color_role = 3
+label_text = "soe more details here ig"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
@@ -43,7 +233,8 @@ size_flags_vertical = 3
 [node name="old_dices_container" type="Node2D" parent="HBoxContainer/VBoxContainer/game_container"]
 
 [node name="drawing" parent="HBoxContainer/VBoxContainer/game_container" instance=ExtResource("2_o3bws")]
-position = Vector2(224, 142)
+position = Vector2(244, 153)
+scale = Vector2(1.054, 0.929)
 
 [node name="separartor" parent="HBoxContainer/VBoxContainer" instance=ExtResource("1_yubou")]
 layout_mode = 2
@@ -68,13 +259,31 @@ color_role = 1
 
 [node name="dice_6" parent="HBoxContainer/VBoxContainer/dice_container/point" instance=ExtResource("4_e0pfi")]
 
-[node name="dice4" parent="HBoxContainer/VBoxContainer/dice_container/point" instance=ExtResource("3_u001w")]
+[node name="dice_7" parent="HBoxContainer/VBoxContainer/dice_container/point" instance=ExtResource("4_e0pfi")]
+number = 2
 
-[node name="dice5" parent="HBoxContainer/VBoxContainer/dice_container/point" instance=ExtResource("3_u001w")]
+[node name="dice5" parent="HBoxContainer/VBoxContainer/dice_container/point" instance=ExtResource("8_5kh4o")]
 
-[node name="dice6" parent="HBoxContainer/VBoxContainer/dice_container/point" instance=ExtResource("3_u001w")]
+[node name="dice4" parent="HBoxContainer/VBoxContainer/dice_container/point" instance=ExtResource("6_sjwyb")]
 
-[node name="dice7" parent="HBoxContainer/VBoxContainer/dice_container/point" instance=ExtResource("3_u001w")]
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/VBoxContainer/dice_container"]
+layout_mode = 2
+
+[node name="spacer" type="Control" parent="HBoxContainer/VBoxContainer/dice_container/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/VBoxContainer/dice_container/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="LimitLabel" parent="HBoxContainer/VBoxContainer/dice_container/VBoxContainer/MarginContainer" instance=ExtResource("5_djwj0")]
+layout_mode = 2
+color_role = 2
+label_text = "AAAAAA"
 
 [node name="menu_bar" parent="HBoxContainer" instance=ExtResource("1_yubou")]
 z_index = 20
@@ -286,3 +495,68 @@ color_role = 1
 outline_enabled = true
 outline_color_role = 2
 outline_thickness = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_sjwyb")
+}
+
+[node name="tutorial_anchor" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = -84.0
+offset_bottom = -84.0
+grow_horizontal = 2
+script = ExtResource("12_g2v8e")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="tutorial_anchor"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="tutorial_anchor/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="spacer2" type="Control" parent="tutorial_anchor/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(290, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="colored_container" parent="tutorial_anchor/VBoxContainer/HBoxContainer" instance=ExtResource("1_yubou")]
+layout_mode = 2
+size_flags_horizontal = 3
+color_role = 5
+outline_enabled = true
+outline_color_role = 2
+outline_thickness = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="tutorial_anchor/VBoxContainer/HBoxContainer/colored_container"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="tutorial_anchor/VBoxContainer/HBoxContainer/colored_container/MarginContainer"]
+layout_mode = 2
+
+[node name="CustomRichLabel" parent="tutorial_anchor/VBoxContainer/HBoxContainer/colored_container/MarginContainer/VBoxContainer" instance=ExtResource("12_s2npe")]
+layout_mode = 2
+theme_override_colors/default_color = Color(0.906171, 0.496432, 0.783578, 1)
+text = "test??
+"
+fit_content = true
+label_text = "Use [img]res://assets/button-arrow-left.png[/img] and [img]res://assets/button-arrow-right.png[/img] to select dices!"
+
+[node name="spacer" type="Control" parent="tutorial_anchor/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(170, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="tutorial_anchor"]
+libraries = {
+&"": SubResource("AnimationLibrary_ihktq")
+}

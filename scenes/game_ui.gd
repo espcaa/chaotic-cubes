@@ -8,11 +8,24 @@ var dice_playing_pos: Vector2
 var target_x: float = 0.0
 var selected_index: int = 0
 
+var dice_limit: int = 10
+
 var playing_move := false
 var dice_refresh_blocked := false
 var active_dice: Node = null
 
 var dice_queue := []
+
+var is_tutorial: bool = false
+
+var lost: bool = false
+
+
+func lose():
+	# lose :(
+	if not lost:
+		lost = true
+		$AnimationPlayer.play("lose")
 
 
 func _ready() -> void:
@@ -21,15 +34,27 @@ func _ready() -> void:
 	update_playing_pos()
 	await get_tree().process_frame
 	$HBoxContainer/VBoxContainer/game_container/drawing.position.y = (
-		$HBoxContainer/VBoxContainer/separartor.position.y - 56 * 2
+		$HBoxContainer/VBoxContainer/separartor.position.y - 56 * 2 + 8
 	)
 	select_index(0)
+
 
 func _process(_delta: float) -> void:
 	$HBoxContainer/menu_bar/MarginContainer/VBoxContainer/colored_container2/MarginContainer/VBoxContainer/ScoreLabel.label_text = str(
 		UserData.score
 	)
 	update_on_resize()
+
+	var dice_number = $HBoxContainer/VBoxContainer/dice_container/point.get_child_count()
+
+	$HBoxContainer/VBoxContainer/dice_container/VBoxContainer/MarginContainer/LimitLabel.label_text = (
+		str(dice_number) + "/" + str(dice_limit) + " dices"
+	)
+
+	# if dice_number == 0 then lose
+
+	if dice_number == 0 and not playing_move and not is_tutorial:
+		lose()
 
 
 func update_on_resize() -> void:
@@ -217,10 +242,11 @@ func _input(_event: InputEvent) -> void:
 		play_audio_rollover()
 		redraw_screen()
 
-	if Input.is_action_just_pressed("ui_accept") and not playing_move:
+	if Input.is_action_just_pressed("play") and not playing_move:
 		var point = $HBoxContainer/VBoxContainer/dice_container/point
 		if selected_index < point.get_child_count():
 			active_dice = point.get_child(selected_index)
+			active_dice.unfocus()
 			dice_refresh_blocked = true
 			playing_move = true
 			move_active_dice()
@@ -231,6 +257,49 @@ func _input(_event: InputEvent) -> void:
 			return
 		else:
 			$HBoxContainer/menu_bar/MarginContainer/VBoxContainer/dice_machine.add_dice(newDice)
+
+	if Input.is_action_just_pressed("remove_dice"):
+		# remove the dice
+		remove_dice(selected_index)
+
+
+func remove_dice(index: int) -> void:
+	var point = $HBoxContainer/VBoxContainer/dice_container/point
+	if index < 0 or index >= point.get_child_count():
+		return
+
+	var dice = point.get_child(index)
+	if dice == null:
+		return
+
+	dice.unfocus()
+
+	dice_refresh_blocked = true
+
+	var tween = dice.create_tween()
+	(
+		tween
+		. tween_property(dice, "position", dice.position + Vector2(0, +150), 0.3)
+		. set_trans(Tween.TRANS_QUAD)
+		. set_ease(Tween.EASE_IN)
+	)
+	tween.tween_property(dice, "modulate:a", 0.0, 0.25).set_trans(Tween.TRANS_LINEAR)
+
+	tween.tween_callback(
+		func():
+			dice.queue_free()
+
+			var count = point.get_child_count()
+			if count == 0:
+				selected_index = 0
+			else:
+				selected_index = clamp(index, 0, count - 1)
+
+			dice_refresh_blocked = false
+			await get_tree().process_frame
+			select_index(selected_index)
+			redraw_screen()
+	)
 
 
 func play_audio_rollover():
@@ -278,3 +347,19 @@ func _on_dice_added(dice: Node2D) -> void:
 	var point = $HBoxContainer/VBoxContainer/dice_container/point
 	select_index(point.get_child_count() - 1)
 	redraw_screen()
+
+
+func empty_queue():
+	for i in dice_queue:
+		# set a tween to move to the left and fade out after 1 second
+		var tween = i.create_tween()
+
+		(
+			tween
+			. tween_property(i, "position", i.position + Vector2(-1000, 0), 0.5)
+			. set_trans(Tween.TRANS_QUAD)
+			. set_ease(Tween.EASE_IN)
+		)
+		tween.tween_property(i, "modulate:a", 0.0, 0.5).set_trans(Tween.TRANS_LINEAR)
+		tween.tween_callback(func(): i.queue_free())
+	dice_queue.clear()

@@ -7,6 +7,8 @@
 
 [node name="dice" instance=ExtResource("1_bmke7")]
 script = ExtResource("1_mg5ex")
+custom_dice_name = "normal dice"
+custom_dice_description = "just a regular dice.."
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 material = SubResource("ShaderMaterial_qf43l")

@@ -10,5 +10,9 @@ script = ExtResource("1_vllv0")
 visible = false
 
 [node name="dice" parent="DiceReserve" instance=ExtResource("2_p50ql")]
+custom_dice_name = "normal dice"
+custom_dice_description = "just a regular dice.."
 
 [node name="dice2" parent="DiceReserve" instance=ExtResource("2_p50ql")]
+custom_dice_name = "normal dice"
+custom_dice_description = "just a regular dice.."

@@ -1,0 +1,59 @@
+[gd_scene load_steps=11 format=3 uid="uid://d1pij81leeg4u"]
+
+[ext_resource type="PackedScene" uid="uid://bmqb4ae43griq" path="res://scenes/dice.tscn" id="1_8rfil"]
+[ext_resource type="Script" uid="uid://dlqsy3swc7lap" path="res://scenes/dice_fire.gd" id="2_g2y33"]
+[ext_resource type="Texture2D" uid="uid://btlcnkd5s1khu" path="res://assets/dicefire.png" id="3_ra2lp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yp0ot"]
+atlas = ExtResource("3_ra2lp")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yce6x"]
+atlas = ExtResource("3_ra2lp")
+region = Rect2(0, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u8x72"]
+atlas = ExtResource("3_ra2lp")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vj4pf"]
+atlas = ExtResource("3_ra2lp")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_desur"]
+atlas = ExtResource("3_ra2lp")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lclyk"]
+atlas = ExtResource("3_ra2lp")
+region = Rect2(0, 80, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0826k"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yp0ot")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yce6x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u8x72")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vj4pf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_desur")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lclyk")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="dice" instance=ExtResource("1_8rfil")]
+script = ExtResource("2_g2y33")
+dice_frames = SubResource("SpriteFrames_0826k")

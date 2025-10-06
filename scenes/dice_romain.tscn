@@ -1,0 +1,61 @@
+[gd_scene load_steps=11 format=3 uid="uid://blnpt5lk8cq3y"]
+
+[ext_resource type="PackedScene" uid="uid://bmqb4ae43griq" path="res://scenes/dice.tscn" id="1_ymmt2"]
+[ext_resource type="Texture2D" uid="uid://by43tj1ufmmmq" path="res://assets/dice_romain.png" id="2_k16vv"]
+[ext_resource type="Script" uid="uid://ctnfjejy5f75c" path="res://scenes/dice_normal.gd" id="2_ymmt2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k16vv"]
+atlas = ExtResource("2_k16vv")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e6bf5"]
+atlas = ExtResource("2_k16vv")
+region = Rect2(0, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ybhx"]
+atlas = ExtResource("2_k16vv")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_igm2q"]
+atlas = ExtResource("2_k16vv")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_87f15"]
+atlas = ExtResource("2_k16vv")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ihua"]
+atlas = ExtResource("2_k16vv")
+region = Rect2(0, 80, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cajwb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k16vv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e6bf5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1ybhx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_igm2q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_87f15")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ihua")
+}],
+"loop": true,
+"name": &"roll",
+"speed": 5.0
+}]
+
+[node name="dice" instance=ExtResource("1_ymmt2")]
+script = ExtResource("2_ymmt2")
+custom_dice_name = "roman dice"
+custom_dice_description = "slight twist"
+dice_frames = SubResource("SpriteFrames_cajwb")

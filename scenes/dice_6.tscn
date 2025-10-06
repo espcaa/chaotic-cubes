@@ -6,7 +6,14 @@
 
 [node name="dice_6" instance=ExtResource("1_502n6")]
 script = ExtResource("2_pqdgp")
+number = 6
 dice_frames = ExtResource("2_502n6")
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 sprite_frames = ExtResource("2_502n6")
+
+[node name="CustomLabel" parent="." index="1"]
+offset_left = 42.41
+offset_top = -21.36
+offset_right = 90.41
+offset_bottom = 4.64

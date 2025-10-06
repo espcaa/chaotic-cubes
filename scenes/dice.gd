@@ -19,10 +19,13 @@ func roll():
 
 
 func _ready() -> void:
-	$colored_container/text_container/title.label_text = dice_name
-	$colored_container/text_container/description.label_text = dice_description
+	set_dice_name()
+	$colored_container/MarginContainer/text_container/title.label_text = dice_description
+	$colored_container/MarginContainer/text_container/description.label_text = dice_name
+	await get_tree().process_frame  # wait a frame to ensure everything is set up
 	$AnimatedSprite2D.sprite_frames = dice_frames
 	dice_tooltip_width = $colored_container.size.x
+	custom_ready()
 
 
 func focus():
@@ -48,4 +51,12 @@ func custom_focus():
 
 
 func custom_unfocus():
+	pass
+
+
+func custom_ready():
+	pass
+
+
+func set_dice_name():
 	pass

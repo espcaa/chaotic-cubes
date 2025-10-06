@@ -19,20 +19,23 @@ script = ExtResource("1_1bslo")
 [node name="Bg" type="Sprite2D" parent="."]
 texture_filter = 1
 material = SubResource("ShaderMaterial_xc63a")
+instance_shader_parameters/accent_replaced_color = Color(0.7, 0.7, 0.7, 1)
+instance_shader_parameters/background_replaced_color = Color(0.47, 0.47, 0.47, 1)
 instance_shader_parameters/replace_color_to_accent = Color(0.956863, 0.490196, 0.290196, 1)
 instance_shader_parameters/replace_color_to_background = Color(0.431373, 0.152941, 0.14902, 1)
 instance_shader_parameters/replace_color_to_primary = Color(0.968627, 0.588235, 0.0823529, 1)
 instance_shader_parameters/replace_color_to_secondary = Color(0.701961, 0.219608, 0.192157, 1)
-position = Vector2(64, -84)
+position = Vector2(64, -47)
 scale = Vector2(4, 4)
 texture = ExtResource("1_hyb4w")
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 clip_children = 1
-position = Vector2(0, -1)
+position = Vector2(0, 36)
 polygon = PackedVector2Array(4, -111, 8, -111, 8, -115, 120, -115, 120, -111, 124, -111, 124, -7, 124, -3, 4, -3)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(0, 35)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(69, -3)
