@@ -11,10 +11,13 @@ shader = ExtResource("1_xfbtq")
 [node name="CustomRichLabel" type="RichTextLabel"]
 texture_filter = 1
 material = SubResource("ShaderMaterial_id3mp")
+instance_shader_parameters/replace_color_to_background = Color(1, 1, 1, 1)
 instance_shader_parameters/replace_color_to_primary = Color(0.960784, 0.490196, 0.290196, 1)
 instance_shader_parameters/replace_color_to_secondary = Color(0.682353, 0.137255, 0.203922, 1)
+instance_shader_parameters/secondary_replaced_color = Color(0, 0, 0, 1)
 offset_right = 40.0
 offset_bottom = 40.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("1_idgv7")
 theme_override_fonts/italics_font = ExtResource("2_xfbtq")
 theme_override_font_sizes/bold_italics_font_size = 16

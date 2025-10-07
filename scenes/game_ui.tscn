@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bfu41rido3bca"]
+[gd_scene load_steps=16 format=3 uid="uid://bfu41rido3bca"]
 
 [ext_resource type="Script" uid="uid://blbae1p8nj3sr" path="res://scenes/game_ui.gd" id="1_rns2u"]
 [ext_resource type="PackedScene" uid="uid://c4x5tkis316mh" path="res://scenes/colored_container.tscn" id="1_yubou"]
@@ -11,8 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://blnpt5lk8cq3y" path="res://scenes/dice_romain.tscn" id="6_sjwyb"]
 [ext_resource type="PackedScene" uid="uid://7brptgis72d4" path="res://scenes/dice_machine.tscn" id="8_3huio"]
 [ext_resource type="PackedScene" uid="uid://d1pij81leeg4u" path="res://scenes/dice_fire.tscn" id="8_5kh4o"]
-[ext_resource type="Script" uid="uid://di7dxh1widv0i" path="res://scenes/tutorial.gd" id="12_g2v8e"]
-[ext_resource type="PackedScene" uid="uid://ce1v0ur4eiv17" path="res://scenes/custom_rich_label.tscn" id="12_s2npe"]
+[ext_resource type="PackedScene" uid="uid://4ql4svkmakt2" path="res://scenes/tutorial.tscn" id="12_s2npe"]
 
 [sub_resource type="Animation" id="Animation_sjwyb"]
 length = 0.001
@@ -95,51 +94,17 @@ _data = {
 &"lose": SubResource("Animation_3huio")
 }
 
-[sub_resource type="Animation" id="Animation_1kaiv"]
-resource_name = "enter"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(-2, -2),
-"update": 0,
-"values": [Vector2(0, -84), Vector2(0, -4)]
-}
-
-[sub_resource type="Animation" id="Animation_upmhx"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, -84)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_ihktq"]
-_data = {
-&"RESET": SubResource("Animation_upmhx"),
-&"enter": SubResource("Animation_1kaiv")
-}
-
 [node name="game_ui" type="Control" groups=["gameui"]]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -1.0
+offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_rns2u")
+is_tutorial = true
 
 [node name="lose_menu" type="Control" parent="."]
 z_index = 100
@@ -501,62 +466,5 @@ libraries = {
 &"": SubResource("AnimationLibrary_sjwyb")
 }
 
-[node name="tutorial_anchor" type="Control" parent="."]
+[node name="tutorial_anchor" parent="." instance=ExtResource("12_s2npe")]
 layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_top = -84.0
-offset_bottom = -84.0
-grow_horizontal = 2
-script = ExtResource("12_g2v8e")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="tutorial_anchor"]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-grow_horizontal = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="tutorial_anchor/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="spacer2" type="Control" parent="tutorial_anchor/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(290, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="colored_container" parent="tutorial_anchor/VBoxContainer/HBoxContainer" instance=ExtResource("1_yubou")]
-layout_mode = 2
-size_flags_horizontal = 3
-color_role = 5
-outline_enabled = true
-outline_color_role = 2
-outline_thickness = 4
-
-[node name="MarginContainer" type="MarginContainer" parent="tutorial_anchor/VBoxContainer/HBoxContainer/colored_container"]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="VBoxContainer" type="VBoxContainer" parent="tutorial_anchor/VBoxContainer/HBoxContainer/colored_container/MarginContainer"]
-layout_mode = 2
-
-[node name="CustomRichLabel" parent="tutorial_anchor/VBoxContainer/HBoxContainer/colored_container/MarginContainer/VBoxContainer" instance=ExtResource("12_s2npe")]
-layout_mode = 2
-theme_override_colors/default_color = Color(0.906171, 0.496432, 0.783578, 1)
-text = "test??
-"
-fit_content = true
-label_text = "Use [img]res://assets/button-arrow-left.png[/img] and [img]res://assets/button-arrow-right.png[/img] to select dices!"
-
-[node name="spacer" type="Control" parent="tutorial_anchor/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(170, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="tutorial_anchor"]
-libraries = {
-&"": SubResource("AnimationLibrary_ihktq")
-}

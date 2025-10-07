@@ -23,5 +23,7 @@ void fragment() {
         tex_color = background_replaced_color;
     }
 
+    tex_color.rgb *= tex_color.a;
+
     COLOR = tex_color;
 }

@@ -16,7 +16,7 @@ var active_dice: Node = null
 
 var dice_queue := []
 
-var is_tutorial: bool = false
+@export var is_tutorial: bool = false
 
 var lost: bool = false
 
@@ -26,9 +26,14 @@ func lose():
 	if not lost:
 		lost = true
 		$AnimationPlayer.play("lose")
+	
 
 
 func _ready() -> void:
+	
+	if not is_tutorial:
+		$tutorial_anchor.queue_free()
+	
 	Palette.assign_new_palette()
 	cached_game_container_size = $HBoxContainer/VBoxContainer/game_container.size
 	update_playing_pos()

@@ -1,0 +1,129 @@
+[gd_scene load_steps=10 format=3 uid="uid://4ql4svkmakt2"]
+
+[ext_resource type="Script" uid="uid://di7dxh1widv0i" path="res://scenes/tutorial.gd" id="1_4kmhl"]
+[ext_resource type="PackedScene" uid="uid://c4x5tkis316mh" path="res://scenes/colored_container.tscn" id="2_cq4me"]
+[ext_resource type="PackedScene" uid="uid://ce1v0ur4eiv17" path="res://scenes/custom_rich_label.tscn" id="3_6yjpi"]
+[ext_resource type="Shader" uid="uid://hi56rfnncpf1" path="res://scenes/dice_machine.gdshader" id="4_gbqnl"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_upmhx"]
+shader = ExtResource("4_gbqnl")
+
+[sub_resource type="Animation" id="Animation_upmhx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -84)]
+}
+
+[sub_resource type="Animation" id="Animation_1kaiv"]
+resource_name = "enter"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(0, -84), Vector2(0, -4)]
+}
+
+[sub_resource type="Animation" id="Animation_4kmhl"]
+resource_name = "exit"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.42),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(0, -4), Vector2(200, -4)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ihktq"]
+_data = {
+&"RESET": SubResource("Animation_upmhx"),
+&"enter": SubResource("Animation_1kaiv"),
+&"exit": SubResource("Animation_4kmhl")
+}
+
+[node name="tutorial_anchor" type="Control"]
+layout_mode = 3
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 200.0
+offset_top = -4.0
+offset_right = 200.0
+offset_bottom = -4.0
+grow_horizontal = 2
+script = ExtResource("1_4kmhl")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="spacer2" type="Control" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(290, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="colored_container" parent="VBoxContainer/HBoxContainer" instance=ExtResource("2_cq4me")]
+layout_mode = 2
+size_flags_horizontal = 3
+color_role = 5
+outline_enabled = true
+outline_color_role = 2
+outline_thickness = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer/colored_container"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/colored_container/MarginContainer"]
+layout_mode = 2
+
+[node name="CustomRichLabel" parent="VBoxContainer/HBoxContainer/colored_container/MarginContainer/VBoxContainer" instance=ExtResource("3_6yjpi")]
+material = SubResource("ShaderMaterial_upmhx")
+instance_shader_parameters/background_replaced_color = Color(0, 0, 0, 1)
+instance_shader_parameters/tolerance = 0.1
+layout_mode = 2
+bbcode_enabled = true
+text = "test??
+"
+fit_content = true
+color_role = 2
+label_text = "Use [img]res://assets/button-arrow-left.png[/img] and [img]res://assets/button-arrow-right.png[/img] to select dices!"
+
+[node name="spacer" type="Control" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(170, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_ihktq")
+}
