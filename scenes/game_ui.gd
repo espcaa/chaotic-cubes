@@ -18,6 +18,7 @@ var dice_queue := []
 
 @export var is_tutorial: bool = false
 
+var is_drawing_a_dice: bool = false
 var lost: bool = false
 
 
@@ -26,14 +27,12 @@ func lose():
 	if not lost:
 		lost = true
 		$AnimationPlayer.play("lose")
-	
 
 
 func _ready() -> void:
-	
 	if not is_tutorial:
 		$tutorial_anchor.queue_free()
-	
+
 	Palette.assign_new_palette()
 	cached_game_container_size = $HBoxContainer/VBoxContainer/game_container.size
 	update_playing_pos()
@@ -247,7 +246,7 @@ func _input(_event: InputEvent) -> void:
 		play_audio_rollover()
 		redraw_screen()
 
-	if Input.is_action_just_pressed("play") and not playing_move:
+	if Input.is_action_just_pressed("play") and not playing_move and not is_drawing_a_dice:
 		var point = $HBoxContainer/VBoxContainer/dice_container/point
 		if selected_index < point.get_child_count():
 			active_dice = point.get_child(selected_index)
@@ -257,6 +256,10 @@ func _input(_event: InputEvent) -> void:
 			move_active_dice()
 
 	if Input.is_action_just_pressed("draw"):
+		is_drawing_a_dice = true
+		# verify if we're not playing a move rn
+		if playing_move:
+			return
 		var newDice = UserData.get_reserved_dice()
 		if newDice == null:
 			return
@@ -340,7 +343,6 @@ func add_dice(dice: Node2D, start_pos: Vector2 = Vector2.ZERO) -> void:
 		Tween.EASE_OUT
 	)
 
-
 	tween.tween_callback(func(): _on_dice_added(dice))
 
 
@@ -351,6 +353,7 @@ func _on_dice_added(dice: Node2D) -> void:
 	var point = $HBoxContainer/VBoxContainer/dice_container/point
 	select_index(point.get_child_count() - 1)
 	redraw_screen()
+	is_drawing_a_dice = false
 
 
 func empty_queue():

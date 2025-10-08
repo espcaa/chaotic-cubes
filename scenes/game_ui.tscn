@@ -468,7 +468,3 @@ libraries = {
 
 [node name="tutorial_anchor" parent="." instance=ExtResource("12_s2npe")]
 layout_mode = 1
-offset_left = 0.0
-offset_top = -84.0
-offset_right = 0.0
-offset_bottom = -84.0

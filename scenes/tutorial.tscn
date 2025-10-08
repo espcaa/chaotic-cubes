@@ -66,10 +66,8 @@ _data = {
 layout_mode = 3
 anchors_preset = 10
 anchor_right = 1.0
-offset_left = 200.0
-offset_top = -4.0
-offset_right = 200.0
-offset_bottom = -4.0
+offset_top = -84.0
+offset_bottom = -84.0
 grow_horizontal = 2
 script = ExtResource("1_4kmhl")
 
@@ -98,10 +96,10 @@ outline_thickness = 4
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer/colored_container"]
 layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/colored_container/MarginContainer"]
 layout_mode = 2
