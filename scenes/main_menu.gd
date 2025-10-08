@@ -15,3 +15,7 @@ func _change_color(node: Button) -> void:
 
 func _on_custom_button_pressed() -> void:
 	Transitioner.load_scene_with_transition("res://scenes/game_ui.tscn", self, Enums.ColorRole.SECONDARY)
+
+
+func _on_quit_button_pressed() -> void:
+	get_tree().quit()
