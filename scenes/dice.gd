@@ -10,7 +10,6 @@ var playing = false
 var dice_description: String = "[redacted]"
 var dice_name: String = "[redacted description]"
 
-var dice_tooltip_height: float = 0.0
 var dice_tooltip_width: float = 0.0
 
 
@@ -22,18 +21,19 @@ func _ready() -> void:
 	set_dice_name()
 	$colored_container/MarginContainer/text_container/title.label_text = dice_description
 	$colored_container/MarginContainer/text_container/description.label_text = dice_name
+	custom_ready()
 	await get_tree().process_frame  # wait a frame to ensure everything is set up
 	$AnimatedSprite2D.sprite_frames = dice_frames
 	dice_tooltip_width = $colored_container.size.x
-	custom_ready()
 
 
 func focus():
 	var tween = create_tween()
 	tween.tween_property($colored_container, "scale", Vector2(1.0, 1.0), 0.2)
 	tween.parallel().tween_property(
-		$colored_container, "position", Vector2(-(dice_tooltip_width), -80), 0.2
+		$colored_container, "position", Vector2(-dice_tooltip_width / 2, -80), 0.2
 	)
+
 	tween.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 	tween.tween_callback(Callable(self, "custom_focus"))
 

@@ -340,7 +340,6 @@ func add_dice(dice: Node2D, start_pos: Vector2 = Vector2.ZERO) -> void:
 		Tween.EASE_OUT
 	)
 
-	dice_queue.append(dice)
 
 	tween.tween_callback(func(): _on_dice_added(dice))
 

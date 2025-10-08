@@ -4,10 +4,12 @@ extends Control
 class TutorialStep:
 	var description: String
 	var keys_to_press: Array[String]
+	var time_to_wait: float = 1.0
 
-	func _init(desc: String, keys: Array[String]) -> void:
+	func _init(desc: String, keys: Array[String], time: float = 0.0) -> void:
 		description = desc
 		keys_to_press = keys
+		time_to_wait = time
 
 
 var steps: Array[TutorialStep] = [
@@ -16,7 +18,8 @@ var steps: Array[TutorialStep] = [
 		. new(
 			"welcome to chaotic cubes :D",
 			[],
-		)	
+			2.0,
+		)
 	),
 	(
 		TutorialStep
@@ -49,8 +52,9 @@ var steps: Array[TutorialStep] = [
 	(
 		TutorialStep
 		. new(
-			"Have fun playing chaotic cubes! :D",
+			"now, your goal is to hit 200 points ;D",
 			[],
+			5.0,
 		)
 	),
 ]
@@ -81,7 +85,7 @@ func update_step() -> void:
 	)
 	$AnimationPlayer.play("enter")
 	if step.keys_to_press.size() == 0:
-		await get_tree().create_timer(2.0).timeout
+		await get_tree().create_timer(step.time_to_wait).timeout
 		complete_step()
 
 

@@ -225,9 +225,7 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_top = -40.0
-offset_right = 72.0
-offset_bottom = 0.0
+offset_right = 142.0
 grow_horizontal = 2
 grow_vertical = 0
 scale = Vector2(1e-05, 1e-05)
@@ -249,14 +247,15 @@ layout_mode = 2
 
 [node name="description" parent="colored_container/MarginContainer/text_container" instance=ExtResource("3_ycnvv")]
 layout_mode = 2
-text = "aaaaaaaaaaaa"
 color_role = 3
+label_text = "Labelaaaaaaaaa"
 
 [node name="title" parent="colored_container/MarginContainer/text_container" instance=ExtResource("3_ycnvv")]
 layout_mode = 2
-text = "aaaa"
+text = "
+"
 color_role = 3
-label_text = "aaa"
+label_text = "aaaaaaaaaaaaaa"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

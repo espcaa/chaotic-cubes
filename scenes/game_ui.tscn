@@ -394,7 +394,7 @@ texture_filter = 1
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_fonts/font = ExtResource("4_bt76a")
-text = "Rolls"
+text = "- Dice"
 
 [node name="CustomLabel" parent="HBoxContainer/menu_bar/MarginContainer/VBoxContainer/HBoxContainer2/colored_container/MarginContainer/VBoxContainer" instance=ExtResource("5_djwj0")]
 layout_mode = 2
@@ -468,3 +468,7 @@ libraries = {
 
 [node name="tutorial_anchor" parent="." instance=ExtResource("12_s2npe")]
 layout_mode = 1
+offset_left = 0.0
+offset_top = -84.0
+offset_right = 0.0
+offset_bottom = -84.0

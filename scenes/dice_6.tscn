@@ -7,6 +7,8 @@
 [node name="dice_6" instance=ExtResource("1_502n6")]
 script = ExtResource("2_pqdgp")
 number = 6
+custom_dice_name = "static dice"
+custom_dice_description = "this dice will always be the same"
 dice_frames = ExtResource("2_502n6")
 
 [node name="AnimatedSprite2D" parent="." index="0"]
