@@ -20,6 +20,10 @@ var dice_queue := []
 
 var is_drawing_a_dice: bool = false
 var lost: bool = false
+var won: bool = false
+@export var goal: int = 1
+@export var draw_limit: int = -1
+@export var machine_limit: int = -1
 
 
 func lose():
@@ -29,9 +33,19 @@ func lose():
 		$AnimationPlayer.play("lose")
 
 
+func win():
+	if not won:
+		won = true
+		$AnimationPlayer.play("win")
+
+
 func _ready() -> void:
 	if not is_tutorial:
 		$tutorial_anchor.queue_free()
+
+	$HBoxContainer/menu_bar/MarginContainer/VBoxContainer/HBoxContainer/colored_container2/MarginContainer/VBoxContainer/GoalLabel.label_text = (str(
+		goal
+	))
 
 	Palette.assign_new_palette()
 	cached_game_container_size = $HBoxContainer/VBoxContainer/game_container.size
@@ -59,6 +73,9 @@ func _process(_delta: float) -> void:
 
 	if dice_number == 0 and not playing_move and not is_tutorial:
 		lose()
+
+	if UserData.score >= goal and not won:
+		win()
 
 
 func update_on_resize() -> void:

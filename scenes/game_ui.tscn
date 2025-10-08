@@ -314,7 +314,7 @@ size_flags_vertical = 0
 theme_override_fonts/font = ExtResource("4_bt76a")
 text = "Money"
 
-[node name="CustomLabel" parent="HBoxContainer/menu_bar/MarginContainer/VBoxContainer/HBoxContainer/colored_container/MarginContainer/VBoxContainer" instance=ExtResource("5_djwj0")]
+[node name="MoneyLabel" parent="HBoxContainer/menu_bar/MarginContainer/VBoxContainer/HBoxContainer/colored_container/MarginContainer/VBoxContainer" instance=ExtResource("5_djwj0")]
 layout_mode = 2
 font_size = 32
 label_text = "0$"
@@ -333,12 +333,20 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="Label" type="Label" parent="HBoxContainer/menu_bar/MarginContainer/VBoxContainer/HBoxContainer/colored_container2/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/menu_bar/MarginContainer/VBoxContainer/HBoxContainer/colored_container2/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/menu_bar/MarginContainer/VBoxContainer/HBoxContainer/colored_container2/MarginContainer/VBoxContainer"]
 texture_filter = 1
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_fonts/font = ExtResource("4_bt76a")
 text = "Goal"
+
+[node name="GoalLabel" parent="HBoxContainer/menu_bar/MarginContainer/VBoxContainer/HBoxContainer/colored_container2/MarginContainer/VBoxContainer" instance=ExtResource("5_djwj0")]
+layout_mode = 2
+font_size = 32
+label_text = ""
 
 [node name="colored_container2" parent="HBoxContainer/menu_bar/MarginContainer/VBoxContainer" instance=ExtResource("1_yubou")]
 layout_mode = 2

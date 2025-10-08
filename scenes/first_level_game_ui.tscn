@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b2swltrwdy5yr"]
+
+[ext_resource type="PackedScene" uid="uid://bfu41rido3bca" path="res://scenes/game_ui.tscn" id="1_ys7o7"]
+
+[node name="first_level_game_ui" instance=ExtResource("1_ys7o7")]
+goal = 100

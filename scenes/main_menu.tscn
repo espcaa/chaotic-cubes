@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://bybb7ys5erhhf"]
+[gd_scene load_steps=7 format=3 uid="uid://bybb7ys5erhhf"]
 
 [ext_resource type="PackedScene" uid="uid://c4x5tkis316mh" path="res://scenes/colored_container.tscn" id="1_06t4h"]
 [ext_resource type="Script" uid="uid://6wb86ksbqkpe" path="res://scenes/main_menu.gd" id="1_fu7sn"]
 [ext_resource type="PackedScene" uid="uid://cbmn5tiw3fr6c" path="res://scenes/custom_label.tscn" id="2_7vrkn"]
 [ext_resource type="PackedScene" uid="uid://d26hs8spvqyjy" path="res://scenes/custom_button.tscn" id="4_wu84c"]
 [ext_resource type="PackedScene" uid="uid://bmqb4ae43griq" path="res://scenes/dice.tscn" id="5_8ln24"]
+[ext_resource type="PackedScene" uid="uid://cr4uhm3qq7x2w" path="res://scenes/dice_6.tscn" id="6_rtw2f"]
 
 [node name="main_menu" type="Control"]
 layout_mode = 3
@@ -203,9 +204,6 @@ scale = Vector2(2, 2)
 [node name="dice" parent="colored_container2/Node2D" instance=ExtResource("5_8ln24")]
 position = Vector2(39.5612, 253.156)
 
-[node name="dice2" parent="colored_container2/Node2D" instance=ExtResource("5_8ln24")]
-position = Vector2(39.955, 179.889)
-
 [node name="dice3" parent="colored_container2/Node2D" instance=ExtResource("5_8ln24")]
 position = Vector2(42.104, 107.034)
 
@@ -220,6 +218,10 @@ position = Vector2(111.677, 70.3791)
 
 [node name="dice4" parent="colored_container2/Node2D" instance=ExtResource("5_8ln24")]
 position = Vector2(41.4424, 35.2282)
+
+[node name="dice_6" parent="colored_container2/Node2D" instance=ExtResource("6_rtw2f")]
+position = Vector2(40.542, 178.602)
+number = 4
 
 [connection signal="pressed" from="Control2/MarginContainer/VBoxContainer/MarginContainer/custom_button" to="." method="_on_custom_button_pressed"]
 [connection signal="pressed" from="Control2/MarginContainer/VBoxContainer/MarginContainer2/quit_button" to="." method="_on_quit_button_pressed"]
