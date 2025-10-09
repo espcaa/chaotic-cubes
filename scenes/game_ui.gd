@@ -59,7 +59,7 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	$HBoxContainer/menu_bar/MarginContainer/VBoxContainer/colored_container2/MarginContainer/VBoxContainer/ScoreLabel.label_text = str(
-		UserData.score
+		UserData.current_score
 	)
 	update_on_resize()
 
@@ -74,7 +74,7 @@ func _process(_delta: float) -> void:
 	if dice_number == 0 and not playing_move and not is_tutorial:
 		lose()
 
-	if UserData.score >= goal and not won:
+	if UserData.current_score >= goal and not won:
 		win()
 
 
@@ -131,7 +131,7 @@ func _on_dice_reached_center() -> void:
 	active_dice.roll()
 	await active_dice.roll_finished
 
-	UserData.score += active_dice.value[0]
+	UserData.score(active_dice.value[0])
 
 	await get_tree().create_timer(0.5).timeout  # wait a bit before moving to played area
 

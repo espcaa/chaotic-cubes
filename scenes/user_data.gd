@@ -1,6 +1,9 @@
 extends Node
 
-var score: int = 0
+var current_score: int = 0
+var total_run_score: int = 0
+var paused: bool = false
+
 
 func get_reserved_dice() -> Node:
 	var dice_reserve = []
@@ -13,3 +16,8 @@ func get_reserved_dice() -> Node:
 		return null
 	var random_index = randi() % dice_reserve.size()
 	return dice_reserve[random_index]
+
+
+func score(points: int) -> void:
+	current_score += points
+	total_run_score += points
