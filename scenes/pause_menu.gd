@@ -29,3 +29,15 @@ func unpause_game() -> void:
 func pause_game() -> void:
 	$AnimationPlayer.play("pause")
 	UserData.paused = true
+
+
+func _process(_delta: float) -> void:
+	$colored_container/MarginContainer/HBoxContainer/VBoxContainer2/RightCustomRichLabelTotal.text = (
+		"Total points during this run : " + str(UserData.total_run_score)
+	)
+	$colored_container/MarginContainer/HBoxContainer/VBoxContainer2/RightCustomRichLabelTimePlayed.text = (
+		"Time played : " + str(round(UserData.time_run) / 60.0) + " minutes"
+	)
+	$colored_container/MarginContainer/HBoxContainer/VBoxContainer2/RightCustomRichLabelMoney.text = (
+		"Current points : " + str(UserData.current_score)
+	)

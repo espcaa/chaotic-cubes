@@ -3,6 +3,13 @@ extends Node
 var current_score: int = 0
 var total_run_score: int = 0
 var paused: bool = false
+var time_run: float = 0.0
+var timer_running: bool = false
+
+
+func _process(delta: float) -> void:
+	if not paused and timer_running:
+		time_run += delta
 
 
 func get_reserved_dice() -> Node:
@@ -21,3 +28,8 @@ func get_reserved_dice() -> Node:
 func score(points: int) -> void:
 	current_score += points
 	total_run_score += points
+
+
+func reset_time() -> void:
+	time_run = 0.0
+	timer_running = true

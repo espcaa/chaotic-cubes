@@ -1,7 +1,6 @@
 extends Control
 
 
-
 func _ready() -> void:
 	Palette.assign_new_palette()
 	for i in $Control/MarginContainer/VBoxContainer/button_container.get_children():
@@ -14,7 +13,12 @@ func _change_color(node: Button) -> void:
 
 
 func _on_custom_button_pressed() -> void:
-	Transitioner.load_scene_with_transition("res://scenes/first_level_game_ui.tscn", self, Enums.ColorRole.SECONDARY)
+	# load the scene + starts the timer
+
+	UserData.timer_running = true
+	Transitioner.load_scene_with_transition(
+		"res://scenes/first_level_game_ui.tscn", self, Enums.ColorRole.SECONDARY
+	)
 
 
 func _on_quit_button_pressed() -> void:
