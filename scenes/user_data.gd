@@ -5,6 +5,7 @@ var total_run_score: int = 0
 var paused: bool = false
 var time_run: float = 0.0
 var timer_running: bool = false
+var money : int = 0
 
 
 func _process(delta: float) -> void:

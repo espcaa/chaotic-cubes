@@ -32,12 +32,12 @@ func pause_game() -> void:
 
 
 func _process(_delta: float) -> void:
-	$colored_container/MarginContainer/HBoxContainer/VBoxContainer2/RightCustomRichLabelTotal.text = (
+	$colored_container/MarginContainer/HBoxContainer/MarginContainer/colored_container/MarginContainer/VBoxContainer/LabelTotalScore.text = (
 		"Total points during this run : " + str(UserData.total_run_score)
 	)
-	$colored_container/MarginContainer/HBoxContainer/VBoxContainer2/RightCustomRichLabelTimePlayed.text = (
-		"Time played : " + str(round(UserData.time_run) / 60.0) + " minutes"
+	$colored_container/MarginContainer/HBoxContainer/MarginContainer/colored_container/MarginContainer/VBoxContainer/LabelTotalTime.text = (
+		"Total time played : " + str(round(UserData.time_run)) + " seconds"
 	)
-	$colored_container/MarginContainer/HBoxContainer/VBoxContainer2/RightCustomRichLabelMoney.text = (
-		"Current points : " + str(UserData.current_score)
+	$colored_container/MarginContainer/HBoxContainer/MarginContainer/colored_container/MarginContainer/VBoxContainer/LabelTotalMoney.text = (
+		"All of the money ever earned: " + str(UserData.money)
 	)

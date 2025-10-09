@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://crap75vs3m6nx" path="res://scenes/pause_menu.gd" id="1_kukqi"]
 [ext_resource type="PackedScene" uid="uid://c4x5tkis316mh" path="res://scenes/colored_container.tscn" id="1_n87rw"]
 [ext_resource type="PackedScene" uid="uid://d26hs8spvqyjy" path="res://scenes/custom_button.tscn" id="2_myx47"]
-[ext_resource type="PackedScene" uid="uid://ce1v0ur4eiv17" path="res://scenes/custom_rich_label.tscn" id="4_5d2l8"]
+[ext_resource type="PackedScene" uid="uid://cbmn5tiw3fr6c" path="res://scenes/custom_label.tscn" id="5_7l7mv"]
 
 [sub_resource type="Animation" id="Animation_kukqi"]
 length = 0.001
@@ -101,6 +101,7 @@ theme_override_constants/margin_right = 100
 
 [node name="HBoxContainer" type="HBoxContainer" parent="colored_container/MarginContainer"]
 layout_mode = 2
+size_flags_vertical = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="colored_container/MarginContainer/HBoxContainer"]
 layout_mode = 2
@@ -116,22 +117,35 @@ layout_mode = 2
 hover_color = 4
 label_text = "Quit :("
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="colored_container/MarginContainer/HBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="colored_container/MarginContainer/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 0
+theme_override_constants/margin_left = 20
 
-[node name="RightCustomRichLabelTotal" parent="colored_container/MarginContainer/HBoxContainer/VBoxContainer2" instance=ExtResource("4_5d2l8")]
+[node name="colored_container" parent="colored_container/MarginContainer/HBoxContainer/MarginContainer" instance=ExtResource("1_n87rw")]
 layout_mode = 2
-autowrap_mode = 0
-label_text = "Total "
+size_flags_horizontal = 3
 
-[node name="RightCustomRichLabelMoney" parent="colored_container/MarginContainer/HBoxContainer/VBoxContainer2" instance=ExtResource("4_5d2l8")]
+[node name="MarginContainer" type="MarginContainer" parent="colored_container/MarginContainer/HBoxContainer/MarginContainer/colored_container"]
 layout_mode = 2
-autowrap_mode = 0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 
-[node name="RightCustomRichLabelTimePlayed" parent="colored_container/MarginContainer/HBoxContainer/VBoxContainer2" instance=ExtResource("4_5d2l8")]
+[node name="VBoxContainer" type="VBoxContainer" parent="colored_container/MarginContainer/HBoxContainer/MarginContainer/colored_container/MarginContainer"]
 layout_mode = 2
-autowrap_mode = 0
+
+[node name="LabelTotalTime" parent="colored_container/MarginContainer/HBoxContainer/MarginContainer/colored_container/MarginContainer/VBoxContainer" instance=ExtResource("5_7l7mv")]
+layout_mode = 2
+color_role = 3
+
+[node name="LabelTotalScore" parent="colored_container/MarginContainer/HBoxContainer/MarginContainer/colored_container/MarginContainer/VBoxContainer" instance=ExtResource("5_7l7mv")]
+layout_mode = 2
+color_role = 3
+
+[node name="LabelTotalMoney" parent="colored_container/MarginContainer/HBoxContainer/MarginContainer/colored_container/MarginContainer/VBoxContainer" instance=ExtResource("5_7l7mv")]
+layout_mode = 2
+color_role = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
