@@ -250,6 +250,9 @@ func select_index(new_index: int) -> void:
 
 
 func _input(_event: InputEvent) -> void:
+	if UserData.paused:
+		return
+
 	if dice_refresh_blocked:
 		return
 

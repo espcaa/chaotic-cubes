@@ -97,7 +97,7 @@ func finish_tutorial() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if event is InputEventKey and event.pressed and not event.echo:
+	if event is InputEventKey and event.pressed and not event.echo and not UserData.paused:
 		var step = steps[current_step_index]
 		for key in step.keys_to_press:
 			if Input.is_action_pressed(key):

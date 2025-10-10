@@ -4,7 +4,10 @@ var next_scene: PackedScene = null
 var next_scene_instance: Node = null
 var nuking_scene: Node = null
 
-func load_scene_with_transition(scene_path: String, calling_scene: Node, color: Enums.ColorRole) -> void:
+
+func load_scene_with_transition(
+	scene_path: String, calling_scene: Node, color: Enums.ColorRole
+) -> void:
 	# Load and instantiate the target scene
 	next_scene = load(scene_path)
 	next_scene_instance = next_scene.instantiate()
@@ -36,6 +39,8 @@ func load_scene_with_transition(scene_path: String, calling_scene: Node, color: 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "in":
 		if next_scene_instance != null:
+			for i in nuking_scene.get_children():
+				i.queue_free()
 			nuking_scene.queue_free()
 			get_tree().get_root().add_child(next_scene_instance)
 			get_tree().set_current_scene(next_scene_instance)
