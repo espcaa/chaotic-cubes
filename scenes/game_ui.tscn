@@ -108,7 +108,7 @@ script = ExtResource("1_rns2u")
 is_tutorial = true
 
 [node name="lose_menu" type="Control" parent="."]
-z_index = 100
+z_index = 200
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -477,6 +477,10 @@ libraries = {
 
 [node name="tutorial_anchor" parent="." instance=ExtResource("12_s2npe")]
 layout_mode = 1
+offset_left = 0.0
+offset_top = -84.0
+offset_right = 0.0
+offset_bottom = -84.0
 
 [node name="pause_menu" parent="." instance=ExtResource("13_g2v8e")]
 layout_mode = 1

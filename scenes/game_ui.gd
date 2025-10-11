@@ -71,7 +71,7 @@ func _process(_delta: float) -> void:
 
 	# if dice_number == 0 then lose
 
-	if dice_number == 0 and not playing_move and not is_tutorial:
+	if dice_number == 0 and not playing_move:
 		lose()
 
 	if UserData.current_score >= goal and not won:
