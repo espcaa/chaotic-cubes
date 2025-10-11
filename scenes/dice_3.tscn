@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://dqqntm5yjso7k"]
+
+[ext_resource type="PackedScene" uid="uid://cr4uhm3qq7x2w" path="res://scenes/dice_6.tscn" id="1_p81pk"]
+
+[node name="dice_3" instance=ExtResource("1_p81pk")]
+number = 3
+
+[node name="CustomLabel" parent="." index="1"]
+offset_left = 4.0
+offset_top = -7.0
+offset_right = 52.0
+offset_bottom = 19.0
