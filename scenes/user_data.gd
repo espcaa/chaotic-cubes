@@ -5,7 +5,11 @@ var total_run_score: int = 0
 var paused: bool = false
 var time_run: float = 0.0
 var timer_running: bool = false
-var money : int = 0
+var money: int = 0
+
+@onready var RandomDiceManager = $RandomDiceManager
+
+var unlocked_dices = ["normal_dice", "dice_1", "dice_2", "dice_3", "dice_4", "dice_5", "dice_6"]
 
 
 func _process(delta: float) -> void:
@@ -14,16 +18,11 @@ func _process(delta: float) -> void:
 
 
 func get_reserved_dice() -> Node:
-	var dice_reserve = []
-	for i in $DiceReserve.get_children():
-		dice_reserve.append(i)
+	# first get a random dice
+	var dice_scene = RandomDiceManager.get_random_dice(unlocked_dices)
 
-	# select a random die from the reserve
-
-	if dice_reserve.size() == 0:
-		return null
-	var random_index = randi() % dice_reserve.size()
-	return dice_reserve[random_index]
+	var dice_instance = dice_scene.instantiate()
+	return dice_instance
 
 
 func score(points: int) -> void:

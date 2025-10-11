@@ -1,6 +1,6 @@
 extends Node
 
-var rarity_weights = {"common": 80, "rare": 15, "legendary": 5}
+var rarity_weights = {"common": 80, "rare": 15}
 
 var all_dices = {
 	"common":
@@ -30,45 +30,42 @@ var dice_to_scene = {
 	"firedice": load("res://scenes/dice_fire.tscn")
 }
 
-
-func get_random_dice(unlocked_array: Array) -> Dictionary:
-	if unlocked_array.size() == 0:
+func get_random_dice_scene(unlocked_array: Array) -> PackedScene:
+	if unlocked_array.is_empty():
 		push_warning("No unlocked dice available...")
-		return {}
+		return null
 
+	var total_rarity_weight = 0.0
+	for weight in rarity_weights.values():
+		total_rarity_weight += weight
+
+	var rand_val = randf() * total_rarity_weight
+	var cumulative = 0.0
 	var selected_rarity = ""
-	var filtered_dice_list = []
+	for rarity in rarity_weights.keys():
+		cumulative += rarity_weights[rarity]
+		if rand_val < cumulative:
+			selected_rarity = rarity
+			break
 
-	while filtered_dice_list.size() == 0:
-		var total_weight = 0.0
-		for weight in rarity_weights.values():
-			total_weight += weight
+	var available_dice = []
+	for dice_name in all_dices[selected_rarity].keys():
+		if dice_name in unlocked_array:
+			available_dice.append(dice_name)
 
-		var random_value = randf() * total_weight
-		var cumulative_weight = 0.0
-		for rarity in rarity_weights.keys():
-			cumulative_weight += rarity_weights[rarity]
-			if random_value < cumulative_weight:
-				selected_rarity = rarity
-				break
-
-		filtered_dice_list.clear()
-		for dice_name in all_dices[selected_rarity].keys():
-			if dice_name in unlocked_array:
-				filtered_dice_list.append(dice_name)
+	if available_dice.empty():
+		push_warning("No unlocked dice in selected rarity, returning first unlocked dice...")
+		return dice_to_scene[unlocked_array[0]]
 
 	var total_dice_weight = 0.0
-	var cumulative_weights = []
-	for dice_name in filtered_dice_list:
-		var weight = all_dices[selected_rarity][dice_name]["weight"]
-		total_dice_weight += weight
-		cumulative_weights.append(total_dice_weight)
+	for dice_name in available_dice:
+		total_dice_weight += all_dices[selected_rarity][dice_name]["weight"]
 
-	var dice_roll = randf() * total_dice_weight
-	for i in range(cumulative_weights.size()):
-		if dice_roll < cumulative_weights[i]:
-			var selected_dice = filtered_dice_list[i]
-			return {"string_name": selected_dice, "scene": dice_to_scene[selected_dice]}
+	var dice_rand = randf() * total_dice_weight
+	cumulative = 0.0
+	for dice_name in available_dice:
+		cumulative += all_dices[selected_rarity][dice_name]["weight"]
+		if dice_rand < cumulative:
+			return dice_to_scene[dice_name]
 
-	var fallback_dice = filtered_dice_list.back()
-	return {"string_name": fallback_dice, "scene": dice_to_scene[fallback_dice]}
+	return dice_to_scene[available_dice.back()]

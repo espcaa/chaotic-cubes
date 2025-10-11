@@ -4,9 +4,3 @@
 
 [node name="dice_5" instance=ExtResource("1_p81pk")]
 number = 5
-
-[node name="CustomLabel" parent="." index="1"]
-offset_left = 4.0
-offset_top = -7.0
-offset_right = 52.0
-offset_bottom = 19.0

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://8a3tgsk1dcdd"]
+
+[ext_resource type="Script" uid="uid://0petu0xv3d4h" path="res://scenes/dice_randomness_manager.gd" id="1_7h5kw"]
+
+[node name="RandomDiceManager" type="Node"]
+script = ExtResource("1_7h5kw")
