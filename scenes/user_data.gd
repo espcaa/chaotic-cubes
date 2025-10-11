@@ -21,6 +21,10 @@ func get_reserved_dice() -> Node:
 	# first get a random dice
 	var dice_scene = RandomDiceManager.get_random_dice(unlocked_dices)
 
+	if dice_scene == null:
+		push_warning("No dice scene returned...")
+		return null
+
 	var dice_instance = dice_scene.instantiate()
 	return dice_instance
 

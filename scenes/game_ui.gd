@@ -24,6 +24,7 @@ var won: bool = false
 @export var goal: int = 1
 @export var draw_limit: int = -1
 @export var machine_limit: int = -1
+@export var dice_max_limit: int = 10
 
 
 func lose():
@@ -276,6 +277,20 @@ func _input(_event: InputEvent) -> void:
 			move_active_dice()
 
 	if Input.is_action_just_pressed("draw"):
+		var dice_number = $HBoxContainer/VBoxContainer/dice_container/point.get_child_count()
+
+		if dice_limit == dice_number:
+			return
+
+		if (
+			machine_limit != -1
+			and (
+				$HBoxContainer/menu_bar/MarginContainer/VBoxContainer/dice_machine.get_child_count()
+				>= machine_limit
+			)
+		):
+			return
+
 		is_drawing_a_dice = true
 		# verify if we're not playing a move rn
 		if playing_move:

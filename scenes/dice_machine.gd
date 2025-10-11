@@ -50,7 +50,7 @@ func add_dice(node: Node) -> void:
 		adding_dice = true
 		var newPhysicDice = load("res://scenes/dice_body.tscn").instantiate()
 		$Polygon2D.add_child(newPhysicDice)
-		node.reparent(newPhysicDice)
+		newPhysicDice.add_child(node)
 		node.position = Vector2.ZERO
 		newPhysicDice.position.x = 64
 		newPhysicDice.position.y = -164

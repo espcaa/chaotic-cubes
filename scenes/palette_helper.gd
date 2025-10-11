@@ -57,7 +57,6 @@ func get_color(color_name: String) -> Color:
 	if palette.has(color_name):
 		return palette[color_name]
 	else:
-		push_warning("Color name '" + color_name + "' not found in palette.")
 		return Color.BLACK
 
 

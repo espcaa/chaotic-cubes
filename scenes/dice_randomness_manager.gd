@@ -30,7 +30,8 @@ var dice_to_scene = {
 	"firedice": load("res://scenes/dice_fire.tscn")
 }
 
-func get_random_dice_scene(unlocked_array: Array) -> PackedScene:
+
+func get_random_dice(unlocked_array: Array) -> PackedScene:
 	if unlocked_array.is_empty():
 		push_warning("No unlocked dice available...")
 		return null
@@ -53,7 +54,7 @@ func get_random_dice_scene(unlocked_array: Array) -> PackedScene:
 		if dice_name in unlocked_array:
 			available_dice.append(dice_name)
 
-	if available_dice.empty():
+	if available_dice.is_empty():
 		push_warning("No unlocked dice in selected rarity, returning first unlocked dice...")
 		return dice_to_scene[unlocked_array[0]]
 
