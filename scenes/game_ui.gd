@@ -385,19 +385,15 @@ func _input(_event: InputEvent) -> void:
 		if dice_limit == dice_number:
 			return
 
-		if (
-			machine_limit != -1
-			and (
-				$HBoxContainer/menu_bar/MarginContainer/VBoxContainer/dice_machine.get_child_count()
-				>= machine_limit
-			)
-		):
+		if machine_limit != -1 and (machine_used >= machine_limit):
 			return
 
 		is_drawing_a_dice = true
 		# verify if we're not playing a move rn
 		if playing_move:
 			return
+
+		machine_used += 1
 		var newDice = UserData.get_reserved_dice()
 		if newDice == null:
 			return
@@ -406,6 +402,8 @@ func _input(_event: InputEvent) -> void:
 
 	if Input.is_action_just_pressed("remove_dice"):
 		# remove the dice
+
+		draw_limit = draw_limit - 1
 		remove_dice(selected_index)
 
 
