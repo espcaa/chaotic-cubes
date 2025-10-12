@@ -23,8 +23,11 @@ var lost: bool = false
 var won: bool = false
 @export var goal: int = 1
 @export var draw_limit: int = -1
+@export var draw_used: int = 0
 @export var machine_limit: int = -1
+@export var machine_used: int = 0
 @export var dice_max_limit: int = 10
+@export var money_reward: int = 10
 
 
 func lose():
@@ -38,6 +41,106 @@ func win():
 	if not won:
 		won = true
 		$AnimationPlayer.play("win")
+		UserData.money += money_reward
+
+		# push text to the random label
+
+		await $AnimationPlayer.animation_finished
+
+		$win_menu/MarginContainer/colored_container/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/RichLabel.color_role = (
+			$win_menu/MarginContainer/colored_container/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/RichLabel
+			. ColorRole
+			. PRIMARY
+		)
+
+		add_text_label(
+			$win_menu/MarginContainer/colored_container/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/RichLabel,
+			"\n- final score : " + str(UserData.current_score),
+		)
+
+		await get_tree().create_timer(0.05).timeout  # wait a bit before showing the menu
+		$win_menu/MarginContainer/colored_container/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/RichLabel.color_role = (
+			$win_menu/MarginContainer/colored_container/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/RichLabel
+			. ColorRole
+			. SECONDARY
+		)
+
+		await get_tree().create_timer(0.6).timeout  # wait a bit before showing the menu
+
+		var draw_limit_str = ""
+		if draw_limit != -1:
+			draw_limit_str = str(draw_limit - draw_used) + " left, " + str(draw_used) + " bonus"
+		else:
+			draw_limit_str = "infinite, 0 bonus"
+
+		$win_menu/MarginContainer/colored_container/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/RichLabel.color_role = (
+			$win_menu/MarginContainer/colored_container/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/RichLabel
+			. ColorRole
+			. PRIMARY
+		)
+
+		add_text_label(
+			$win_menu/MarginContainer/colored_container/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/RichLabel,
+			"\n- draw limit : " + draw_limit_str,
+		)
+		await get_tree().create_timer(0.05).timeout  # wait a bit before showing the menu
+		$win_menu/MarginContainer/colored_container/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/RichLabel.color_role = (
+			$win_menu/MarginContainer/colored_container/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/RichLabel
+			. ColorRole
+			. SECONDARY
+		)
+		await get_tree().create_timer(0.6).timeout  # wait a bit before showing the menu
+
+		var machine_limit_str = ""
+		if machine_limit != -1:
+			machine_limit_str = (
+				str(machine_limit - machine_used) + " left, " + str(machine_used) + " bonus"
+			)
+		else:
+			machine_limit_str = "infinite, 0 bonus"
+
+		$win_menu/MarginContainer/colored_container/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/RichLabel.color_role = (
+			$win_menu/MarginContainer/colored_container/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/RichLabel
+			. ColorRole
+			. PRIMARY
+		)
+
+		add_text_label(
+			$win_menu/MarginContainer/colored_container/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/RichLabel,
+			"\n- dice machine left : " + machine_limit_str,
+		)
+
+		await get_tree().create_timer(0.05).timeout  # wait a bit before showing the menu
+		$win_menu/MarginContainer/colored_container/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/RichLabel.color_role = (
+			$win_menu/MarginContainer/colored_container/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/RichLabel
+			. ColorRole
+			. SECONDARY
+		)
+
+		await get_tree().create_timer(0.7).timeout  # wait a bit before showing the menu
+
+		$win_menu/MarginContainer/colored_container/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/RichLabel.color_role = (
+			$win_menu/MarginContainer/colored_container/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/RichLabel
+			. ColorRole
+			. PRIMARY
+		)
+
+		add_text_label(
+			$win_menu/MarginContainer/colored_container/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/RichLabel,
+			"\n- money earned : " + str(money_reward) + " $",
+		)
+
+		await get_tree().create_timer(0.05).timeout  # wait a bit before showing the menu
+		$win_menu/MarginContainer/colored_container/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/RichLabel.color_role = (
+			$win_menu/MarginContainer/colored_container/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/RichLabel
+			. ColorRole
+			. SECONDARY
+		)
+
+
+func add_text_label(node: Label, text: String) -> void:
+	# set the text
+	node.text = node.text + text
 
 
 func _ready() -> void:
@@ -208,19 +311,19 @@ func draw_dices() -> void:
 		if idx == selected_index:
 			(
 				tween
-				. tween_property(i, "scale", Vector2(1.2, 1.2), 0.15)
+				. tween_property(i, "scale", Vector2(1.2, 1.2), 0.055)
 				. set_trans(Tween.TRANS_QUAD)
 				. set_ease(Tween.EASE_OUT)
 			)
 		else:
 			(
 				tween
-				. tween_property(i, "scale", Vector2(1, 1), 0.15)
+				. tween_property(i, "scale", Vector2(1, 1), 0.055)
 				. set_trans(Tween.TRANS_QUAD)
 				. set_ease(Tween.EASE_OUT)
 			)
 		tween.tween_property(
-			i, "position", Vector2(idx * 85, cached_dice_container_height / 2), 0.15
+			i, "position", Vector2(idx * 85, cached_dice_container_height / 2), 0.055
 		)
 
 
@@ -326,7 +429,7 @@ func remove_dice(index: int) -> void:
 		. set_trans(Tween.TRANS_QUAD)
 		. set_ease(Tween.EASE_IN)
 	)
-	tween.tween_property(dice, "modulate:a", 0.0, 0.25).set_trans(Tween.TRANS_LINEAR)
+	tween.tween_property(dice, "modulate:a", 0.0, 0.05).set_trans(Tween.TRANS_LINEAR)
 
 	tween.tween_callback(
 		func():
@@ -370,11 +473,11 @@ func add_dice(dice: Node2D, start_pos: Vector2 = Vector2.ZERO) -> void:
 
 	(
 		tween
-		. tween_property(dice, "scale", Vector2(1.2, 1.2), 0.15)
+		. tween_property(dice, "scale", Vector2(1.2, 1.2), 0.055)
 		. set_trans(Tween.TRANS_QUAD)
 		. set_ease(Tween.EASE_OUT)
 	)
-	tween.tween_property(dice, "scale", Vector2(1, 1), 0.15).set_trans(Tween.TRANS_QUAD).set_ease(
+	tween.tween_property(dice, "scale", Vector2(1, 1), 0.055).set_trans(Tween.TRANS_QUAD).set_ease(
 		Tween.EASE_OUT
 	)
 

@@ -1,9 +1,10 @@
-[gd_scene load_steps=18 format=3 uid="uid://bfu41rido3bca"]
+[gd_scene load_steps=19 format=3 uid="uid://bfu41rido3bca"]
 
 [ext_resource type="Script" uid="uid://blbae1p8nj3sr" path="res://scenes/game_ui.gd" id="1_rns2u"]
 [ext_resource type="PackedScene" uid="uid://c4x5tkis316mh" path="res://scenes/colored_container.tscn" id="1_yubou"]
 [ext_resource type="PackedScene" uid="uid://d1tvr6ct2mujc" path="res://assets/drawing.tscn" id="2_o3bws"]
 [ext_resource type="PackedScene" uid="uid://bdto7x5d0a4by" path="res://scenes/dice_normal.tscn" id="3_u001w"]
+[ext_resource type="PackedScene" uid="uid://d26hs8spvqyjy" path="res://scenes/custom_button.tscn" id="4_1kaiv"]
 [ext_resource type="FontFile" uid="uid://dplyku4eceytx" path="res://assets/fonts/monogram-extended.ttf" id="4_bt76a"]
 [ext_resource type="PackedScene" uid="uid://cr4uhm3qq7x2w" path="res://scenes/dice_6.tscn" id="4_e0pfi"]
 [ext_resource type="AudioStream" uid="uid://s6rpy78m0p8u" path="res://assets/sound_dice.ogg" id="5_bt76a"]
@@ -144,6 +145,7 @@ offset_top = -1.0
 offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("1_rns2u")
 is_tutorial = true
 
@@ -155,17 +157,20 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="colored_container" parent="win_menu" instance=ExtResource("1_yubou")]
-modulate = Color(1, 1, 1, 0.709804)
+modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 2.0
 offset_right = 0.0
-offset_bottom = 0.0
+offset_bottom = 2.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 color_role = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="win_menu"]
@@ -173,8 +178,13 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -720.0
+offset_top = 1.0
+offset_right = -720.0
+offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_override_constants/margin_left = 100
 theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 100
@@ -182,6 +192,7 @@ theme_override_constants/margin_bottom = 50
 
 [node name="colored_container" parent="win_menu/MarginContainer" instance=ExtResource("1_yubou")]
 layout_mode = 2
+mouse_filter = 2
 color_role = 5
 outline_enabled = true
 outline_color_role = 2
@@ -208,10 +219,29 @@ layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 
-[node name="CustomLabel2" parent="win_menu/MarginContainer/colored_container/MarginContainer/VBoxContainer/MarginContainer" instance=ExtResource("5_djwj0")]
+[node name="VBoxContainer" type="VBoxContainer" parent="win_menu/MarginContainer/colored_container/MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="CustomLabel2" parent="win_menu/MarginContainer/colored_container/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer" instance=ExtResource("5_djwj0")]
 layout_mode = 2
 color_role = 3
 label_text = "Yay you won! now what's next :)"
+
+[node name="RichLabel" parent="win_menu/MarginContainer/colored_container/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer" instance=ExtResource("5_djwj0")]
+layout_mode = 2
+color_role = 3
+label_text = ""
+
+[node name="MarginContainer" type="MarginContainer" parent="win_menu/MarginContainer/colored_container/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/margin_top = 10
+
+[node name="resume_button" parent="win_menu/MarginContainer/colored_container/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer" instance=ExtResource("4_1kaiv")]
+z_index = 100
+layout_mode = 2
+hover_color = 4
+label_text = "Continue"
 
 [node name="lose_menu" type="Control" parent="."]
 z_index = 200
