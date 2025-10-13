@@ -282,6 +282,10 @@ func _on_dice_reached_center() -> void:
 			# print every pattern found
 			for pattern_name in patterns_found.keys():
 				await pattern_found_animation()
+
+				$BonusLabel.label_text = "x" + str(patterns_found[pattern_name])
+				$AnimationPlayer.play("combo_mult_text")
+				await $AnimationPlayer.animation_finished
 				print("pattern found : " + pattern_name)
 				if not completed_combo:
 					completed_combo = true
@@ -568,7 +572,7 @@ func match_patterns(arr: Array) -> Dictionary:
 	return results
 
 
-func pattern_found_animation():
+func pattern_found_animation(multiplier: int = 1) -> void:
 	# ge tall of th dices and put them down a little one by one, then show the multiplicator and then put them back up
 
 	var delay = 0.0
