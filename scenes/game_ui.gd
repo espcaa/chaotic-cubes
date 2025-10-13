@@ -258,6 +258,35 @@ func _on_dice_reached_center() -> void:
 	active_dice.reparent($MarginContainer/alr_played_container)
 	dice_queue.append(active_dice)
 
+	# calculate patterns if there are 3 dices in the queue
+	if dice_queue.size() >= 3:
+		var last_three = [
+			dice_queue[dice_queue.size() - 3].value[0],
+			dice_queue[dice_queue.size() - 2].value[0],
+			dice_queue[dice_queue.size() - 1].value[0],
+		]
+		var patterns_found = match_patterns(last_three)
+		if patterns_found.size() > 0:
+			# print every pattern found
+			for pattern_name in patterns_found.keys():
+				patter_found_animation()
+				print("pattern found : " + pattern_name)
+				UserData.score(int(UserData.current_score * (patterns_found[pattern_name] - 1)))
+
+	if dice_queue.size() == 2:
+		var last_two = [
+			dice_queue[dice_queue.size() - 2].value[0],
+			dice_queue[dice_queue.size() - 1].value[0],
+			-4,
+		]
+		var patterns_found = match_patterns(last_two)
+		if patterns_found.size() > 0:
+			# print every pattern found
+			for pattern_name in patterns_found.keys():
+				print("pattern found : " + pattern_name)
+				patter_found_animation()
+				UserData.score(int(UserData.current_score * (patterns_found[pattern_name] - 1)))
+
 	active_dice = null
 	playing_move = false
 	dice_refresh_blocked = false
@@ -506,3 +535,50 @@ func empty_queue():
 		tween.tween_property(i, "modulate:a", 0.0, 0.5).set_trans(Tween.TRANS_LINEAR)
 		tween.tween_callback(func(): i.queue_free())
 	dice_queue.clear()
+
+
+var patterns = [
+	{
+		"name": "Three of a kind",
+		"check": func(arr): return arr[0] == arr[1] and arr[1] == arr[2],
+		"multiplier": 3
+	},
+	{
+		"name": "Ascending sequence",
+		"check": func(arr): return arr[1] == arr[0] + 1 and arr[2] == arr[1] + 1 and arr[2] <= 6,
+		"multiplier": 2
+	},
+	{
+		"name": "Descending sequence",
+		"check": func(arr): return arr[1] == arr[0] - 1 and arr[2] == arr[1] - 1 and arr[2] >= 1,
+		"multiplier": 2
+	},
+	{
+		"name": "Double",
+		"check": func(arr): return arr[2] == -4 and arr[0] == arr[1],
+		"multiplier": 1.5
+	}
+]
+
+
+func match_patterns(arr: Array) -> Dictionary:
+	var results = {}
+	for pattern in patterns:
+		if pattern["check"].call(arr):
+			results[pattern["name"]] = pattern["multiplier"]
+	return results
+
+
+func patter_found_animation():
+	# ge tall of th dices and put them down a little one by one, then show the multiplicator and then put them back up
+
+	var delay = 0.0
+	for i in dice_queue:
+		var tween = i.create_tween()
+		tween.tween_property(i, "position:y", i.position.y + 20, 0.2).set_delay(delay)
+		delay += 0.1
+		await tween.finished
+		await get_tree().create_timer(0.2).timeout
+		var tween_back = i.create_tween()
+		tween_back.tween_property(i, "position:y", i.position.y - 20, 0.2)
+		await tween_back.finished

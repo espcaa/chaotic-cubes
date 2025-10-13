@@ -148,6 +148,7 @@ grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("1_rns2u")
 is_tutorial = true
+goal = 100
 
 [node name="lose_menu" type="Control" parent="."]
 z_index = 200
