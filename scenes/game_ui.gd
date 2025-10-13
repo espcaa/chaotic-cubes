@@ -28,6 +28,13 @@ var won: bool = false
 @export var machine_used: int = 0
 @export var dice_max_limit: int = 10
 @export var money_reward: int = 10
+var completed_combo = false
+
+@onready
+var score_label = $HBoxContainer/menu_bar/MarginContainer/VBoxContainer/colored_container2/MarginContainer/VBoxContainer/ScoreLabel
+@onready var dice_container_node = $HBoxContainer/VBoxContainer/dice_container/point
+@onready
+var limit_label = $HBoxContainer/VBoxContainer/dice_container/VBoxContainer/MarginContainer/LimitLabel
 
 
 func lose():
@@ -162,16 +169,12 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	$HBoxContainer/menu_bar/MarginContainer/VBoxContainer/colored_container2/MarginContainer/VBoxContainer/ScoreLabel.label_text = str(
-		UserData.current_score
-	)
+	score_label.label_text = str(UserData.current_score)
 	update_on_resize()
 
-	var dice_number = $HBoxContainer/VBoxContainer/dice_container/point.get_child_count()
+	var dice_number = dice_container_node.get_child_count()
 
-	$HBoxContainer/VBoxContainer/dice_container/VBoxContainer/MarginContainer/LimitLabel.label_text = (
-		str(dice_number) + "/" + str(dice_limit) + " dices"
-	)
+	limit_label.label_text = (str(dice_number) + "/" + str(dice_limit) + " dices")
 
 	# if dice_number == 0 then lose
 
@@ -259,34 +262,30 @@ func _on_dice_reached_center() -> void:
 	dice_queue.append(active_dice)
 
 	# calculate patterns if there are 3 dices in the queue
-	if dice_queue.size() >= 3:
-		var last_three = [
-			dice_queue[dice_queue.size() - 3].value[0],
-			dice_queue[dice_queue.size() - 2].value[0],
-			dice_queue[dice_queue.size() - 1].value[0],
-		]
+	if dice_queue.size() > 1:
+		var last_three = []
+		var dice_in_queue = dice_queue.size()
+		if dice_in_queue >= 2:
+			last_three = [
+				dice_queue[dice_queue.size() - 3].value[0],
+				dice_queue[dice_queue.size() - 2].value[0],
+				dice_queue[dice_queue.size() - 1].value[0],
+			]
+		else:
+			last_three = [
+				dice_queue[dice_queue.size() - 2].value[0],
+				dice_queue[dice_queue.size() - 1].value[0],
+				-4,
+			]
 		var patterns_found = match_patterns(last_three)
 		if patterns_found.size() > 0:
 			# print every pattern found
 			for pattern_name in patterns_found.keys():
-				patter_found_animation()
+				await pattern_found_animation()
 				print("pattern found : " + pattern_name)
+				if not completed_combo:
+					completed_combo = true
 				UserData.score(int(UserData.current_score * (patterns_found[pattern_name] - 1)))
-
-	if dice_queue.size() == 2:
-		var last_two = [
-			dice_queue[dice_queue.size() - 2].value[0],
-			dice_queue[dice_queue.size() - 1].value[0],
-			-4,
-		]
-		var patterns_found = match_patterns(last_two)
-		if patterns_found.size() > 0:
-			# print every pattern found
-			for pattern_name in patterns_found.keys():
-				print("pattern found : " + pattern_name)
-				patter_found_animation()
-				UserData.score(int(UserData.current_score * (patterns_found[pattern_name] - 1)))
-
 	active_dice = null
 	playing_move = false
 	dice_refresh_blocked = false
@@ -569,7 +568,7 @@ func match_patterns(arr: Array) -> Dictionary:
 	return results
 
 
-func patter_found_animation():
+func pattern_found_animation():
 	# ge tall of th dices and put them down a little one by one, then show the multiplicator and then put them back up
 
 	var delay = 0.0
