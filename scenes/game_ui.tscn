@@ -242,7 +242,7 @@ grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("1_rns2u")
 is_tutorial = true
-goal = 10
+goal = 100
 seed_color = Color(0.717647, 0.682353, 0.960784, 1)
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
@@ -558,6 +558,7 @@ layout_mode = 1
 mouse_filter = 1
 
 [node name="win_menu" type="Control" parent="."]
+z_index = 200
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -755,3 +756,18 @@ text = "x29"
 color_role = 4
 custom_color = Color(1, 1, 1, 1)
 font_size = 64
+
+[node name="ComboLabel" parent="." instance=ExtResource("5_djwj0")]
+modulate = Color(1, 1, 1, 0)
+texture_filter = 1
+layout_mode = 0
+offset_left = 12.0
+offset_top = 108.0
+offset_right = 228.0
+offset_bottom = 159.0
+theme_override_font_sizes/font_size = 64
+text = "AASbiudsu"
+color_role = 2
+custom_color = Color(1, 1, 1, 1)
+font_size = 32
+label_text = "Three of a kind!"

@@ -231,6 +231,20 @@ func move_active_dice() -> void:
 	tween.tween_callback(Callable(self, "_on_dice_reached_center"))
 
 
+func play_combo_label_anim():
+	var tween = $ComboLabel.create_tween()
+	tween.tween_property($ComboLabel, "modulate:a", 1.0, 0.2).set_trans(Tween.TRANS_QUAD).set_ease(
+		Tween.EASE_OUT
+	)
+	await tween.finished
+	await get_tree().create_timer(1.5).timeout
+	var tween2 = $ComboLabel.create_tween()
+	tween2.tween_property($ComboLabel, "modulate:a", 0.0, 0.2).set_trans(Tween.TRANS_QUAD).set_ease(
+		Tween.EASE_IN
+	)
+	await tween2.finished
+
+
 func _on_dice_reached_center() -> void:
 	if active_dice == null:
 		return
@@ -261,6 +275,7 @@ func _on_dice_reached_center() -> void:
 	# reparent
 
 	active_dice.reparent($MarginContainer/alr_played_container)
+
 	dice_queue.append(active_dice)
 
 	# calculate patterns if there are 3 dices in the queue
@@ -297,20 +312,26 @@ func _on_dice_reached_center() -> void:
 		var patterns_found = match_patterns(last_three)
 		if patterns_found.size() > 0:
 			# print every pattern found
-			for pattern_name in patterns_found.keys():
+			for pattern in patterns_found.keys():
 				await pattern_found_animation()
 
-				$BonusLabel.label_text = "x" + str(patterns_found[pattern_name])
+				$BonusLabel.label_text = "x" + str(patterns_found[pattern]["mult"])
 				$AnimationPlayer.play("combo_mult_text")
 				await $AnimationPlayer.animation_finished
-				print("pattern found : " + pattern_name)
+				print("pattern found : " + pattern)
+				var pattern_name = patterns_found[pattern]["name"]
+
+				# a tween to show the pattern name for 2s with modulate for fadin and fadout
+				play_combo_label_anim()
+				$ComboLabel.label_text = pattern_name
+
 				if not completed_combo:
 					completed_combo = true
 				UserData.score(
 					int(
 						(
 							dice_queue[dice_queue.size() - 1].value[0]
-							* (patterns_found[pattern_name] - 1)
+							* (patterns_found[pattern]["mult"] - 1)
 						)
 					)
 				)
@@ -339,7 +360,6 @@ func old_dice_callback(dice: Node2D, index) -> void:
 	# if the size > 3 and it's the last one, remove it
 
 	if dice_queue.size() > 3 and index == 0:
-		dice.queue_free()
 		dice_queue.pop_front()
 
 
@@ -568,7 +588,7 @@ func match_patterns(arr: Array) -> Dictionary:
 	var results = {}
 	for pattern in patterns:
 		if pattern["check"].call(arr):
-			results[pattern["name"]] = pattern["multiplier"]
+			results[pattern["name"]] = {"mult": pattern["multiplier"], "name": pattern["name"]}
 	return results
 
 

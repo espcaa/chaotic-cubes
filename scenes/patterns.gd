@@ -4,7 +4,15 @@ var patterns = [
 	{
 		"name": "Three of a kind",
 		"check":
-		func(arr): return arr[0]["value"] == arr[1]["value"] and arr[1]["value"] == arr[2]["value"],
+		func(arr):
+			return (
+				arr[0]["value"] == arr[1]["value"]
+				and arr[1]["value"] == arr[2]["value"]
+				and arr[0]["name"] != "null"
+				and arr[1]["name"] != "null"
+				and arr[2]["name"] != "null"
+				and arr[0]["value"] == arr[2]["value"]
+			),
 		"multiplier": 3
 	},
 	{
@@ -42,6 +50,7 @@ var patterns = [
 			return (
 				arr[0]["value"] % 2 == 0 and arr[1]["value"] % 2 == 0 and arr[2]["value"] % 2 == 0
 			),
+		"multiplier": 1.5
 	}
 ]
 
