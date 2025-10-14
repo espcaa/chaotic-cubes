@@ -306,7 +306,14 @@ func _on_dice_reached_center() -> void:
 				print("pattern found : " + pattern_name)
 				if not completed_combo:
 					completed_combo = true
-				UserData.score(int(UserData.current_score * (patterns_found[pattern_name] - 1)))
+				UserData.score(
+					int(
+						(
+							dice_queue[dice_queue.size() - 1].value[0]
+							* (patterns_found[pattern_name] - 1)
+						)
+					)
+				)
 	active_dice = null
 	playing_move = false
 	dice_refresh_blocked = false
