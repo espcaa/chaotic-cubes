@@ -72,7 +72,7 @@ tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(155, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(168, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
 tracks/5/type = "bezier"
@@ -83,7 +83,7 @@ tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(135, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(122, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
 tracks/6/type = "bezier"
@@ -94,8 +94,56 @@ tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
 "handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(-0.812012, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(-0.513133, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_1kaiv"]
+resource_name = "combo_mult_text"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BonusLabel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.833333, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BonusLabel:position:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(168, -0.25, 0, 0.25, 0, 235, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.466667)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BonusLabel:position:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(122, -0.25, 0, 0.25, 0, 84, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.466667)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("BonusLabel:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-0.513133, -0.25, 0, 0.25, 0, -0.156381, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.466667)
 }
 
 [sub_resource type="Animation" id="Animation_3huio"]
@@ -172,54 +220,6 @@ tracks/2/keys = {
 "handle_modes": PackedInt32Array(0, 0),
 "points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0, 0.306698)
-}
-
-[sub_resource type="Animation" id="Animation_1kaiv"]
-resource_name = "combo_mult_text"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("BonusLabel:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.46, 0.83, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("BonusLabel:position:x")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(155, -0.25, 0, 0.25, 0, 201, -0.248279, -27, 0.183375, 64, 268, -0.201613, 20, 0.25, 0),
-"times": PackedFloat32Array(0, 0.466667, 0.8)
-}
-tracks/2/type = "bezier"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("BonusLabel:position:y")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(135, -0.25, 0, 0.25, 0, 89, -0.241131, 52, 0.292203, -122, 32, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.433333, 0.94)
-}
-tracks/3/type = "bezier"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("BonusLabel:rotation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(-0.812012, -0.25, 0, 0.25, 0, -0.109956, -0.25, 0, 0.25, 0, 0.561996, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.553602, 0.931705)
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_sjwyb"]
@@ -723,12 +723,13 @@ label_text = "Continue"
 modulate = Color(1, 1, 1, 0)
 texture_filter = 1
 layout_mode = 0
-offset_left = 155.0
-offset_top = 135.0
-offset_right = 227.0
-offset_bottom = 186.0
-rotation = -0.812012
+offset_left = 168.0
+offset_top = 122.0
+offset_right = 240.0
+offset_bottom = 173.0
+rotation = -0.513133
 theme_override_font_sizes/font_size = 64
 text = "x29"
-color_role = 2
-font_size = 32
+color_role = 4
+custom_color = Color(1, 1, 1, 1)
+font_size = 64

@@ -5,9 +5,5 @@
 [node name="first_level_game_ui" instance=ExtResource("1_ys7o7")]
 goal = 40
 
-[node name="colored_container" parent="win_menu" index="0"]
-modulate = Color(1, 1, 1, 0)
-
-[node name="MarginContainer" parent="win_menu" index="1"]
-offset_left = -720.0
-offset_right = -720.0
+[node name="BonusLabel" parent="." index="8"]
+rotation = -0.513133

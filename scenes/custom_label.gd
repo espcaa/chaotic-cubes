@@ -1,8 +1,9 @@
 extends Label
 
-enum ColorRole { PRIMARY, ACCENT, BACKGROUND, SECONDARY }
+enum ColorRole { PRIMARY, ACCENT, BACKGROUND, SECONDARY, CUSTOM }
 
 @export var color_role: ColorRole = ColorRole.PRIMARY
+@export var custom_color : Color 
 @export var font_size: int = 16
 @export var label_text: String = "Label"
 
@@ -48,5 +49,7 @@ func get_palette_color() -> Color:
 			return Palette.get_color("background")
 		ColorRole.SECONDARY:
 			return Palette.get_color("secondary")
+		ColorRole.CUSTOM:
+			return custom_color
 		_:
 			return Color.WHITE
