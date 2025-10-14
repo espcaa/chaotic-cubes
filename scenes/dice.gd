@@ -61,5 +61,6 @@ func custom_ready():
 func set_dice_name():
 	pass
 
+
 func thingy():
 	get_child(2).z_index = 200

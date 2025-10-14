@@ -4,4 +4,4 @@
 
 [node name="PaletteHelper" type="Node"]
 script = ExtResource("1_3krl3")
-seed_color = Color(0.408842, 0.783869, 0.89949, 1)
+seed_color = Color(0.719239, 0.683997, 0.960016, 1)

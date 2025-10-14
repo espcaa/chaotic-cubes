@@ -1,4 +1,4 @@
-extends Control
+extends "res://scenes/patterns.gd"
 
 var cached_dice_container_height: float = 0.0
 var cached_game_container_size: Vector2
@@ -28,6 +28,7 @@ var won: bool = false
 @export var machine_used: int = 0
 @export var dice_max_limit: int = 10
 @export var money_reward: int = 10
+@export var seed_color: Color = Color.REBECCA_PURPLE
 var completed_combo = false
 
 @onready
@@ -158,6 +159,7 @@ func _ready() -> void:
 		goal
 	))
 
+	Palette.seed_color = seed_color
 	Palette.assign_new_palette()
 	cached_game_container_size = $HBoxContainer/VBoxContainer/game_container.size
 	update_playing_pos()
@@ -267,15 +269,30 @@ func _on_dice_reached_center() -> void:
 		var dice_in_queue = dice_queue.size()
 		if dice_in_queue >= 2:
 			last_three = [
-				dice_queue[dice_queue.size() - 3].value[0],
-				dice_queue[dice_queue.size() - 2].value[0],
-				dice_queue[dice_queue.size() - 1].value[0],
+				{
+					"value": dice_queue[dice_queue.size() - 3].value[0],
+					"name": dice_queue[dice_queue.size() - 3].dice_name
+				},
+				{
+					"value": dice_queue[dice_queue.size() - 2].value[0],
+					"name": dice_queue[dice_queue.size() - 2].dice_name
+				},
+				{
+					"value": dice_queue[dice_queue.size() - 1].value[0],
+					"name": dice_queue[dice_queue.size() - 1].dice_name
+				},
 			]
 		else:
 			last_three = [
-				dice_queue[dice_queue.size() - 2].value[0],
-				dice_queue[dice_queue.size() - 1].value[0],
-				-4,
+				{
+					"value": dice_queue[dice_queue.size() - 3].value[0],
+					"name": dice_queue[dice_queue.size() - 3].dice_name
+				},
+				{
+					"value": dice_queue[dice_queue.size() - 2].value[0],
+					"name": dice_queue[dice_queue.size() - 2].dice_name
+				},
+				{"value": 0, "name": "null", "fake": true},
 			]
 		var patterns_found = match_patterns(last_three)
 		if patterns_found.size() > 0:
@@ -538,30 +555,6 @@ func empty_queue():
 		tween.tween_property(i, "modulate:a", 0.0, 0.5).set_trans(Tween.TRANS_LINEAR)
 		tween.tween_callback(func(): i.queue_free())
 	dice_queue.clear()
-
-
-var patterns = [
-	{
-		"name": "Three of a kind",
-		"check": func(arr): return arr[0] == arr[1] and arr[1] == arr[2],
-		"multiplier": 3
-	},
-	{
-		"name": "Ascending sequence",
-		"check": func(arr): return arr[1] == arr[0] + 1 and arr[2] == arr[1] + 1 and arr[2] <= 6,
-		"multiplier": 2
-	},
-	{
-		"name": "Descending sequence",
-		"check": func(arr): return arr[1] == arr[0] - 1 and arr[2] == arr[1] - 1 and arr[2] >= 1,
-		"multiplier": 2
-	},
-	{
-		"name": "Double",
-		"check": func(arr): return arr[2] == -4 and arr[0] == arr[1],
-		"multiplier": 1.5
-	}
-]
 
 
 func match_patterns(arr: Array) -> Dictionary:

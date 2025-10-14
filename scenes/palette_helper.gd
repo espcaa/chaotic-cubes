@@ -37,7 +37,7 @@ func generate_palette(seed: Color) -> Dictionary:
 
 	# add a reversed hue color for contrast and error states
 
-	var error_h = fmod(h + 0.5, 1.0)  # opposite hue
+	var error_h = fmod(h + 0.2, 1.0)  # opposite hue
 	var error_s = clamp(seed.s * 1.0, 0.5, 0.7)
 	var error_v = clamp(seed.v * 1.0, 0.9, 1.0)
 	palette["error"] = Color.from_hsv(error_h, error_s, error_v)
