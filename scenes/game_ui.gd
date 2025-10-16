@@ -16,6 +16,8 @@ var active_dice: Node = null
 
 var dice_queue := []
 
+@export var boss: bool = false
+
 @export var is_tutorial: bool = false
 
 var is_drawing_a_dice: bool = false
@@ -36,6 +38,7 @@ var score_label = $HBoxContainer/menu_bar/MarginContainer/VBoxContainer/colored_
 @onready var dice_container_node = $HBoxContainer/VBoxContainer/dice_container/point
 @onready
 var limit_label = $HBoxContainer/VBoxContainer/dice_container/VBoxContainer/MarginContainer/LimitLabel
+
 
 
 func lose():
@@ -152,6 +155,8 @@ func add_text_label(node: Label, text: String) -> void:
 
 
 func _ready() -> void:
+	AudioManaager.boss = boss
+	AudioManaager.start_music()
 	if not is_tutorial:
 		$tutorial_anchor.queue_free()
 

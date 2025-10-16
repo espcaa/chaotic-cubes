@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bfu41rido3bca"]
+[gd_scene load_steps=20 format=3 uid="uid://bfu41rido3bca"]
 
 [ext_resource type="Script" uid="uid://blbae1p8nj3sr" path="res://scenes/game_ui.gd" id="1_rns2u"]
 [ext_resource type="PackedScene" uid="uid://c4x5tkis316mh" path="res://scenes/colored_container.tscn" id="1_yubou"]
@@ -14,7 +14,6 @@
 [ext_resource type="PackedScene" uid="uid://d1pij81leeg4u" path="res://scenes/dice_fire.tscn" id="8_5kh4o"]
 [ext_resource type="PackedScene" uid="uid://4ql4svkmakt2" path="res://scenes/tutorial.tscn" id="12_s2npe"]
 [ext_resource type="PackedScene" uid="uid://8ko1cxls3xj4" path="res://scenes/pause_menu.tscn" id="13_g2v8e"]
-[ext_resource type="AudioStream" uid="uid://cc53mor3v8pvi" path="res://assets/music/chill-loop.mp3" id="15_upmhx"]
 
 [sub_resource type="Animation" id="Animation_sjwyb"]
 resource_name = "RESET"
@@ -780,8 +779,3 @@ color_role = 2
 custom_color = Color(1, 1, 1, 1)
 font_size = 32
 label_text = "Three of a kind!"
-
-[node name="AudioPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("15_upmhx")
-autoplay = true
-parameters/looping = true

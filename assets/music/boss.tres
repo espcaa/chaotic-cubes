@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="AudioSet" load_steps=2 format=3 uid="uid://ckcq2te12cgjt"]
+
+[ext_resource type="Script" uid="uid://b3ywcvsohduu4" path="res://scenes/audio_set.gd" id="1_uwvh6"]
+
+[resource]
+script = ExtResource("1_uwvh6")
+start = "uid://b1ci1qjof021v"
+loop = "uid://cvmsxff6dlk8r"
+end = "uid://bmymcbuvlkhs1"
+metadata/_custom_type_script = "uid://b3ywcvsohduu4"

@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://cf27oag3g08ty"]
+
+[ext_resource type="AudioStream" uid="uid://cc53mor3v8pvi" path="res://assets/music/chill-loop.mp3" id="1_6sacx"]
+[ext_resource type="Script" uid="uid://bukft7sn38py0" path="res://scenes/audio_player_manager.gd" id="2_m2s70"]
+[ext_resource type="Resource" uid="uid://ckcq2te12cgjt" path="res://assets/music/boss.tres" id="3_ev5v2"]
+
+[node name="AudioPlayerManager" type="AudioStreamPlayer" groups=["audio_player"]]
+stream = ExtResource("1_6sacx")
+autoplay = true
+parameters/looping = true
+script = ExtResource("2_m2s70")
+audio_set = ExtResource("3_ev5v2")
+
+[connection signal="finished" from="." to="." method="_on_finished"]
