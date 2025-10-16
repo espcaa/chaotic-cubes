@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bfu41rido3bca"]
+[gd_scene load_steps=21 format=3 uid="uid://bfu41rido3bca"]
 
 [ext_resource type="Script" uid="uid://blbae1p8nj3sr" path="res://scenes/game_ui.gd" id="1_rns2u"]
 [ext_resource type="PackedScene" uid="uid://c4x5tkis316mh" path="res://scenes/colored_container.tscn" id="1_yubou"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://d1pij81leeg4u" path="res://scenes/dice_fire.tscn" id="8_5kh4o"]
 [ext_resource type="PackedScene" uid="uid://4ql4svkmakt2" path="res://scenes/tutorial.tscn" id="12_s2npe"]
 [ext_resource type="PackedScene" uid="uid://8ko1cxls3xj4" path="res://scenes/pause_menu.tscn" id="13_g2v8e"]
+[ext_resource type="AudioStream" uid="uid://cc53mor3v8pvi" path="res://assets/music/chill-loop.mp3" id="15_upmhx"]
 
 [sub_resource type="Animation" id="Animation_sjwyb"]
 resource_name = "RESET"
@@ -239,7 +240,7 @@ offset_top = -1.0
 offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 1
+mouse_filter = 2
 script = ExtResource("1_rns2u")
 is_tutorial = true
 goal = 100
@@ -521,7 +522,6 @@ layout_mode = 2
 
 [node name="rollover_audio" type="AudioStreamPlayer" parent="audio"]
 stream = ExtResource("5_bt76a")
-volume_db = -20.0
 pitch_scale = 1.2
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
@@ -565,7 +565,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 1
+mouse_filter = 2
 
 [node name="colored_container" parent="win_menu" instance=ExtResource("1_yubou")]
 modulate = Color(1, 1, 1, 0)
@@ -577,7 +577,6 @@ offset_right = 0.0
 offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
 color_role = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="win_menu"]
@@ -591,6 +590,7 @@ offset_right = -720.0
 offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_override_constants/margin_left = 100
 theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 100
@@ -598,7 +598,6 @@ theme_override_constants/margin_bottom = 50
 
 [node name="colored_container" parent="win_menu/MarginContainer" instance=ExtResource("1_yubou")]
 layout_mode = 2
-mouse_filter = 1
 color_role = 5
 outline_enabled = true
 outline_color_role = 2
@@ -606,6 +605,7 @@ outline_thickness = 4
 
 [node name="MarginContainer" type="MarginContainer" parent="win_menu/MarginContainer/colored_container"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
@@ -613,6 +613,7 @@ theme_override_constants/margin_bottom = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="win_menu/MarginContainer/colored_container/MarginContainer"]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="CustomLabel" parent="win_menu/MarginContainer/colored_container/MarginContainer/VBoxContainer" instance=ExtResource("5_djwj0")]
 layout_mode = 2
@@ -623,11 +624,13 @@ label_text = "Good job!!"
 
 [node name="MarginContainer" type="MarginContainer" parent="win_menu/MarginContainer/colored_container/MarginContainer/VBoxContainer"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 
 [node name="VBoxContainer" type="VBoxContainer" parent="win_menu/MarginContainer/colored_container/MarginContainer/VBoxContainer/MarginContainer"]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="CustomLabel2" parent="win_menu/MarginContainer/colored_container/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer" instance=ExtResource("5_djwj0")]
 layout_mode = 2
@@ -642,6 +645,7 @@ label_text = ""
 [node name="MarginContainer" type="MarginContainer" parent="win_menu/MarginContainer/colored_container/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
+mouse_filter = 2
 theme_override_constants/margin_top = 10
 
 [node name="resume_button" parent="win_menu/MarginContainer/colored_container/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer" instance=ExtResource("4_1kaiv")]
@@ -658,7 +662,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 1
+mouse_filter = 2
 
 [node name="colored_container" parent="lose_menu" instance=ExtResource("1_yubou")]
 modulate = Color(1, 1, 1, 0)
@@ -666,11 +670,11 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 1.0
 offset_right = 0.0
-offset_bottom = 0.0
+offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
 color_role = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="lose_menu"]
@@ -682,6 +686,7 @@ offset_left = -720.0
 offset_right = -720.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_override_constants/margin_left = 100
 theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 100
@@ -696,6 +701,7 @@ outline_thickness = 4
 
 [node name="MarginContainer" type="MarginContainer" parent="lose_menu/MarginContainer/colored_container"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
@@ -703,6 +709,7 @@ theme_override_constants/margin_bottom = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="lose_menu/MarginContainer/colored_container/MarginContainer"]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="CustomLabel" parent="lose_menu/MarginContainer/colored_container/MarginContainer/VBoxContainer" instance=ExtResource("5_djwj0")]
 layout_mode = 2
@@ -723,6 +730,7 @@ label_text = "You can do better next time!"
 [node name="MarginContainer2" type="MarginContainer" parent="lose_menu/MarginContainer/colored_container/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
+mouse_filter = 2
 theme_override_constants/margin_top = 10
 
 [node name="resume_button" parent="lose_menu/MarginContainer/colored_container/MarginContainer/VBoxContainer/MarginContainer2" instance=ExtResource("4_1kaiv")]
@@ -734,6 +742,7 @@ label_text = "Restart"
 [node name="MarginContainer3" type="MarginContainer" parent="lose_menu/MarginContainer/colored_container/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
+mouse_filter = 2
 theme_override_constants/margin_top = 0
 
 [node name="resume_button" parent="lose_menu/MarginContainer/colored_container/MarginContainer/VBoxContainer/MarginContainer3" instance=ExtResource("4_1kaiv")]
@@ -771,3 +780,8 @@ color_role = 2
 custom_color = Color(1, 1, 1, 1)
 font_size = 32
 label_text = "Three of a kind!"
+
+[node name="AudioPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_upmhx")
+autoplay = true
+parameters/looping = true
