@@ -11,17 +11,22 @@ func _ready():
 		audio_set = load("res://assets/music/chill.tres")
 
 
-func start_music():
-	if audio_set and audio_set.start != "":
-		AudioManager.boss = boss
-		self.stream = load(audio_set.start)
-		
 func stop_music():
 	if audio_set and audio_set.end != "":
-		$AudioPlayerManager.loop = false
-		$AudioPlayerManager.stream = load(audio_set.end)
-		$AudioPlayerManager.play()
-		await $AudioPlayerManager.finished
-		self.stram = load(audio_set.start)
-	else:
-		$AudioPlayerManager.stop()
+		$AudioPlayer.loop = false
+		$AudioPlayer.stream = load(audio_set.end)
+		$AudioPlayer.play()
+
+		await $AudioPlayer.finished
+		$AudioPlayer.stop()
+
+
+func start_music():
+	if audio_set and audio_set.start != "":
+		$AudioPlayer.stream = load(audio_set.start)
+		$AudioPlayer.play()
+		await $AudioPlayer.finished
+	if audio_set and audio_set.loop != "":
+		$AudioPlayer.stream = load(audio_set.loop)
+		$AudioPlayer.loop = true
+		$AudioPlayer.play()

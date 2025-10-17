@@ -40,7 +40,6 @@ var score_label = $HBoxContainer/menu_bar/MarginContainer/VBoxContainer/colored_
 var limit_label = $HBoxContainer/VBoxContainer/dice_container/VBoxContainer/MarginContainer/LimitLabel
 
 
-
 func lose():
 	# lose :(
 	if not lost:
