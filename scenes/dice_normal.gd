@@ -20,6 +20,7 @@ func roll():
 		while new_face == last_face and faces.size() > 1:
 			new_face = faces[randi() % faces.size()]
 		$AnimatedSprite2D.frame = new_face
+		play_woosh()
 		await get_tree().create_timer(step).timeout
 		elapsed += step
 

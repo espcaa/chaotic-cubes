@@ -17,6 +17,11 @@ func roll():
 	pass
 
 
+func roll_dice():
+	await roll()
+	$audio.play()
+
+
 func _ready() -> void:
 	set_dice_name()
 	$colored_container/MarginContainer/text_container/title.label_text = dice_description
@@ -64,3 +69,7 @@ func set_dice_name():
 
 func thingy():
 	get_child(2).z_index = 200
+
+
+func play_woosh() -> void:
+	$woosh.play()

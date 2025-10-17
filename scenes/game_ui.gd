@@ -254,7 +254,7 @@ func _on_dice_reached_center() -> void:
 
 	# roll the dice
 
-	active_dice.roll()
+	active_dice.roll_dice()
 	await active_dice.roll_finished
 
 	UserData.score(active_dice.value[0])

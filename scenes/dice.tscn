@@ -1,9 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://bmqb4ae43griq"]
+[gd_scene load_steps=10 format=3 uid="uid://bmqb4ae43griq"]
 
 [ext_resource type="Script" uid="uid://b2o3fq7ce2s02" path="res://scenes/dice.gd" id="1_o1ht6"]
 [ext_resource type="SpriteFrames" uid="uid://bls147mhxpgiy" path="res://assets/dice_normal.tres" id="2_mg5ex"]
 [ext_resource type="PackedScene" uid="uid://c4x5tkis316mh" path="res://scenes/colored_container.tscn" id="3_oi81l"]
 [ext_resource type="PackedScene" uid="uid://cbmn5tiw3fr6c" path="res://scenes/custom_label.tscn" id="3_ycnvv"]
+[ext_resource type="AudioStream" uid="uid://ssthpp2wdqma" path="res://assets/music/accept.ogg" id="5_yk8ku"]
+[ext_resource type="AudioStream" uid="uid://u65fq4uihj3i" path="res://assets/music/swoo.mp3" id="6_tannu"]
 
 [sub_resource type="Animation" id="Animation_mvkvt"]
 length = 0.001
@@ -262,4 +264,11 @@ libraries = {
 &"": SubResource("AnimationLibrary_qxx4u")
 }
 
+[node name="audio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_yk8ku")
+
+[node name="woosh" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_tannu")
+
+[connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
