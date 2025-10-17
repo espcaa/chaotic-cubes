@@ -155,8 +155,7 @@ func add_text_label(node: Label, text: String) -> void:
 
 
 func _ready() -> void:
-	AudioManaager.boss = boss
-	AudioManaager.start_music()
+	AudioManager.start_music()
 	if not is_tutorial:
 		$tutorial_anchor.queue_free()
 

@@ -124,6 +124,7 @@ theme_override_constants/margin_left = 20
 [node name="colored_container" parent="colored_container/MarginContainer/HBoxContainer/MarginContainer" instance=ExtResource("1_n87rw")]
 layout_mode = 2
 size_flags_horizontal = 3
+corner_radius = 4
 
 [node name="MarginContainer" type="MarginContainer" parent="colored_container/MarginContainer/HBoxContainer/MarginContainer/colored_container"]
 layout_mode = 2
