@@ -1,19 +1,23 @@
-[gd_scene load_steps=6 format=3 uid="uid://d26hs8spvqyjy"]
+[gd_scene load_steps=7 format=3 uid="uid://d26hs8spvqyjy"]
 
 [ext_resource type="FontFile" uid="uid://dplyku4eceytx" path="res://assets/fonts/monogram-extended.ttf" id="1_bfr1r"]
 [ext_resource type="Script" uid="uid://dlylufk4kmq13" path="res://scenes/custom_button.gd" id="1_ql6db"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_32hcy"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bfr1r"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yt7k8"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bfr1r"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_32hcy"]
+
 [node name="custom_button" type="Button"]
 offset_right = 8.0
 offset_bottom = 8.0
+mouse_filter = 2
 theme_override_fonts/font = ExtResource("1_bfr1r")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_32hcy")
+theme_override_styles/focus = SubResource("StyleBoxFlat_bfr1r")
 theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_yt7k8")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_bfr1r")
+theme_override_styles/normal = SubResource("StyleBoxFlat_32hcy")
 script = ExtResource("1_ql6db")

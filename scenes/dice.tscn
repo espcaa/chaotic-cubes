@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://c4x5tkis316mh" path="res://scenes/colored_container.tscn" id="3_oi81l"]
 [ext_resource type="PackedScene" uid="uid://cbmn5tiw3fr6c" path="res://scenes/custom_label.tscn" id="3_ycnvv"]
 [ext_resource type="AudioStream" uid="uid://ssthpp2wdqma" path="res://assets/music/accept.ogg" id="5_yk8ku"]
-[ext_resource type="AudioStream" uid="uid://u65fq4uihj3i" path="res://assets/music/swoo.mp3" id="6_tannu"]
+[ext_resource type="AudioStream" uid="uid://cu4fb7mtjym1i" path="res://assets/music/woosh.ogg" id="6_tannu"]
 
 [sub_resource type="Animation" id="Animation_mvkvt"]
 length = 0.001

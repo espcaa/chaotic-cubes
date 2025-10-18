@@ -1,17 +1,13 @@
-[gd_scene load_steps=20 format=3 uid="uid://bfu41rido3bca"]
+[gd_scene load_steps=16 format=3 uid="uid://bfu41rido3bca"]
 
 [ext_resource type="Script" uid="uid://blbae1p8nj3sr" path="res://scenes/game_ui.gd" id="1_rns2u"]
 [ext_resource type="PackedScene" uid="uid://c4x5tkis316mh" path="res://scenes/colored_container.tscn" id="1_yubou"]
 [ext_resource type="PackedScene" uid="uid://d1tvr6ct2mujc" path="res://assets/drawing.tscn" id="2_o3bws"]
-[ext_resource type="PackedScene" uid="uid://bdto7x5d0a4by" path="res://scenes/dice_normal.tscn" id="3_u001w"]
 [ext_resource type="PackedScene" uid="uid://d26hs8spvqyjy" path="res://scenes/custom_button.tscn" id="4_1kaiv"]
 [ext_resource type="FontFile" uid="uid://dplyku4eceytx" path="res://assets/fonts/monogram-extended.ttf" id="4_bt76a"]
-[ext_resource type="PackedScene" uid="uid://cr4uhm3qq7x2w" path="res://scenes/dice_6.tscn" id="4_e0pfi"]
 [ext_resource type="AudioStream" uid="uid://s6rpy78m0p8u" path="res://assets/sound_dice.ogg" id="5_bt76a"]
 [ext_resource type="PackedScene" uid="uid://cbmn5tiw3fr6c" path="res://scenes/custom_label.tscn" id="5_djwj0"]
-[ext_resource type="PackedScene" uid="uid://blnpt5lk8cq3y" path="res://scenes/dice_romain.tscn" id="6_sjwyb"]
 [ext_resource type="PackedScene" uid="uid://7brptgis72d4" path="res://scenes/dice_machine.tscn" id="8_3huio"]
-[ext_resource type="PackedScene" uid="uid://d1pij81leeg4u" path="res://scenes/dice_fire.tscn" id="8_5kh4o"]
 [ext_resource type="PackedScene" uid="uid://4ql4svkmakt2" path="res://scenes/tutorial.tscn" id="12_s2npe"]
 [ext_resource type="PackedScene" uid="uid://8ko1cxls3xj4" path="res://scenes/pause_menu.tscn" id="13_g2v8e"]
 
@@ -286,21 +282,6 @@ size_flags_stretch_ratio = 0.5
 color_role = 1
 
 [node name="point" type="Node2D" parent="HBoxContainer/VBoxContainer/dice_container"]
-
-[node name="dice" parent="HBoxContainer/VBoxContainer/dice_container/point" instance=ExtResource("3_u001w")]
-
-[node name="dice2" parent="HBoxContainer/VBoxContainer/dice_container/point" instance=ExtResource("3_u001w")]
-
-[node name="dice3" parent="HBoxContainer/VBoxContainer/dice_container/point" instance=ExtResource("3_u001w")]
-
-[node name="dice_6" parent="HBoxContainer/VBoxContainer/dice_container/point" instance=ExtResource("4_e0pfi")]
-
-[node name="dice_7" parent="HBoxContainer/VBoxContainer/dice_container/point" instance=ExtResource("4_e0pfi")]
-number = 2
-
-[node name="dice5" parent="HBoxContainer/VBoxContainer/dice_container/point" instance=ExtResource("8_5kh4o")]
-
-[node name="dice4" parent="HBoxContainer/VBoxContainer/dice_container/point" instance=ExtResource("6_sjwyb")]
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/VBoxContainer/dice_container"]
 layout_mode = 2

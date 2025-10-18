@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://de64rmof7wlfm"]
+[gd_scene load_steps=3 format=3 uid="uid://de64rmof7wlfm"]
 
 [ext_resource type="PackedScene" uid="uid://cr4uhm3qq7x2w" path="res://scenes/dice_6.tscn" id="1_p81pk"]
+[ext_resource type="AudioStream" uid="uid://u65fq4uihj3i" path="res://assets/music/swoo.mp3" id="2_xc6ge"]
 
 [node name="dice_4" instance=ExtResource("1_p81pk")]
 number = 4
@@ -10,3 +11,6 @@ offset_left = 4.0
 offset_top = -7.0
 offset_right = 52.0
 offset_bottom = 19.0
+
+[node name="woosh" parent="." index="5"]
+stream = ExtResource("2_xc6ge")

@@ -50,19 +50,21 @@ func _update_styles() -> void:
 	var style_normal := StyleBoxFlat.new()
 	style_normal.bg_color = bg_color_real
 	style_normal.set_border_width_all(2)
-	style_normal.border_color = font_color_real
+	style_normal.border_color = bg_color_real
 	style_normal.set_corner_radius_all(8)
 	style_normal.content_margin_left = 10
 	style_normal.content_margin_right = 10
-	style_normal.content_margin_top = 10
-	style_normal.content_margin_bottom = 10
+	style_normal.content_margin_top = 5
+	style_normal.content_margin_bottom = 5
+	style_normal.set_corner_radius_all(0)
 	add_theme_stylebox_override("normal", style_normal)
 
 	# Hover
 	var style_hover := style_normal.duplicate() as StyleBoxFlat
 	style_hover.bg_color = hover_color_real
+	style_hover.border_color = bg_color_real
+	add_theme_stylebox_override("focus", style_hover)
 	add_theme_stylebox_override("hover", style_hover)
-
 
 
 func get_palette_color(role: ColorRole, custom: Color) -> Color:

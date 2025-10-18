@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://dqqttm5yjso7k"]
+[gd_scene load_steps=3 format=3 uid="uid://dqqttm5yjso7k"]
 
 [ext_resource type="PackedScene" uid="uid://cr4uhm3qq7x2w" path="res://scenes/dice_6.tscn" id="1_p81pk"]
+[ext_resource type="AudioStream" uid="uid://u65fq4uihj3i" path="res://assets/music/swoo.mp3" id="2_nq03n"]
 
 [node name="dice_5" instance=ExtResource("1_p81pk")]
 number = 5
+
+[node name="woosh" parent="." index="5"]
+stream = ExtResource("2_nq03n")
