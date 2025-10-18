@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://8ko1cxls3xj4"]
+[gd_scene load_steps=10 format=3 uid="uid://8ko1cxls3xj4"]
 
 [ext_resource type="Script" uid="uid://crap75vs3m6nx" path="res://scenes/pause_menu.gd" id="1_kukqi"]
 [ext_resource type="PackedScene" uid="uid://c4x5tkis316mh" path="res://scenes/colored_container.tscn" id="1_n87rw"]
 [ext_resource type="PackedScene" uid="uid://d26hs8spvqyjy" path="res://scenes/custom_button.tscn" id="2_myx47"]
+[ext_resource type="Script" uid="uid://bmx3ays57ef7r" path="res://scenes/focus_container.gd" id="3_7l7mv"]
 [ext_resource type="PackedScene" uid="uid://cbmn5tiw3fr6c" path="res://scenes/custom_label.tscn" id="5_7l7mv"]
 
 [sub_resource type="Animation" id="Animation_kukqi"]
@@ -106,6 +107,7 @@ size_flags_vertical = 0
 [node name="VBoxContainer" type="VBoxContainer" parent="colored_container/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
+script = ExtResource("3_7l7mv")
 
 [node name="resume_button" parent="colored_container/MarginContainer/HBoxContainer/VBoxContainer" instance=ExtResource("2_myx47")]
 layout_mode = 2
