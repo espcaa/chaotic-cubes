@@ -601,10 +601,10 @@ func pattern_found_animation(multiplier: int = 1) -> void:
 	var delay = 0.0
 	for i in dice_queue:
 		var tween = i.create_tween()
-		tween.tween_property(i, "position:y", i.position.y + 20, 0.2).set_delay(delay)
-		delay += 0.1
+		tween.tween_property(i, "position:y", i.position.y + 20, 0.1).set_delay(delay)
+		delay += 0.05
 		await tween.finished
 		await get_tree().create_timer(0.2).timeout
 		var tween_back = i.create_tween()
-		tween_back.tween_property(i, "position:y", i.position.y - 20, 0.2)
+		tween_back.tween_property(i, "position:y", i.position.y - 20, 0.1)
 		await tween_back.finished
