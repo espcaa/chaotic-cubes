@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://yj154fkhlqwi"]
+
+[ext_resource type="Texture2D" uid="uid://djek47icg2so2" path="res://assets/background.png" id="1_0sy2i"]
+[ext_resource type="Shader" uid="uid://hi56rfnncpf1" path="res://scenes/dice_machine.gdshader" id="1_i7w42"]
+[ext_resource type="Script" uid="uid://cm57fqx3c5i6q" path="res://scenes/background_rect.gd" id="3_ppgvo"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ppgvo"]
+shader = ExtResource("1_i7w42")
+
+[node name="BackgroundRect" type="TextureRect"]
+texture_filter = 1
+material = SubResource("ShaderMaterial_ppgvo")
+instance_shader_parameters/primary_replaced_color = Color(0.554434, 0.757985, 0.469358, 1)
+instance_shader_parameters/replace_color_to_accent = Color(0.968627, 0.588235, 0.0901961, 1)
+instance_shader_parameters/replace_color_to_primary = Color(0.729613, 0.628505, 0.929371, 1)
+instance_shader_parameters/replace_color_to_secondary = Color(0.909804, 0.231373, 0.231373, 1)
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_0sy2i")
+script = ExtResource("3_ppgvo")
