@@ -265,7 +265,7 @@ size_flags_vertical = 3
 
 [node name="drawing" parent="HBoxContainer/VBoxContainer/game_container" instance=ExtResource("2_o3bws")]
 position = Vector2(244, 153)
-scale = Vector2(1.054, 0.929)
+scale = Vector2(1, 0.929)
 
 [node name="separartor" parent="HBoxContainer/VBoxContainer" instance=ExtResource("1_yubou")]
 layout_mode = 2
@@ -753,3 +753,4 @@ label_text = "Three of a kind!"
 
 [node name="BackgroundRect" parent="." instance=ExtResource("11_5kh4o")]
 layout_mode = 0
+scale = Vector2(4, 2.6)
