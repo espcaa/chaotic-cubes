@@ -10,16 +10,6 @@ func _input(event: InputEvent) -> void:
 			await unpause_game()
 
 
-func _on_quit_button_pressed() -> void:
-	Transitioner.load_scene_with_transition(
-		"res://scenes/main_menu.tscn", get_parent(), Enums.ColorRole.SECONDARY
-	)
-
-
-func _on_resume_button_pressed() -> void:
-	await unpause_game()
-
-
 func unpause_game() -> void:
 	$AnimationPlayer.play_backwards("pause")
 	await $AnimationPlayer.animation_finished
@@ -41,3 +31,13 @@ func _process(_delta: float) -> void:
 	$colored_container/MarginContainer/HBoxContainer/MarginContainer/colored_container/MarginContainer/VBoxContainer/LabelTotalMoney.text = (
 		"All of the money ever earned: " + str(UserData.money)
 	)
+
+
+func _on_quit_pressed() -> void:
+	Transitioner.load_scene_with_transition(
+		"res://scenes/main_menu.tscn", get_parent(), Enums.ColorRole.SECONDARY
+	)
+
+
+func _on_resume_pressed() -> void:
+	await unpause_game()

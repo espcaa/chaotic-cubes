@@ -20,6 +20,9 @@ enum ColorRole { CUSTOM, PRIMARY, ACCENT, BACKGROUND, SECONDARY }
 var cached_bg: Color = Color.TRANSPARENT
 var cached_font: Color = Color.TRANSPARENT
 
+var stylebox_normal: StyleBoxFlat
+var stylebox_hover: StyleBoxFlat
+
 
 func _ready() -> void:
 	text = label_text
@@ -63,8 +66,9 @@ func _update_styles() -> void:
 	var style_hover := style_normal.duplicate() as StyleBoxFlat
 	style_hover.bg_color = hover_color_real
 	style_hover.border_color = bg_color_real
-	add_theme_stylebox_override("focus", style_hover)
-	add_theme_stylebox_override("hover", style_hover)
+
+	stylebox_hover = style_hover
+	stylebox_normal = style_normal
 
 
 func get_palette_color(role: ColorRole, custom: Color) -> Color:
@@ -81,3 +85,11 @@ func get_palette_color(role: ColorRole, custom: Color) -> Color:
 			return custom
 		_:
 			return Color.WHITE
+
+
+func set_light_font_color() -> void:
+	add_theme_color_override("font_color", cached_bg)
+
+
+func set_dark_font_color() -> void:
+	add_theme_color_override("font_color", cached_font)

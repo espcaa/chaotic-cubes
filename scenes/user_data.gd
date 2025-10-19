@@ -14,7 +14,7 @@ var unlocked_dices = ["normal_dice", "dice_1", "dice_2", "dice_3", "dice_4", "di
 
 func _process(delta: float) -> void:
 	if not paused and timer_running:
-		time_run += delta
+		time_run += delta * 10.0
 
 
 func get_reserved_dice() -> Node:

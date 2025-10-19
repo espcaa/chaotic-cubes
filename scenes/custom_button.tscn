@@ -21,3 +21,4 @@ theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_yt7k8")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_bfr1r")
 theme_override_styles/normal = SubResource("StyleBoxFlat_32hcy")
 script = ExtResource("1_ql6db")
+hover_color = 4
