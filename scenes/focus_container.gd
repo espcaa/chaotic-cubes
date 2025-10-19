@@ -3,6 +3,9 @@ extends VBoxContainer
 var buttons: Array[Button] = []
 var focused_index: int = 0
 
+var active = true
+@export var inactive_when_paused: bool = false
+
 
 func _ready() -> void:
 	for i in get_children():
@@ -21,6 +24,14 @@ func _ready() -> void:
 		_focus_previous_button()
 
 
+func _process(_delta: float) -> void:
+	if inactive_when_paused:
+		if UserData.paused == false:
+			active = false
+		else:
+			active = true
+
+
 func _add_button(btn: Button) -> void:
 	buttons.append(btn)
 	btn.focus_mode = Control.FOCUS_ALL
@@ -31,7 +42,7 @@ func _input(event: InputEvent) -> void:
 		_focus_next_button()
 	elif event.is_action_pressed("ui_up"):
 		_focus_previous_button()
-	elif event.is_action_pressed("ui_accept") and buttons.size() > 0:
+	elif event.is_action_pressed("ui_accept") and buttons.size() > 0 and active:
 		buttons[focused_index].emit_signal("pressed")
 
 

@@ -605,17 +605,12 @@ label_text = "Good job!!"
 [node name="MarginContainer" type="MarginContainer" parent="win_menu/MarginContainer/colored_container/MarginContainer/VBoxContainer"]
 layout_mode = 2
 mouse_filter = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="win_menu/MarginContainer/colored_container/MarginContainer/VBoxContainer/MarginContainer"]
 layout_mode = 2
 mouse_filter = 2
-
-[node name="CustomLabel2" parent="win_menu/MarginContainer/colored_container/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer" instance=ExtResource("5_djwj0")]
-layout_mode = 2
-color_role = 3
-label_text = ""
 
 [node name="RichLabel" parent="win_menu/MarginContainer/colored_container/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer" instance=ExtResource("5_djwj0")]
 layout_mode = 2
@@ -631,7 +626,6 @@ theme_override_constants/margin_top = 10
 [node name="resume_button" parent="win_menu/MarginContainer/colored_container/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer" instance=ExtResource("4_1kaiv")]
 z_index = 100
 layout_mode = 2
-hover_color = 4
 label_text = "Continue"
 
 [node name="lose_menu" type="Control" parent="."]
@@ -716,7 +710,6 @@ theme_override_constants/margin_top = 10
 [node name="resume_button" parent="lose_menu/MarginContainer/colored_container/MarginContainer/VBoxContainer/MarginContainer2" instance=ExtResource("4_1kaiv")]
 z_index = 100
 layout_mode = 2
-hover_color = 4
 label_text = "Restart"
 
 [node name="MarginContainer3" type="MarginContainer" parent="lose_menu/MarginContainer/colored_container/MarginContainer/VBoxContainer"]
@@ -728,7 +721,6 @@ theme_override_constants/margin_top = 0
 [node name="resume_button" parent="lose_menu/MarginContainer/colored_container/MarginContainer/VBoxContainer/MarginContainer3" instance=ExtResource("4_1kaiv")]
 z_index = 100
 layout_mode = 2
-hover_color = 4
 label_text = "Quit"
 
 [node name="BonusLabel" parent="." instance=ExtResource("5_djwj0")]

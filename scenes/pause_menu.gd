@@ -18,6 +18,7 @@ func unpause_game() -> void:
 
 func pause_game() -> void:
 	$AnimationPlayer.play("pause")
+
 	UserData.paused = true
 
 

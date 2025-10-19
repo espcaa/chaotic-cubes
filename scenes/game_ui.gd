@@ -43,6 +43,7 @@ var limit_label = $HBoxContainer/VBoxContainer/dice_container/VBoxContainer/Marg
 func lose():
 	# lose :(
 	if not lost:
+		UserData.paused = true
 		lost = true
 		$AnimationPlayer.play("lose")
 
@@ -65,7 +66,7 @@ func win():
 
 		add_text_label(
 			$win_menu/MarginContainer/colored_container/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/RichLabel,
-			"\n- final score : " + str(UserData.current_score),
+			"- final score : " + str(UserData.current_score),
 		)
 
 		await get_tree().create_timer(0.05).timeout  # wait a bit before showing the menu

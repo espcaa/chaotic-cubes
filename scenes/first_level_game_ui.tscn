@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://b2swltrwdy5yr"]
+[gd_scene load_steps=4 format=3 uid="uid://b2swltrwdy5yr"]
 
 [ext_resource type="PackedScene" uid="uid://bfu41rido3bca" path="res://scenes/game_ui.tscn" id="1_ys7o7"]
 [ext_resource type="PackedScene" uid="uid://bdto7x5d0a4by" path="res://scenes/dice_normal.tscn" id="2_740n0"]
+[ext_resource type="PackedScene" uid="uid://cbmn5tiw3fr6c" path="res://scenes/custom_label.tscn" id="3_7tyud"]
 
 [node name="first_level_game_ui" instance=ExtResource("1_ys7o7")]
 goal = 40
@@ -17,3 +18,15 @@ goal = 40
 [node name="dice5" parent="HBoxContainer/VBoxContainer/dice_container/point" index="4" instance=ExtResource("2_740n0")]
 
 [node name="dice6" parent="HBoxContainer/VBoxContainer/dice_container/point" index="5" instance=ExtResource("2_740n0")]
+
+[node name="CustomLabel2" parent="win_menu/MarginContainer/colored_container/MarginContainer/VBoxContainer" index="1" instance=ExtResource("3_7tyud")]
+texture_filter = 1
+layout_mode = 2
+text = "Ty for playing this small demo! right now you can't go much farther than this but some things are coming soon !!!
+Please be kind in reviews :D"
+autowrap_mode = 2
+color_role = 2
+label_text = "Ty for playing this small demo! right now you can't go much farther than this but some things are coming soon !!!Please be kind in reviews :D"
+
+[node name="resume_button" parent="win_menu/MarginContainer/colored_container/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer" index="0"]
+visible = false

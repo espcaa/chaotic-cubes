@@ -171,7 +171,6 @@ theme_override_constants/margin_bottom = 0
 
 [node name="custom_button" parent="Control2/MarginContainer/VBoxContainer/MarginContainer" instance=ExtResource("4_wu84c")]
 layout_mode = 2
-hover_color = 4
 label_text = "Play!"
 
 [node name="MarginContainer2" type="MarginContainer" parent="Control2/MarginContainer/VBoxContainer"]
@@ -183,7 +182,6 @@ theme_override_constants/margin_bottom = 5
 
 [node name="quit_button" parent="Control2/MarginContainer/VBoxContainer/MarginContainer2" instance=ExtResource("4_wu84c")]
 layout_mode = 2
-hover_color = 4
 label_text = "Quit"
 
 [node name="MarginContainer3" type="MarginContainer" parent="Control2"]
