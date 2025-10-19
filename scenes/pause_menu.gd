@@ -35,6 +35,7 @@ func _process(_delta: float) -> void:
 
 
 func _on_quit_pressed() -> void:
+	UserData.paused = false
 	Transitioner.load_scene_with_transition(
 		"res://scenes/main_menu.tscn", get_parent(), Enums.ColorRole.SECONDARY
 	)

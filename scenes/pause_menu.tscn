@@ -114,10 +114,6 @@ inactive_when_paused = true
 layout_mode = 2
 label_text = "Resume!"
 
-[node name="resume2" parent="colored_container/MarginContainer/HBoxContainer/VBoxContainer" instance=ExtResource("2_myx47")]
-layout_mode = 2
-label_text = "jsdqposqjdoqs"
-
 [node name="quit" parent="colored_container/MarginContainer/HBoxContainer/VBoxContainer" instance=ExtResource("2_myx47")]
 layout_mode = 2
 label_text = "Quit :("
@@ -158,5 +154,4 @@ libraries = {
 }
 
 [connection signal="pressed" from="colored_container/MarginContainer/HBoxContainer/VBoxContainer/resume" to="." method="_on_resume_pressed"]
-[connection signal="pressed" from="colored_container/MarginContainer/HBoxContainer/VBoxContainer/resume2" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="colored_container/MarginContainer/HBoxContainer/VBoxContainer/quit" to="." method="_on_quit_pressed"]
