@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cbmn5tiw3fr6c" path="res://scenes/custom_label.tscn" id="5_djwj0"]
 [ext_resource type="PackedScene" uid="uid://7brptgis72d4" path="res://scenes/dice_machine.tscn" id="8_3huio"]
 [ext_resource type="PackedScene" uid="uid://yj154fkhlqwi" path="res://scenes/background_rect.tscn" id="11_5kh4o"]
+[ext_resource type="PackedScene" uid="uid://d3p4cimwop1pv" path="res://scenes/lose_menu.tscn" id="11_s2npe"]
 [ext_resource type="PackedScene" uid="uid://4ql4svkmakt2" path="res://scenes/tutorial.tscn" id="12_s2npe"]
 [ext_resource type="PackedScene" uid="uid://8ko1cxls3xj4" path="res://scenes/pause_menu.tscn" id="13_g2v8e"]
 
@@ -18,7 +19,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("lose_menu/colored_container:modulate")
+tracks/0/path = NodePath("BonusLabel:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -30,66 +31,32 @@ tracks/0/keys = {
 tracks/1/type = "bezier"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("lose_menu/MarginContainer:position:x")
+tracks/1/path = NodePath("BonusLabel:position:x")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(-720, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(168, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
 tracks/2/type = "bezier"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("lose_menu/MarginContainer:position:y")
+tracks/2/path = NodePath("BonusLabel:position:y")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("BonusLabel:modulate")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
-tracks/4/type = "bezier"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("BonusLabel:position:x")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(168, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/5/type = "bezier"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("BonusLabel:position:y")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"handle_modes": PackedInt32Array(0),
 "points": PackedFloat32Array(122, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
-tracks/6/type = "bezier"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("BonusLabel:rotation")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("BonusLabel:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
 "handle_modes": PackedInt32Array(0),
 "points": PackedFloat32Array(-0.513133, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
@@ -143,44 +110,6 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.466667)
 }
 
-[sub_resource type="Animation" id="Animation_3huio"]
-resource_name = "lose"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("lose_menu/colored_container:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.709804)]
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("lose_menu/MarginContainer:position:x")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(-720, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.306698)
-}
-tracks/2/type = "bezier"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("lose_menu/MarginContainer:position:y")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.306698)
-}
-
 [sub_resource type="Animation" id="Animation_win"]
 resource_name = "win"
 length = 0.5
@@ -223,7 +152,6 @@ tracks/2/keys = {
 _data = {
 &"RESET": SubResource("Animation_sjwyb"),
 &"combo_mult_text": SubResource("Animation_1kaiv"),
-&"lose": SubResource("Animation_3huio"),
 &"win": SubResource("Animation_win")
 }
 
@@ -564,9 +492,7 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -720.0
-offset_top = 1.0
 offset_right = -720.0
-offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -627,99 +553,9 @@ z_index = 100
 layout_mode = 2
 label_text = "Continue"
 
-[node name="lose_menu" type="Control" parent="."]
-z_index = 200
+[node name="LoseMenu" parent="." instance=ExtResource("11_s2npe")]
+unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="colored_container" parent="lose_menu" instance=ExtResource("1_yubou")]
-modulate = Color(1, 1, 1, 0)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = 0.0
-offset_bottom = 0.0
-grow_horizontal = 2
-grow_vertical = 2
-color_role = 3
-
-[node name="MarginContainer" type="MarginContainer" parent="lose_menu"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -720.0
-offset_right = -720.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-theme_override_constants/margin_left = 100
-theme_override_constants/margin_top = 50
-theme_override_constants/margin_right = 100
-theme_override_constants/margin_bottom = 50
-
-[node name="colored_container" parent="lose_menu/MarginContainer" instance=ExtResource("1_yubou")]
-layout_mode = 2
-color_role = 5
-outline_enabled = true
-outline_color_role = 2
-outline_thickness = 4
-
-[node name="MarginContainer" type="MarginContainer" parent="lose_menu/MarginContainer/colored_container"]
-layout_mode = 2
-mouse_filter = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="VBoxContainer" type="VBoxContainer" parent="lose_menu/MarginContainer/colored_container/MarginContainer"]
-layout_mode = 2
-mouse_filter = 2
-
-[node name="CustomLabel" parent="lose_menu/MarginContainer/colored_container/MarginContainer/VBoxContainer" instance=ExtResource("5_djwj0")]
-layout_mode = 2
-color_role = 2
-font_size = 32
-label_text = "You lost..."
-
-[node name="MarginContainer" type="MarginContainer" parent="lose_menu/MarginContainer/colored_container/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-
-[node name="CustomLabel2" parent="lose_menu/MarginContainer/colored_container/MarginContainer/VBoxContainer/MarginContainer" instance=ExtResource("5_djwj0")]
-layout_mode = 2
-color_role = 3
-label_text = "You can do better next time!"
-
-[node name="MarginContainer2" type="MarginContainer" parent="lose_menu/MarginContainer/colored_container/MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-mouse_filter = 2
-theme_override_constants/margin_top = 10
-
-[node name="resume_button" parent="lose_menu/MarginContainer/colored_container/MarginContainer/VBoxContainer/MarginContainer2" instance=ExtResource("4_1kaiv")]
-z_index = 100
-layout_mode = 2
-label_text = "Restart"
-
-[node name="MarginContainer3" type="MarginContainer" parent="lose_menu/MarginContainer/colored_container/MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-mouse_filter = 2
-theme_override_constants/margin_top = 0
-
-[node name="resume_button" parent="lose_menu/MarginContainer/colored_container/MarginContainer/VBoxContainer/MarginContainer3" instance=ExtResource("4_1kaiv")]
-z_index = 100
-layout_mode = 2
-label_text = "Quit"
 
 [node name="BonusLabel" parent="." instance=ExtResource("5_djwj0")]
 modulate = Color(1, 1, 1, 0)

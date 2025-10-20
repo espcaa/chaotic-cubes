@@ -1,9 +1,12 @@
 extends Button
 
-enum ColorRole { CUSTOM, PRIMARY, ACCENT, BACKGROUND, SECONDARY }
+enum ColorRole { CUSTOM, PRIMARY, ACCENT, BACKGROUND, SECONDARY, ERROR }
 
 @export var bg_color: ColorRole = ColorRole.PRIMARY
 @export var text_color: ColorRole = ColorRole.SECONDARY
+
+@export var non_focused_outline_removed: bool = false
+@export var focused_outline_removed: bool = false
 
 # Optional custom colors
 @export var custom_bg_color: Color = Color.TRANSPARENT
@@ -53,7 +56,7 @@ func _update_styles() -> void:
 	var style_normal := StyleBoxFlat.new()
 	style_normal.bg_color = bg_color_real
 	style_normal.set_border_width_all(2)
-	style_normal.border_color = bg_color_real
+	style_normal.border_color = font_color_real
 	style_normal.set_corner_radius_all(8)
 	style_normal.content_margin_left = 10
 	style_normal.content_margin_right = 10
@@ -62,10 +65,16 @@ func _update_styles() -> void:
 	style_normal.set_corner_radius_all(0)
 	add_theme_stylebox_override("normal", style_normal)
 
+	if non_focused_outline_removed:
+		style_normal.border_color = bg_color_real
+
 	# Hover
 	var style_hover := style_normal.duplicate() as StyleBoxFlat
 	style_hover.bg_color = hover_color_real
 	style_hover.border_color = bg_color_real
+
+	if focused_outline_removed:
+		style_hover.border_color = hover_color_real
 
 	stylebox_hover = style_hover
 	stylebox_normal = style_normal
@@ -81,6 +90,8 @@ func get_palette_color(role: ColorRole, custom: Color) -> Color:
 			return Palette.get_color("background")
 		ColorRole.SECONDARY:
 			return Palette.get_color("secondary")
+		ColorRole.ERROR:
+			return Palette.get_color("error")
 		ColorRole.CUSTOM:
 			return custom
 		_:

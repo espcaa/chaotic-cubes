@@ -3,7 +3,7 @@ extends Control
 
 func _input(event: InputEvent) -> void:
 	# catch the "pause" action to toggle the pause menu
-	if Input.is_action_just_pressed("pause") and not event.echo:
+	if Input.is_action_just_pressed("pause") and not event.echo and not UserData.can_pause == false:
 		if UserData.paused == false:
 			pause_game()
 		else:

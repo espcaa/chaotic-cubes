@@ -112,10 +112,12 @@ inactive_when_paused = true
 
 [node name="resume" parent="colored_container/MarginContainer/HBoxContainer/VBoxContainer" instance=ExtResource("2_myx47")]
 layout_mode = 2
+non_focused_outline_removed = true
 label_text = "Resume!"
 
 [node name="quit" parent="colored_container/MarginContainer/HBoxContainer/VBoxContainer" instance=ExtResource("2_myx47")]
 layout_mode = 2
+non_focused_outline_removed = true
 label_text = "Quit :("
 
 [node name="MarginContainer" type="MarginContainer" parent="colored_container/MarginContainer/HBoxContainer"]

@@ -3,7 +3,7 @@ extends VBoxContainer
 var buttons: Array[Button] = []
 var focused_index: int = 0
 
-var active = true
+@export var active = true
 @export var inactive_when_paused: bool = false
 
 

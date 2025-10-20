@@ -42,10 +42,10 @@ var limit_label = $HBoxContainer/VBoxContainer/dice_container/VBoxContainer/Marg
 
 func lose():
 	# lose :(
-	if not lost:
+	if not lost and not won:
 		UserData.paused = true
 		lost = true
-		$AnimationPlayer.play("lose")
+		%LoseMenu.play_lose_animation()
 
 
 func win():
