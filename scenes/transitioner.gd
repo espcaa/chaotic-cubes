@@ -37,12 +37,11 @@ func load_scene_with_transition(
 
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
-	if anim_name == "in":
-		if next_scene_instance != null:
-			for i in nuking_scene.get_children():
-				i.queue_free()
-			nuking_scene.queue_free()
-			get_tree().get_root().add_child(next_scene_instance)
-			get_tree().set_current_scene(next_scene_instance)
-			next_scene_instance = null
-			$AnimationPlayer.play("out")
+	if anim_name == "in" and next_scene_instance != null:
+		var current = get_tree().current_scene
+		if current != null:
+			current.queue_free()  # Free the old scene completely
+		get_tree().get_root().add_child(next_scene_instance)
+		get_tree().set_current_scene(next_scene_instance)
+		next_scene_instance = null
+		$AnimationPlayer.play("out")

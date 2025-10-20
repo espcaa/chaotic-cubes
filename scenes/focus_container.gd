@@ -64,7 +64,15 @@ func focus_btn(btn: Button) -> void:
 	for i in range(buttons.size()):
 		if buttons[i] == btn:
 			btn.set_light_font_color()
+			btn.focused = true
 			btn.add_theme_stylebox_override("normal", buttons[i].stylebox_hover)
 		else:
 			buttons[i].set_dark_font_color()
+			buttons[i].focused = false
 			buttons[i].add_theme_stylebox_override("normal", buttons[i].stylebox_normal)
+
+
+func reset() -> void:
+	focused_index = 0
+	if buttons.size() > 0:
+		focus_btn(buttons[focused_index])

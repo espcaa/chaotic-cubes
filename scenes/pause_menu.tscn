@@ -122,7 +122,7 @@ label_text = "Quit :("
 
 [node name="MarginContainer" type="MarginContainer" parent="colored_container/MarginContainer/HBoxContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 10
+theme_override_constants/margin_left = 30
 
 [node name="colored_container" parent="colored_container/MarginContainer/HBoxContainer/MarginContainer" instance=ExtResource("1_n87rw")]
 layout_mode = 2

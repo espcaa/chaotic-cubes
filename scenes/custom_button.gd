@@ -7,6 +7,7 @@ enum ColorRole { CUSTOM, PRIMARY, ACCENT, BACKGROUND, SECONDARY, ERROR }
 
 @export var non_focused_outline_removed: bool = false
 @export var focused_outline_removed: bool = false
+@export var inverse_arrow_color: bool = false
 
 # Optional custom colors
 @export var custom_bg_color: Color = Color.TRANSPARENT
@@ -26,14 +27,24 @@ var cached_font: Color = Color.TRANSPARENT
 var stylebox_normal: StyleBoxFlat
 var stylebox_hover: StyleBoxFlat
 
+var focused: bool = false
+
 
 func _ready() -> void:
 	text = label_text
 	add_theme_font_size_override("font_size", font_size)
 	_update_styles()
+	await get_tree().process_frame
+	$arrow.position.x = self.size.x + 12
+	$arrow.position.y = self.size.y / 2
 
 
 func _process(_delta: float) -> void:
+	if not focused:
+		$arrow.hide()
+	else:
+		$arrow.show()
+
 	var bg_color_real = get_palette_color(bg_color, custom_bg_color)
 	var font_color_real = get_palette_color(text_color, custom_text_color)
 
@@ -51,7 +62,10 @@ func _update_styles() -> void:
 
 	# Font color
 	add_theme_color_override("font_color", font_color_real)
-
+	if not inverse_arrow_color:
+		$arrow.set_instance_shader_parameter("primary_replaced_color", bg_color_real)
+	else:
+		$arrow.set_instance_shader_parameter("primary_replaced_color", font_color_real)
 	# Normal
 	var style_normal := StyleBoxFlat.new()
 	style_normal.bg_color = bg_color_real

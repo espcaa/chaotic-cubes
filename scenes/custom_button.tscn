@@ -1,7 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://d26hs8spvqyjy"]
+[gd_scene load_steps=10 format=3 uid="uid://d26hs8spvqyjy"]
 
 [ext_resource type="FontFile" uid="uid://dplyku4eceytx" path="res://assets/fonts/monogram-extended.ttf" id="1_bfr1r"]
 [ext_resource type="Script" uid="uid://dlylufk4kmq13" path="res://scenes/custom_button.gd" id="1_ql6db"]
+[ext_resource type="Texture2D" uid="uid://y6usve2iqnap" path="res://assets/arrow.png" id="3_32hcy"]
+[ext_resource type="Shader" uid="uid://hi56rfnncpf1" path="res://scenes/dice_machine.gdshader" id="3_yt7k8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bfr1r"]
 
@@ -10,6 +12,9 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bfr1r"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_32hcy"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qw48a"]
+shader = ExtResource("3_yt7k8")
 
 [node name="custom_button" type="Button"]
 offset_right = 8.0
@@ -22,3 +27,12 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_bfr1r")
 theme_override_styles/normal = SubResource("StyleBoxFlat_32hcy")
 script = ExtResource("1_ql6db")
 hover_color = 4
+
+[node name="arrow" type="Sprite2D" parent="."]
+texture_filter = 1
+material = SubResource("ShaderMaterial_qw48a")
+instance_shader_parameters/accent_replaced_color = Color(0.537951, 0.0952208, 0.104109, 1)
+instance_shader_parameters/primary_replaced_color = Color(0, 0.65098, 0, 1)
+instance_shader_parameters/replace_color_to_primary = Color(0.909804, 0.231373, 0.231373, 1)
+instance_shader_parameters/replace_color_to_secondary = Color(0, 0, 0, 1)
+texture = ExtResource("3_32hcy")

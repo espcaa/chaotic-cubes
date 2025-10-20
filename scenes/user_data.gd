@@ -6,7 +6,7 @@ var paused: bool = false
 var time_run: float = 0.0
 var timer_running: bool = false
 var money: int = 0
-var can_pause : bool = true
+var can_pause: bool = true
 
 @onready var RandomDiceManager = $RandomDiceManager
 
@@ -38,3 +38,13 @@ func score(points: int) -> void:
 func reset_time() -> void:
 	time_run = 0.0
 	timer_running = true
+
+
+func reset_game() -> void:
+	current_score = 0
+	total_run_score = 0
+	time_run = 0.0
+	timer_running = false
+	paused = false
+	money = 0
+	can_pause = true
