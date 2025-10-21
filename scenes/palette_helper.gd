@@ -63,3 +63,32 @@ func get_color(color_name: String) -> Color:
 func change_base_color(color: Color):
 	seed_color = color
 	assign_new_palette()
+
+
+func tween_to_new_palette(target_color: Color, duration: float = 1.0):
+	var old_palette = palette.duplicate()
+	var new_palette = generate_palette(target_color)
+
+	var tween = create_tween()
+	tween.set_parallel(true)
+	tween.set_trans(Tween.TRANS_CUBIC)
+	tween.set_ease(Tween.EASE_IN_OUT)
+
+	for key in new_palette.keys():
+		if not old_palette.has(key):
+			continue
+
+		var start_color = old_palette[key]
+		var end_color = new_palette[key]
+
+		tween.tween_method(
+			func(value): palette[key] = start_color.lerp(end_color, value), 0.0, 1.0, duration
+		)
+
+	tween.finished.connect(
+		func():
+			seed_color = target_color
+			palette = new_palette
+	)
+
+	return tween

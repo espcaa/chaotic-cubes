@@ -50,6 +50,8 @@ func lose():
 
 func win():
 	if not won:
+		UserData.paused = true
+		UserData.can_pause = false
 		won = true
 		$AnimationPlayer.play("win")
 		UserData.money += money_reward
@@ -321,7 +323,6 @@ func _on_dice_reached_center() -> void:
 
 				$BonusLabel.label_text = "x" + str(patterns_found[pattern]["mult"])
 				$AnimationPlayer.play("combo_mult_text")
-				await $AnimationPlayer.animation_finished
 				print("pattern found : " + pattern)
 				var pattern_name = patterns_found[pattern]["name"]
 
@@ -596,16 +597,15 @@ func match_patterns(arr: Array) -> Dictionary:
 	return results
 
 
-func pattern_found_animation(multiplier: int = 1) -> void:
+func pattern_found_animation() -> void:
 	# ge tall of th dices and put them down a little one by one, then show the multiplicator and then put them back up
-
 	var delay = 0.0
 	for i in dice_queue:
 		var tween = i.create_tween()
 		tween.tween_property(i, "position:y", i.position.y + 20, 0.1).set_delay(delay)
-		delay += 0.05
+		delay += 0.1
 		await tween.finished
-		await get_tree().create_timer(0.2).timeout
+		await get_tree().create_timer(0.1).timeout
 		var tween_back = i.create_tween()
 		tween_back.tween_property(i, "position:y", i.position.y - 20, 0.1)
 		await tween_back.finished

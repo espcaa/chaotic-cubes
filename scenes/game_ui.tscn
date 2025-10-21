@@ -3,11 +3,11 @@
 [ext_resource type="Script" uid="uid://blbae1p8nj3sr" path="res://scenes/game_ui.gd" id="1_rns2u"]
 [ext_resource type="PackedScene" uid="uid://c4x5tkis316mh" path="res://scenes/colored_container.tscn" id="1_yubou"]
 [ext_resource type="PackedScene" uid="uid://d1tvr6ct2mujc" path="res://assets/drawing.tscn" id="2_o3bws"]
-[ext_resource type="PackedScene" uid="uid://d26hs8spvqyjy" path="res://scenes/custom_button.tscn" id="4_1kaiv"]
 [ext_resource type="FontFile" uid="uid://dplyku4eceytx" path="res://assets/fonts/monogram-extended.ttf" id="4_bt76a"]
 [ext_resource type="AudioStream" uid="uid://s6rpy78m0p8u" path="res://assets/sound_dice.ogg" id="5_bt76a"]
 [ext_resource type="PackedScene" uid="uid://cbmn5tiw3fr6c" path="res://scenes/custom_label.tscn" id="5_djwj0"]
 [ext_resource type="PackedScene" uid="uid://7brptgis72d4" path="res://scenes/dice_machine.tscn" id="8_3huio"]
+[ext_resource type="PackedScene" uid="uid://cb0dbpwjjacrq" path="res://scenes/win_menu.tscn" id="10_s2npe"]
 [ext_resource type="PackedScene" uid="uid://yj154fkhlqwi" path="res://scenes/background_rect.tscn" id="11_5kh4o"]
 [ext_resource type="PackedScene" uid="uid://d3p4cimwop1pv" path="res://scenes/lose_menu.tscn" id="11_s2npe"]
 [ext_resource type="PackedScene" uid="uid://4ql4svkmakt2" path="res://scenes/tutorial.tscn" id="12_s2npe"]
@@ -64,6 +64,7 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id="Animation_1kaiv"]
 resource_name = "combo_mult_text"
+length = 1.9
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -71,7 +72,7 @@ tracks/0/path = NodePath("BonusLabel:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.833333, 1),
+"times": PackedFloat32Array(0, 0.3, 1.76667, 1.9),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
@@ -464,94 +465,8 @@ offset_bottom = -84.0
 layout_mode = 1
 mouse_filter = 1
 
-[node name="win_menu" type="Control" parent="."]
-z_index = 200
+[node name="win_menu" parent="." instance=ExtResource("10_s2npe")]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="colored_container" parent="win_menu" instance=ExtResource("1_yubou")]
-modulate = Color(1, 1, 1, 0)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = 0.0
-offset_bottom = 0.0
-grow_horizontal = 2
-grow_vertical = 2
-color_role = 3
-
-[node name="MarginContainer" type="MarginContainer" parent="win_menu"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -720.0
-offset_right = -720.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-theme_override_constants/margin_left = 100
-theme_override_constants/margin_top = 50
-theme_override_constants/margin_right = 100
-theme_override_constants/margin_bottom = 50
-
-[node name="colored_container" parent="win_menu/MarginContainer" instance=ExtResource("1_yubou")]
-layout_mode = 2
-color_role = 5
-outline_enabled = true
-outline_color_role = 2
-outline_thickness = 4
-
-[node name="MarginContainer" type="MarginContainer" parent="win_menu/MarginContainer/colored_container"]
-layout_mode = 2
-mouse_filter = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="VBoxContainer" type="VBoxContainer" parent="win_menu/MarginContainer/colored_container/MarginContainer"]
-layout_mode = 2
-mouse_filter = 2
-
-[node name="CustomLabel" parent="win_menu/MarginContainer/colored_container/MarginContainer/VBoxContainer" instance=ExtResource("5_djwj0")]
-layout_mode = 2
-mouse_filter = 1
-color_role = 2
-font_size = 32
-label_text = "Good job!!"
-
-[node name="MarginContainer" type="MarginContainer" parent="win_menu/MarginContainer/colored_container/MarginContainer/VBoxContainer"]
-layout_mode = 2
-mouse_filter = 2
-theme_override_constants/margin_left = 0
-theme_override_constants/margin_top = 10
-
-[node name="VBoxContainer" type="VBoxContainer" parent="win_menu/MarginContainer/colored_container/MarginContainer/VBoxContainer/MarginContainer"]
-layout_mode = 2
-mouse_filter = 2
-
-[node name="RichLabel" parent="win_menu/MarginContainer/colored_container/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer" instance=ExtResource("5_djwj0")]
-layout_mode = 2
-color_role = 3
-label_text = ""
-
-[node name="MarginContainer" type="MarginContainer" parent="win_menu/MarginContainer/colored_container/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-mouse_filter = 2
-theme_override_constants/margin_top = 10
-
-[node name="resume_button" parent="win_menu/MarginContainer/colored_container/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer" instance=ExtResource("4_1kaiv")]
-z_index = 100
-layout_mode = 2
-label_text = "Continue"
 
 [node name="LoseMenu" parent="." instance=ExtResource("11_s2npe")]
 unique_name_in_owner = true
@@ -561,10 +476,10 @@ layout_mode = 1
 modulate = Color(1, 1, 1, 0)
 texture_filter = 1
 layout_mode = 0
-offset_left = 168.0
-offset_top = 122.0
-offset_right = 240.0
-offset_bottom = 173.0
+offset_left = 235.0
+offset_top = 84.0
+offset_right = 307.0
+offset_bottom = 135.0
 rotation = -0.513133
 theme_override_font_sizes/font_size = 64
 text = "x29"
