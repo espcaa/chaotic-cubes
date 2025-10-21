@@ -318,28 +318,30 @@ func _on_dice_reached_center() -> void:
 		var patterns_found = match_patterns(last_three)
 		if patterns_found.size() > 0:
 			# print every pattern found
-			for pattern in patterns_found.keys():
-				await pattern_found_animation()
+			await pattern_found_animation()
 
-				$BonusLabel.label_text = "x" + str(patterns_found[pattern]["mult"])
-				$AnimationPlayer.play("combo_mult_text")
-				print("pattern found : " + pattern)
-				var pattern_name = patterns_found[pattern]["name"]
-
-				# a tween to show the pattern name for 2s with modulate for fadin and fadout
-				play_combo_label_anim()
-				$ComboLabel.label_text = pattern_name
-
-				if not completed_combo:
-					completed_combo = true
-				UserData.score(
-					int(
-						(
-							dice_queue[dice_queue.size() - 1].value[0]
-							* (patterns_found[pattern]["mult"] - 1)
-						)
+			var keys = patterns_found.keys()
+			for i in range(keys.size()):
+				print(
+					(
+						"Pattern found: "
+						+ keys[i]
+						+ " with multiplier "
+						+ str(patterns_found[keys[i]]["mult"])
 					)
 				)
+				var key = keys[i]
+				var new_bonus_card = preload("res://scenes/bonus_card.tscn").instantiate()
+				new_bonus_card.z_index = -2 - i
+
+				new_bonus_card.combo_name = patterns_found[key]["name"]
+				new_bonus_card.combo_mult = "x" + str(patterns_found[key]["mult"])
+				%bonus_point.add_child(new_bonus_card)
+				await get_tree().process_frame
+				new_bonus_card.position.y = new_bonus_card.get_child(0).size.y * i
+				UserData.score(active_dice.value[0] * (patterns_found[key]["mult"] - 1))
+				await get_tree().create_timer(0.2).timeout
+
 	active_dice = null
 	playing_move = false
 	dice_refresh_blocked = false
@@ -598,14 +600,21 @@ func match_patterns(arr: Array) -> Dictionary:
 
 
 func pattern_found_animation() -> void:
-	# ge tall of th dices and put them down a little one by one, then show the multiplicator and then put them back up
 	var delay = 0.0
 	for i in dice_queue:
+		var original_y = i.position.y
 		var tween = i.create_tween()
-		tween.tween_property(i, "position:y", i.position.y + 20, 0.1).set_delay(delay)
-		delay += 0.1
-		await tween.finished
-		await get_tree().create_timer(0.1).timeout
-		var tween_back = i.create_tween()
-		tween_back.tween_property(i, "position:y", i.position.y - 20, 0.1)
-		await tween_back.finished
+		(
+			tween
+			. tween_property(i, "position:y", original_y + 20, 0.2)
+			. set_delay(delay)
+			. set_trans(Tween.TRANS_QUAD)
+			. set_ease(Tween.EASE_IN)
+		)
+		tween.tween_property(i, "position:y", original_y, 0.2).set_trans(Tween.TRANS_QUAD).set_ease(
+			Tween.EASE_OUT
+		)
+		delay += 0.2
+	await get_tree().create_timer(delay + 0.2).timeout
+
+	return

@@ -18,3 +18,9 @@
 [node name="dice_11" parent="HBoxContainer/VBoxContainer/dice_container/point" index="5" instance=ExtResource("2_kysvu")]
 
 [node name="dice_12" parent="HBoxContainer/VBoxContainer/dice_container/point" index="6" instance=ExtResource("2_kysvu")]
+
+[node name="ComboLabel" parent="." index="9"]
+offset_left = 16.0
+offset_top = 112.0
+offset_right = 232.0
+offset_bottom = 163.0

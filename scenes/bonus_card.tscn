@@ -1,0 +1,51 @@
+[gd_scene load_steps=4 format=3 uid="uid://dvr3x7li5dd4c"]
+
+[ext_resource type="Script" uid="uid://bh1koee3por3d" path="res://scenes/bonus_card.gd" id="1_8vmvc"]
+[ext_resource type="PackedScene" uid="uid://c4x5tkis316mh" path="res://scenes/colored_container.tscn" id="1_tfjq3"]
+[ext_resource type="PackedScene" uid="uid://cbmn5tiw3fr6c" path="res://scenes/custom_label.tscn" id="2_j5540"]
+
+[node name="bonus_card" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -5.0
+offset_right = 267.0
+script = ExtResource("1_8vmvc")
+
+[node name="colored_container" parent="." instance=ExtResource("1_tfjq3")]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_right = 0.0
+offset_bottom = 13.0
+grow_horizontal = 2
+color_role = 5
+outline_color_role = 2
+outline_thickness = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="colored_container"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="container" type="HBoxContainer" parent="colored_container/MarginContainer"]
+layout_mode = 2
+
+[node name="name" parent="colored_container/MarginContainer/container" instance=ExtResource("2_j5540")]
+texture_filter = 1
+layout_mode = 2
+text = "HIII"
+color_role = 2
+label_text = "THIS IS ELON MUSK"
+
+[node name="spacer" type="Control" parent="colored_container/MarginContainer/container"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="mult" parent="colored_container/MarginContainer/container" instance=ExtResource("2_j5540")]
+texture_filter = 1
+layout_mode = 2
+text = "X6000"
+color_role = 2
+label_text = "x3"

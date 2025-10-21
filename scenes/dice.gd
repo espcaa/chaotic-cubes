@@ -18,6 +18,7 @@ func roll():
 
 
 func roll_dice():
+	self.z_index = 100
 	await roll()
 	$audio.play()
 
