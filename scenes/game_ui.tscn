@@ -386,7 +386,8 @@ size_flags_vertical = 0
 theme_override_fonts/font = ExtResource("4_bt76a")
 text = "- Dice"
 
-[node name="CustomLabel" parent="HBoxContainer/menu_bar/MarginContainer/VBoxContainer/HBoxContainer2/colored_container/MarginContainer/VBoxContainer" instance=ExtResource("5_djwj0")]
+[node name="DrawLabel" parent="HBoxContainer/menu_bar/MarginContainer/VBoxContainer/HBoxContainer2/colored_container/MarginContainer/VBoxContainer" instance=ExtResource("5_djwj0")]
+unique_name_in_owner = true
 layout_mode = 2
 font_size = 32
 label_text = "inf"
@@ -415,7 +416,8 @@ size_flags_vertical = 0
 theme_override_fonts/font = ExtResource("4_bt76a")
 text = "+ Dice"
 
-[node name="CustomLabel" parent="HBoxContainer/menu_bar/MarginContainer/VBoxContainer/HBoxContainer2/colored_container2/MarginContainer/VBoxContainer" instance=ExtResource("5_djwj0")]
+[node name="MachineLabel" parent="HBoxContainer/menu_bar/MarginContainer/VBoxContainer/HBoxContainer2/colored_container2/MarginContainer/VBoxContainer" instance=ExtResource("5_djwj0")]
+unique_name_in_owner = true
 layout_mode = 2
 font_size = 32
 label_text = "inf"

@@ -1,0 +1,74 @@
+[gd_scene load_steps=5 format=3 uid="uid://bueo6claqms35"]
+
+[ext_resource type="Script" uid="uid://bvwi73v6a3wuu" path="res://scenes/shop.gd" id="1_1l46r"]
+[ext_resource type="PackedScene" uid="uid://c4x5tkis316mh" path="res://scenes/colored_container.tscn" id="1_lx5au"]
+[ext_resource type="PackedScene" uid="uid://bmqb4ae43griq" path="res://scenes/dice.tscn" id="2_xfvoa"]
+[ext_resource type="PackedScene" uid="uid://d26hs8spvqyjy" path="res://scenes/custom_button.tscn" id="4_032fp"]
+
+[node name="shop" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1l46r")
+
+[node name="background" parent="." instance=ExtResource("1_lx5au")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+color_role = 2
+
+[node name="dices" parent="." instance=ExtResource("1_lx5au")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -472.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="dice_container" type="Node2D" parent="dices"]
+unique_name_in_owner = true
+position = Vector2(80, 176)
+
+[node name="dice" parent="dices/dice_container" instance=ExtResource("2_xfvoa")]
+
+[node name="dice2" parent="dices/dice_container" instance=ExtResource("2_xfvoa")]
+
+[node name="dice3" parent="dices/dice_container" instance=ExtResource("2_xfvoa")]
+
+[node name="dice4" parent="dices/dice_container" instance=ExtResource("2_xfvoa")]
+
+[node name="dice5" parent="dices/dice_container" instance=ExtResource("2_xfvoa")]
+
+[node name="temp" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="continue_button" parent="temp" instance=ExtResource("4_032fp")]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 36.0
+offset_top = 149.5
+offset_right = 84.0
+offset_bottom = 162.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "BBBBBBBB"
+label_text = "Continue"

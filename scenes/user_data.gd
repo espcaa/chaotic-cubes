@@ -8,6 +8,8 @@ var timer_running: bool = false
 var money: int = 0
 var can_pause: bool = true
 
+var current_seed : Color
+
 @onready var RandomDiceManager = $RandomDiceManager
 
 var unlocked_dices = ["normal_dice", "dice_1", "dice_2", "dice_3", "dice_4", "dice_5", "dice_6"]

@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://67q1ex2x3ene"]
+
+[ext_resource type="PackedScene" uid="uid://bfu41rido3bca" path="res://scenes/game_ui.tscn" id="1_oivf0"]
+[ext_resource type="PackedScene" uid="uid://bdto7x5d0a4by" path="res://scenes/dice_normal.tscn" id="2_xuc2x"]
+
+[node name="test_normal_game_ui" instance=ExtResource("1_oivf0")]
+goal = 1
+draw_limit = 2
+machine_limit = 3
+machine_used = -1
+
+[node name="dice" parent="HBoxContainer/VBoxContainer/dice_container/point" index="0" instance=ExtResource("2_xuc2x")]
+
+[node name="dice2" parent="HBoxContainer/VBoxContainer/dice_container/point" index="1" instance=ExtResource("2_xuc2x")]
+
+[node name="dice3" parent="HBoxContainer/VBoxContainer/dice_container/point" index="2" instance=ExtResource("2_xuc2x")]
+
+[node name="dice4" parent="HBoxContainer/VBoxContainer/dice_container/point" index="3" instance=ExtResource("2_xuc2x")]
+
+[node name="dice5" parent="HBoxContainer/VBoxContainer/dice_container/point" index="4" instance=ExtResource("2_xuc2x")]

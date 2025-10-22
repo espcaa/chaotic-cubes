@@ -157,6 +157,22 @@ func add_text_label(node: Label, text: String) -> void:
 
 
 func _ready() -> void:
+	var MachineLimitLabel = ""
+	var DrawLimitLabel = ""
+
+	if machine_limit == -1:
+		MachineLimitLabel = "inf"
+	else:
+		MachineLimitLabel = str(machine_limit)
+
+	if draw_limit == -1:
+		DrawLimitLabel = "inf"
+	else:
+		DrawLimitLabel = str(draw_limit)
+
+	%DrawLabel.label_text = DrawLimitLabel
+	%MachineLabel.label_text = MachineLimitLabel
+
 	AudioManager.start_music()
 	if not is_tutorial:
 		$tutorial_anchor.queue_free()
@@ -166,6 +182,7 @@ func _ready() -> void:
 	))
 
 	Palette.seed_color = seed_color
+	UserData.current_seed = seed_color
 	Palette.assign_new_palette()
 	cached_game_container_size = $HBoxContainer/VBoxContainer/game_container.size
 	update_playing_pos()
@@ -476,18 +493,27 @@ func _input(_event: InputEvent) -> void:
 		if playing_move:
 			return
 
-		machine_used += 1
 		var newDice = UserData.get_reserved_dice()
 		if newDice == null:
 			return
 		else:
+			machine_used += 1
+			if machine_limit != -1:
+				%MachineLabel.label_text = str(machine_limit - machine_used)
+
 			$HBoxContainer/menu_bar/MarginContainer/VBoxContainer/dice_machine.add_dice(newDice)
 
 	if Input.is_action_just_pressed("remove_dice"):
 		# remove the dice
 
-		draw_limit = draw_limit - 1
-		remove_dice(selected_index)
+		if draw_limit <= draw_used:
+			return
+
+		if not dice_refresh_blocked:
+			draw_limit = draw_limit - 1
+			if draw_limit != -1:
+				%DrawLabel.label_text = str(draw_limit)
+			remove_dice(selected_index)
 
 
 func remove_dice(index: int) -> void:
