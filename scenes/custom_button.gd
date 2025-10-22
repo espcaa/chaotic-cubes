@@ -21,6 +21,8 @@ enum ColorRole { CUSTOM, PRIMARY, ACCENT, BACKGROUND, SECONDARY, ERROR }
 @export var font_size: int = 16
 @export var label_text: String = "Label"
 
+@export var hide_arrow: bool = false
+
 var cached_bg: Color = Color.TRANSPARENT
 var cached_font: Color = Color.TRANSPARENT
 
@@ -31,6 +33,8 @@ var focused: bool = false
 
 
 func _ready() -> void:
+	if hide_arrow:
+		$arrow.position = Vector2(-100000,100000)
 	text = label_text
 	add_theme_font_size_override("font_size", font_size)
 	_update_styles()

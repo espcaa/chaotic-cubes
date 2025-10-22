@@ -1,9 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://bueo6claqms35"]
+[gd_scene load_steps=9 format=3 uid="uid://bueo6claqms35"]
 
 [ext_resource type="Script" uid="uid://bvwi73v6a3wuu" path="res://scenes/shop.gd" id="1_1l46r"]
 [ext_resource type="PackedScene" uid="uid://c4x5tkis316mh" path="res://scenes/colored_container.tscn" id="1_lx5au"]
 [ext_resource type="PackedScene" uid="uid://bmqb4ae43griq" path="res://scenes/dice.tscn" id="2_xfvoa"]
 [ext_resource type="PackedScene" uid="uid://d26hs8spvqyjy" path="res://scenes/custom_button.tscn" id="4_032fp"]
+[ext_resource type="PackedScene" uid="uid://cbmn5tiw3fr6c" path="res://scenes/custom_label.tscn" id="5_8r1wq"]
+[ext_resource type="Texture2D" uid="uid://c6n0ja56tmbot" path="res://assets/shop.png" id="6_8r1wq"]
+[ext_resource type="Shader" uid="uid://hi56rfnncpf1" path="res://scenes/dice_machine.gdshader" id="6_ajxib"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y6sft"]
+shader = ExtResource("6_ajxib")
 
 [node name="shop" type="Control"]
 layout_mode = 3
@@ -34,6 +40,7 @@ offset_right = -472.0
 offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 2
+color_role = 4
 
 [node name="dice_container" type="Node2D" parent="dices"]
 unique_name_in_owner = true
@@ -72,3 +79,79 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "BBBBBBBB"
 label_text = "Continue"
+
+[node name="continue_btn_info" type="Control" parent="temp"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 168.0
+offset_right = 168.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="colored_container" parent="temp/continue_btn_info" instance=ExtResource("1_lx5au")]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 472.0
+offset_bottom = 0.0
+grow_vertical = 2
+color_role = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="temp/continue_btn_info/colored_container"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="colored_container" parent="temp/continue_btn_info/colored_container/MarginContainer" instance=ExtResource("1_lx5au")]
+layout_mode = 2
+color_role = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="temp/continue_btn_info/colored_container/MarginContainer/colored_container"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="temp/continue_btn_info/colored_container/MarginContainer/colored_container/MarginContainer"]
+layout_mode = 2
+
+[node name="DiceNameLabel" parent="temp/continue_btn_info/colored_container/MarginContainer/colored_container/MarginContainer/VBoxContainer" instance=ExtResource("5_8r1wq")]
+layout_mode = 2
+size_flags_vertical = 0
+text = "THIS IS"
+autowrap_mode = 2
+custom_color = Color(0.776471, 0, 0, 1)
+font_size = 64
+label_text = "Nothing caught your eyes?"
+
+[node name="MarginContainer" type="MarginContainer" parent="temp/continue_btn_info/colored_container/MarginContainer/colored_container/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 20
+
+[node name="DiceDescLabel" parent="temp/continue_btn_info/colored_container/MarginContainer/colored_container/MarginContainer/VBoxContainer/MarginContainer" instance=ExtResource("5_8r1wq")]
+layout_mode = 2
+size_flags_vertical = 0
+autowrap_mode = 2
+custom_color = Color(0.776471, 0, 0, 1)
+label_text = "Buying/Gambling a new dice will really help you later. Not getting one is unrecommended and might end this run sooner than expected. Chaotic Inc. won't be responsible if any of this happens."
+
+[node name="infopoint" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 168.0
+offset_right = 640.0
+offset_bottom = 360.0
+
+[node name="basketicon" type="Sprite2D" parent="."]
+texture_filter = 1
+material = SubResource("ShaderMaterial_y6sft")
+instance_shader_parameters/replace_color_to_primary = Color(0.984314, 0.419608, 0.113725, 1)
+instance_shader_parameters/replace_color_to_secondary = Color(0.909804, 0.227451, 0.227451, 1)
+position = Vector2(563, 284)
+scale = Vector2(4, 4)
+texture = ExtResource("6_8r1wq")
