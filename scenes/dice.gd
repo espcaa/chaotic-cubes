@@ -27,9 +27,9 @@ func _ready() -> void:
 	set_dice_name()
 	$colored_container/MarginContainer/text_container/title.label_text = dice_description
 	$colored_container/MarginContainer/text_container/description.label_text = dice_name
+	$AnimatedSprite2D.sprite_frames = dice_frames
 	custom_ready()
 	await get_tree().process_frame  # wait a frame to ensure everything is set up
-	$AnimatedSprite2D.sprite_frames = dice_frames
 	dice_tooltip_width = $colored_container.size.x
 
 

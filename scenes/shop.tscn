@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bueo6claqms35"]
+[gd_scene load_steps=11 format=3 uid="uid://bueo6claqms35"]
 
 [ext_resource type="Script" uid="uid://bvwi73v6a3wuu" path="res://scenes/shop.gd" id="1_1l46r"]
 [ext_resource type="PackedScene" uid="uid://c4x5tkis316mh" path="res://scenes/colored_container.tscn" id="1_lx5au"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bdto7x5d0a4by" path="res://scenes/dice_normal.tscn" id="4_m4ofw"]
 [ext_resource type="PackedScene" uid="uid://d1pij81leeg4u" path="res://scenes/dice_fire.tscn" id="4_y6sft"]
 [ext_resource type="PackedScene" uid="uid://cbmn5tiw3fr6c" path="res://scenes/custom_label.tscn" id="5_8r1wq"]
+[ext_resource type="PackedScene" uid="uid://bosb8nhc7jo41" path="res://scenes/dice_flower.tscn" id="5_m4ofw"]
 [ext_resource type="Texture2D" uid="uid://c6n0ja56tmbot" path="res://assets/shop.png" id="6_8r1wq"]
 [ext_resource type="Shader" uid="uid://hi56rfnncpf1" path="res://scenes/dice_machine.gdshader" id="6_ajxib"]
 
@@ -41,7 +42,6 @@ offset_right = -472.0
 offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 2
-color_role = 4
 
 [node name="dice_container" type="Node2D" parent="dices"]
 unique_name_in_owner = true
@@ -51,7 +51,8 @@ position = Vector2(80, 176)
 
 [node name="dice2" parent="dices/dice_container" instance=ExtResource("4_m4ofw")]
 
-[node name="dice3" parent="dices/dice_container" instance=ExtResource("4_m4ofw")]
+[node name="dice_flower" parent="dices/dice_container" instance=ExtResource("5_m4ofw")]
+position = Vector2(-1, 0)
 
 [node name="temp" type="Control" parent="."]
 anchors_preset = 0
@@ -75,6 +76,7 @@ grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "BBBBBBBB"
+inverse_arrow_color = true
 label_text = "Continue"
 
 [node name="continue_btn_info" type="Control" parent="temp"]

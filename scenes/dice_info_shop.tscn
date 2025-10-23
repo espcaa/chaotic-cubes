@@ -43,13 +43,30 @@ theme_override_constants/margin_top = 20
 [node name="VBoxContainer" type="VBoxContainer" parent="colored_container/MarginContainer/colored_container/MarginContainer"]
 layout_mode = 2
 
-[node name="DiceNameLabel" parent="colored_container/MarginContainer/colored_container/MarginContainer/VBoxContainer" instance=ExtResource("2_y4m1l")]
+[node name="HBoxContainer2" type="HBoxContainer" parent="colored_container/MarginContainer/colored_container/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="DiceNameLabel" parent="colored_container/MarginContainer/colored_container/MarginContainer/VBoxContainer/HBoxContainer2" instance=ExtResource("2_y4m1l")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 0
 text = "THIS IS"
 custom_color = Color(0.776471, 0, 0, 1)
 font_size = 64
+label_text = "Fire dice"
+
+[node name="spacer" type="Control" parent="colored_container/MarginContainer/colored_container/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PriceLabel" parent="colored_container/MarginContainer/colored_container/MarginContainer/VBoxContainer/HBoxContainer2" instance=ExtResource("2_y4m1l")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 8
+text = "THIS IS"
+color_role = 1
+custom_color = Color(0.776471, 0, 0, 1)
+font_size = 32
 label_text = "Fire dice"
 
 [node name="MarginContainer" type="MarginContainer" parent="colored_container/MarginContainer/colored_container/MarginContainer/VBoxContainer"]
@@ -84,6 +101,7 @@ size_flags_horizontal = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="colored_container/MarginContainer/colored_container/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
+theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 35
 
 [node name="focus_container" type="HBoxContainer" parent="colored_container/MarginContainer/colored_container/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer"]

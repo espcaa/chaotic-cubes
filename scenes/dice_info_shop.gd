@@ -13,3 +13,4 @@ func _process(delta: float) -> void:
 	%DiceLoreLabel.text = lore
 
 	%focus_container.active = buttons_active
+	%PriceLabel.text = str(price) +"$"
