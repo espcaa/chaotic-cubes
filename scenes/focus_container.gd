@@ -1,10 +1,11 @@
-extends VBoxContainer
+extends Container
 
 var buttons: Array[Button] = []
 var focused_index: int = 0
 
 @export var active = true
 @export var inactive_when_paused: bool = false
+@export var horizontal: bool = false
 
 
 func _ready() -> void:
@@ -38,9 +39,13 @@ func _add_button(btn: Button) -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_down"):
+	if event.is_action_pressed("ui_down") and active and horizontal == false:
 		_focus_next_button()
-	elif event.is_action_pressed("ui_up"):
+	elif event.is_action_pressed("ui_up") and active and horizontal == false:
+		_focus_previous_button()
+	elif event.is_action_pressed("ui_right") and active and horizontal == true:
+		_focus_next_button()
+	elif event.is_action_pressed("ui_left") and active and horizontal == true:
 		_focus_previous_button()
 	elif event.is_action_pressed("ui_accept") and buttons.size() > 0 and active:
 		buttons[focused_index].emit_signal("pressed")

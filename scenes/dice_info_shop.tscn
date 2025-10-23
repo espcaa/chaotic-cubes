@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://oy1byqrfs26e"]
+[gd_scene load_steps=6 format=3 uid="uid://oy1byqrfs26e"]
 
+[ext_resource type="Script" uid="uid://fi7ivwxmi1mr" path="res://scenes/dice_info_shop.gd" id="1_eohv8"]
 [ext_resource type="PackedScene" uid="uid://c4x5tkis316mh" path="res://scenes/colored_container.tscn" id="1_qf42e"]
 [ext_resource type="PackedScene" uid="uid://cbmn5tiw3fr6c" path="res://scenes/custom_label.tscn" id="2_y4m1l"]
 [ext_resource type="Script" uid="uid://bmx3ays57ef7r" path="res://scenes/focus_container.gd" id="3_ou0lp"]
@@ -12,6 +13,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_eohv8")
 
 [node name="colored_container" parent="." instance=ExtResource("1_qf42e")]
 layout_mode = 1
@@ -31,7 +33,7 @@ theme_override_constants/margin_bottom = 20
 
 [node name="colored_container" parent="colored_container/MarginContainer" instance=ExtResource("1_qf42e")]
 layout_mode = 2
-color_role = 3
+color_role = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="colored_container/MarginContainer/colored_container"]
 layout_mode = 2
@@ -42,6 +44,7 @@ theme_override_constants/margin_top = 20
 layout_mode = 2
 
 [node name="DiceNameLabel" parent="colored_container/MarginContainer/colored_container/MarginContainer/VBoxContainer" instance=ExtResource("2_y4m1l")]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 0
 text = "THIS IS"
@@ -54,6 +57,7 @@ layout_mode = 2
 theme_override_constants/margin_top = 20
 
 [node name="DiceDescLabel" parent="colored_container/MarginContainer/colored_container/MarginContainer/VBoxContainer/MarginContainer" instance=ExtResource("2_y4m1l")]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 0
 autowrap_mode = 2
@@ -61,6 +65,7 @@ custom_color = Color(0.776471, 0, 0, 1)
 label_text = "Lorem ipsum dumLorem ipsum dumLorem ipsum dumLorem ipsum dumLorem ipsum dumLorem ipsum dum"
 
 [node name="DiceLoreLabel" parent="colored_container/MarginContainer/colored_container/MarginContainer/VBoxContainer" instance=ExtResource("2_y4m1l")]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 0
 text = "THIS IS ELON MUSK
@@ -81,15 +86,18 @@ size_flags_horizontal = 3
 layout_mode = 2
 theme_override_constants/margin_right = 35
 
-[node name="VBoxContainer" type="VBoxContainer" parent="colored_container/MarginContainer/colored_container/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer"]
+[node name="focus_container" type="HBoxContainer" parent="colored_container/MarginContainer/colored_container/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 script = ExtResource("3_ou0lp")
-active = false
+horizontal = true
 
-[node name="finance_button" parent="colored_container/MarginContainer/colored_container/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/VBoxContainer" instance=ExtResource("3_whrbq")]
+[node name="finance_button" parent="colored_container/MarginContainer/colored_container/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/focus_container" instance=ExtResource("3_whrbq")]
 layout_mode = 2
+horizontal = true
 label_text = "Finance (gambling)"
 
-[node name="pay_button" parent="colored_container/MarginContainer/colored_container/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/VBoxContainer" instance=ExtResource("3_whrbq")]
+[node name="pay_button" parent="colored_container/MarginContainer/colored_container/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/focus_container" instance=ExtResource("3_whrbq")]
 layout_mode = 2
+horizontal = true
 label_text = "Pay"

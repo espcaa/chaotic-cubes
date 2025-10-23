@@ -48,8 +48,27 @@ func _ready() -> void:
 			dict_dice_to_info_containers[i] = %continue_btn_info
 	redraw_dices(true)
 
+	await get_tree().process_frame
 
-func redraw_dices(initial := false):
+	# for each dice, get their dice_description and apply it to the shop info container
+	for i in shop_items:
+		var info = dict_dice_to_info_containers[i]
+		if i is Button == false:
+			info.dice_name = i.dice_name
+			# check if it has a .lore
+			if "dice_lore" in i:
+				info.lore = i.dice_lore
+			else:
+				info.lore = "some lore? not here :("
+			if "dice_complete_description" in i:
+				info.description = i.dice_complete_description
+			else:
+				info.description = i.dice_description
+
+	dict_dice_to_info_containers[selected_dice].buttons_active = true
+
+
+func redraw_dices(_initial := false):
 	for i in shop_items:
 		i.get_tree().create_tween().kill()
 		var info = dict_dice_to_info_containers[i]
@@ -109,18 +128,29 @@ func _input(event: InputEvent) -> void:
 
 
 func _select_next_dice() -> void:
+	if selected_dice is Button == false:
+		dict_dice_to_info_containers[selected_dice].buttons_active = false
 	var current_index = shop_items.find(selected_dice)
 	var next_index = (current_index + 1) % shop_items.size()
 	selected_dice = shop_items[next_index]
+
+	if selected_dice is Button == false:
+		dict_dice_to_info_containers[selected_dice].buttons_active = true
 	_apply_button_states()
 	redraw_dices()
 
 
 func _select_previous_dice() -> void:
+	if selected_dice is Button == false:
+		dict_dice_to_info_containers[selected_dice].buttons_active = false
 	var current_index = shop_items.find(selected_dice)
 	var next_index = (current_index - 1 + shop_items.size()) % shop_items.size()
 	selected_dice = shop_items[next_index]
 	_apply_button_states()
+
+	if selected_dice is Button == false:
+		dict_dice_to_info_containers[selected_dice].buttons_active = true
+
 	redraw_dices()
 
 

@@ -1,5 +1,8 @@
 extends "res://scenes/dice.gd"
 
+var dice_complete_description = "this dice comes from your aunt's portative volcano. when played, it will burn all of the other dices in the queue."
+var dice_lore = "handle with care!"
+
 
 func roll():
 	if playing:

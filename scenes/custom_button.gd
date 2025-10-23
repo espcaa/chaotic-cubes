@@ -18,6 +18,8 @@ enum ColorRole { CUSTOM, PRIMARY, ACCENT, BACKGROUND, SECONDARY, ERROR }
 @export var hover_color: ColorRole = ColorRole.CUSTOM  # Changed to use ColorRole
 @export var pressed_color: Color = Color(0.7, 0.7, 0.7)
 
+@export var horizontal: bool = false
+
 @export var font_size: int = 16
 @export var label_text: String = "Label"
 
@@ -34,13 +36,17 @@ var focused: bool = false
 
 func _ready() -> void:
 	if hide_arrow:
-		$arrow.position = Vector2(-100000,100000)
+		$arrow.position = Vector2(-100000, 100000)
 	text = label_text
 	add_theme_font_size_override("font_size", font_size)
 	_update_styles()
 	await get_tree().process_frame
 	$arrow.position.x = self.size.x + 12
 	$arrow.position.y = self.size.y / 2
+
+	if horizontal:
+		$arrow.rotation_degrees = 90
+		$arrow.position = Vector2(self.size.x / 2, self.size.y + 12)
 
 
 func _process(_delta: float) -> void:
