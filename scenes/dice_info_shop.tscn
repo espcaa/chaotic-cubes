@@ -215,9 +215,26 @@ outline_enabled = true
 outline_color_role = 0
 outline_thickness = 4
 
+[node name="ButtonModalCOntainer" type="HBoxContainer" parent="modal/MarginContainer/colored_container"]
+unique_name_in_owner = true
+layout_mode = 2
+script = ExtResource("3_ou0lp")
+active = false
+
+[node name="cancel_button" parent="modal/MarginContainer/colored_container/ButtonModalCOntainer" instance=ExtResource("3_whrbq")]
+layout_mode = 2
+horizontal = true
+label_text = "Cancel"
+
+[node name="continue_button" parent="modal/MarginContainer/colored_container/ButtonModalCOntainer" instance=ExtResource("3_whrbq")]
+layout_mode = 2
+horizontal = true
+label_text = "Continue"
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_n6wy1")
 }
 
 [connection signal="pressed" from="colored_container/MarginContainer/colored_container/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/focus_container/finance_button" to="." method="_on_finance_button_pressed"]
+[connection signal="pressed" from="modal/MarginContainer/colored_container/ButtonModalCOntainer/cancel_button" to="." method="_on_cancel_button_pressed"]

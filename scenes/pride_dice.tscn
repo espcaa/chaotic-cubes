@@ -1,0 +1,61 @@
+[gd_scene load_steps=11 format=3 uid="uid://c1h8q55s758un"]
+
+[ext_resource type="PackedScene" uid="uid://bmqb4ae43griq" path="res://scenes/dice.tscn" id="1_xvcmc"]
+[ext_resource type="Script" uid="uid://tcfbnqj1ovok" path="res://scenes/pride_dice.gd" id="2_pv2i2"]
+[ext_resource type="Texture2D" uid="uid://3hgkm2a4j4in" path="res://assets/dice_pride.png" id="3_ydknq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ny67"]
+atlas = ExtResource("3_ydknq")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e1nyg"]
+atlas = ExtResource("3_ydknq")
+region = Rect2(0, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b4qd8"]
+atlas = ExtResource("3_ydknq")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w6j3i"]
+atlas = ExtResource("3_ydknq")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ga44n"]
+atlas = ExtResource("3_ydknq")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ikpko"]
+atlas = ExtResource("3_ydknq")
+region = Rect2(0, 80, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wchpv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1ny67")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e1nyg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b4qd8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w6j3i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ga44n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ikpko")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="pride_dice" instance=ExtResource("1_xvcmc")]
+script = ExtResource("2_pv2i2")
+custom_dice_name = "pride dice!"
+custom_dice_description = "this one is rainbowy!"
+dice_frames = SubResource("SpriteFrames_wchpv")

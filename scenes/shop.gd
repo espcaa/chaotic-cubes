@@ -121,16 +121,16 @@ func redraw_dices(_initial := false):
 
 
 func _input(event: InputEvent) -> void:
-	if (
-		event.is_action_pressed("down")
-		and not dict_dice_to_info_containers[selected_dice].modal_shown
-	):
-		_select_next_dice()
-	elif (
-		event.is_action_pressed("up")
-		and not dict_dice_to_info_containers[selected_dice].modal_shown
-	):
-		_select_previous_dice()
+	if event.is_action_pressed("down"):
+		if selected_dice is Button:
+			_select_next_dice()
+		elif not dict_dice_to_info_containers[selected_dice].modal_shown:
+			_select_next_dice()
+	elif event.is_action_pressed("up"):
+		if selected_dice is Button:
+			_select_previous_dice()
+		elif not dict_dice_to_info_containers[selected_dice].modal_shown:
+			_select_previous_dice()
 
 
 func _select_next_dice() -> void:
