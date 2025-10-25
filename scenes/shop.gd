@@ -188,6 +188,5 @@ func _process(_delta: float) -> void:
 func disable_button_focus():
 	dict_dice_to_info_containers[selected_dice].buttons_active = false
 
-
 func enable_button_focus():
 	dict_dice_to_info_containers[selected_dice].buttons_active = true

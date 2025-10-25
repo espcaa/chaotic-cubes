@@ -484,10 +484,10 @@ layout_mode = 1
 modulate = Color(1, 1, 1, 0)
 texture_filter = 1
 layout_mode = 0
-offset_left = 168.0
-offset_top = 122.0
-offset_right = 240.0
-offset_bottom = 173.0
+offset_left = 235.0
+offset_top = 84.0
+offset_right = 307.0
+offset_bottom = 135.0
 rotation = -0.513133
 theme_override_font_sizes/font_size = 64
 text = "x29"
@@ -514,6 +514,6 @@ label_text = "Three of a kind!"
 layout_mode = 0
 scale = Vector2(4, 2.6)
 
-[connection signal="pressed" from="win_menu/MarginContainer/colored_container/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/continue_button" to="." method="_on_continue_button_pressed"]
+[connection signal="pressed" from="win_menu/MarginContainer/colored_container/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/FocusContainer/continue_button" to="win_menu" method="_on_continue_button_pressed"]
 
 [editable path="win_menu"]

@@ -18,3 +18,5 @@ machine_used = -1
 [node name="dice4" parent="HBoxContainer/VBoxContainer/dice_container/point" index="3" instance=ExtResource("2_xuc2x")]
 
 [node name="dice5" parent="HBoxContainer/VBoxContainer/dice_container/point" index="4" instance=ExtResource("2_xuc2x")]
+
+[editable path="win_menu"]

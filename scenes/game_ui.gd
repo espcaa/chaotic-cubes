@@ -138,6 +138,8 @@ func win():
 			. PRIMARY
 		)
 
+		$win_menu.focus_buttons()
+
 		add_text_label(
 			$win_menu/MarginContainer/colored_container/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/RichLabel,
 			"\n- money earned : " + str(money_reward) + " $",
@@ -646,11 +648,14 @@ func pattern_found_animation() -> void:
 	return
 
 
-func _on_continue_button_pressed() -> void:
+func finish_winning() -> void:
 	# continue after winning
 	# if tutorial -> shop
+	print("wtf??")
 	if is_tutorial:
-		Transitioner.transition_to_scene("res://scenes/shop.tscn", true)
+		Transitioner.load_scene_with_transition(
+			"res://scenes/shop.tscn", self, Enums.ColorRole.SECONDARY
+		)
 	# else uh idk
 	else:
 		pass

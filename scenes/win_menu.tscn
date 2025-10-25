@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://cb0dbpwjjacrq"]
+[gd_scene load_steps=6 format=3 uid="uid://cb0dbpwjjacrq"]
 
 [ext_resource type="PackedScene" uid="uid://c4x5tkis316mh" path="res://scenes/colored_container.tscn" id="1_7shsi"]
+[ext_resource type="Script" uid="uid://b07ct8sk8gvdw" path="res://scenes/win_menu.gd" id="1_dmaew"]
 [ext_resource type="PackedScene" uid="uid://cbmn5tiw3fr6c" path="res://scenes/custom_label.tscn" id="2_dmaew"]
 [ext_resource type="PackedScene" uid="uid://d26hs8spvqyjy" path="res://scenes/custom_button.tscn" id="3_ah3fa"]
+[ext_resource type="Script" uid="uid://bmx3ays57ef7r" path="res://scenes/focus_container.gd" id="4_ah3fa"]
 
 [node name="win_menu" type="Control"]
 z_index = 200
@@ -13,6 +15,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+script = ExtResource("1_dmaew")
 
 [node name="colored_container" parent="." instance=ExtResource("1_7shsi")]
 modulate = Color(1, 1, 1, 0)
@@ -88,7 +91,18 @@ size_flags_horizontal = 0
 mouse_filter = 2
 theme_override_constants/margin_top = 10
 
-[node name="continue_button" parent="MarginContainer/colored_container/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer" instance=ExtResource("3_ah3fa")]
+[node name="FocusContainer" type="VBoxContainer" parent="MarginContainer/colored_container/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+script = ExtResource("4_ah3fa")
+active = false
+
+[node name="continue_button" parent="MarginContainer/colored_container/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/FocusContainer" instance=ExtResource("3_ah3fa")]
 z_index = 100
 layout_mode = 2
-label_text = "Continue"
+bg_color = 5
+focused_outline_removed = true
+inverse_arrow_color = true
+label_text = "Quit"
+
+[connection signal="pressed" from="MarginContainer/colored_container/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/FocusContainer/continue_button" to="." method="_on_continue_button_pressed"]
