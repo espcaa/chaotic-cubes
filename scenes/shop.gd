@@ -121,9 +121,15 @@ func redraw_dices(_initial := false):
 
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("down"):
+	if (
+		event.is_action_pressed("down")
+		and not dict_dice_to_info_containers[selected_dice].modal_shown
+	):
 		_select_next_dice()
-	elif event.is_action_pressed("up"):
+	elif (
+		event.is_action_pressed("up")
+		and not dict_dice_to_info_containers[selected_dice].modal_shown
+	):
 		_select_previous_dice()
 
 
@@ -177,3 +183,11 @@ func _process(_delta: float) -> void:
 		cached_secondary = Palette.get_color("tertiary")
 		$basketicon.set_instance_shader_parameter("primary_replaced_color", cached_primary)
 		$basketicon.set_instance_shader_parameter("secondary_replaced_color", cached_secondary)
+
+
+func disable_button_focus():
+	dict_dice_to_info_containers[selected_dice].buttons_active = false
+
+
+func enable_button_focus():
+	dict_dice_to_info_containers[selected_dice].buttons_active = true
