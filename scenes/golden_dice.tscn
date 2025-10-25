@@ -1,0 +1,61 @@
+[gd_scene load_steps=11 format=3 uid="uid://bhybwgbt5qi6w"]
+
+[ext_resource type="PackedScene" uid="uid://bmqb4ae43griq" path="res://scenes/dice.tscn" id="1_5ytxj"]
+[ext_resource type="Script" uid="uid://cikulmlxsyryk" path="res://scenes/golden_dice.gd" id="2_0epy1"]
+[ext_resource type="Texture2D" uid="uid://bthr76mf8o14p" path="res://assets/golden_dice.png" id="3_cisni"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jfr62"]
+atlas = ExtResource("3_cisni")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_thalo"]
+atlas = ExtResource("3_cisni")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yu8x3"]
+atlas = ExtResource("3_cisni")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ybx82"]
+atlas = ExtResource("3_cisni")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dqwn7"]
+atlas = ExtResource("3_cisni")
+region = Rect2(0, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mxw0d"]
+atlas = ExtResource("3_cisni")
+region = Rect2(0, 80, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_671v5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jfr62")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_thalo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yu8x3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ybx82")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dqwn7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mxw0d")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="golden_dice" instance=ExtResource("1_5ytxj")]
+script = ExtResource("2_0epy1")
+custom_dice_name = "normal dice"
+custom_dice_description = "just a regular dice.."
+dice_frames = SubResource("SpriteFrames_671v5")

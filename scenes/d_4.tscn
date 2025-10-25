@@ -1,0 +1,48 @@
+[gd_scene load_steps=9 format=3 uid="uid://51y4qiooxvv8"]
+
+[ext_resource type="PackedScene" uid="uid://bmqb4ae43griq" path="res://scenes/dice.tscn" id="1_u1uqo"]
+[ext_resource type="Script" uid="uid://dr4m6pkqpf7fx" path="res://scenes/d_4.gd" id="2_dh011"]
+[ext_resource type="Texture2D" uid="uid://yvge83utwytd" path="res://assets/dice4.png" id="3_ejnrg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ccnbr"]
+atlas = ExtResource("3_ejnrg")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4u71y"]
+atlas = ExtResource("3_ejnrg")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ufhf8"]
+atlas = ExtResource("3_ejnrg")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sa0db"]
+atlas = ExtResource("3_ejnrg")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pdxdf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ccnbr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4u71y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ufhf8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sa0db")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="d4" instance=ExtResource("1_u1uqo")]
+script = ExtResource("2_dh011")
+custom_dice_name = "four sided dice"
+custom_dice_description = "has only four sides :p"
+dice_frames = SubResource("SpriteFrames_pdxdf")
+faces = [0, 1, 2, 3]

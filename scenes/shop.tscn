@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bueo6claqms35"]
+[gd_scene load_steps=14 format=3 uid="uid://bueo6claqms35"]
 
 [ext_resource type="Script" uid="uid://bvwi73v6a3wuu" path="res://scenes/shop.gd" id="1_1l46r"]
 [ext_resource type="PackedScene" uid="uid://c4x5tkis316mh" path="res://scenes/colored_container.tscn" id="1_lx5au"]
@@ -10,6 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://c6n0ja56tmbot" path="res://assets/shop.png" id="6_8r1wq"]
 [ext_resource type="Shader" uid="uid://hi56rfnncpf1" path="res://scenes/dice_machine.gdshader" id="6_ajxib"]
 [ext_resource type="PackedScene" uid="uid://c1h8q55s758un" path="res://scenes/pride_dice.tscn" id="6_heatd"]
+[ext_resource type="PackedScene" uid="uid://51y4qiooxvv8" path="res://scenes/d_4.tscn" id="7_1v8qu"]
+[ext_resource type="PackedScene" uid="uid://bhybwgbt5qi6w" path="res://scenes/golden_dice.tscn" id="8_44xle"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_y6sft"]
 shader = ExtResource("6_ajxib")
@@ -56,6 +58,10 @@ position = Vector2(80, 176)
 position = Vector2(-1, 0)
 
 [node name="pride_dice" parent="dices/dice_container" instance=ExtResource("6_heatd")]
+
+[node name="d4" parent="dices/dice_container" instance=ExtResource("7_1v8qu")]
+
+[node name="golden_dice" parent="dices/dice_container" instance=ExtResource("8_44xle")]
 
 [node name="temp" type="Control" parent="."]
 anchors_preset = 0

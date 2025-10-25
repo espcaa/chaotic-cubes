@@ -1,10 +1,9 @@
 extends "res://scenes/dice.gd"
 
-var dice_complete_description = "you found this in a beautiful field while touching grass. its value will increase by one every turn!"
-var dice_lore = "commonly used as a romantic present."
-
-@export var custom_dice_name: String = "flower dice"
-@export var custom_dice_description: String = "gains +1 at every roll."
+@export var custom_dice_name: String = "normal dice"
+@export var custom_dice_description: String = "just a regular dice.."
+var dice_complete_description = "woa this dice is shiny... it must be worth a lot!!"
+var dice_lore = "might be made of gold?"
 
 
 func roll():
@@ -38,6 +37,3 @@ func roll():
 func set_dice_name():
 	dice_name = custom_dice_name
 	dice_description = custom_dice_description
-
-func custom_ready():
-	$AnimatedSprite2D.frame = faces[5]

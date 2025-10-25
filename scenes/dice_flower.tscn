@@ -56,4 +56,6 @@ animations = [{
 
 [node name="dice_flower" instance=ExtResource("1_d5hov")]
 script = ExtResource("2_n5xxs")
+custom_dice_name = "flower dice"
+custom_dice_description = "gains +1 at every roll."
 dice_frames = SubResource("SpriteFrames_7dl01")
