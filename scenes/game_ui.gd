@@ -644,3 +644,13 @@ func pattern_found_animation() -> void:
 	await get_tree().create_timer(delay + 0.2).timeout
 
 	return
+
+
+func _on_continue_button_pressed() -> void:
+	# continue after winning
+	# if tutorial -> shop
+	if is_tutorial:
+		Transitioner.transition_to_scene("res://scenes/shop.tscn", true)
+	# else uh idk
+	else:
+		pass

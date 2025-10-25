@@ -88,7 +88,7 @@ size_flags_horizontal = 0
 mouse_filter = 2
 theme_override_constants/margin_top = 10
 
-[node name="resume_button" parent="MarginContainer/colored_container/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer" instance=ExtResource("3_ah3fa")]
+[node name="continue_button" parent="MarginContainer/colored_container/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer" instance=ExtResource("3_ah3fa")]
 z_index = 100
 layout_mode = 2
 label_text = "Continue"
