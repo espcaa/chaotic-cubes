@@ -56,7 +56,7 @@ func win():
 		$AnimationPlayer.play("win")
 		UserData.money += money_reward
 
-		# push text to the random label
+		# push text to the  label
 
 		await $AnimationPlayer.animation_finished
 

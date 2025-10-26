@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://bf5hbj341rreo"]
+
+[ext_resource type="PackedScene" uid="uid://bueo6claqms35" path="res://scenes/shop.tscn" id="1_gpbx3"]
+[ext_resource type="Script" uid="uid://48dq10oiex1w" path="res://scenes/shop_but_real.gd" id="2_tpnsh"]
+
+[node name="shop_but_real" instance=ExtResource("1_gpbx3")]
+script = ExtResource("2_tpnsh")

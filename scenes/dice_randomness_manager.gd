@@ -1,6 +1,6 @@
 extends Node
 
-var rarity_weights = {"common": 80, "rare": 15}
+var rarity_weights = {"common": 80, "rare": 60, "epic": 40}
 
 var all_dices = {
 	"common":
@@ -15,7 +15,14 @@ var all_dices = {
 	},
 	"rare":
 	{
+		"pridedice": {"weight": 0.5},
+		"d4": {"weight": 1.0},
+		"flowerdice" : {"weight": 0.7},
+	},
+	"epic":
+	{
 		"firedice": {"weight": 1.0},
+		"golden_dice": {"weight": 3.0},
 	}
 }
 
@@ -27,7 +34,11 @@ var dice_to_scene = {
 	"dice_5": load("res://scenes/dice_5.tscn"),
 	"dice_6": load("res://scenes/dice_6.tscn"),
 	"normal_dice": load("res://scenes/dice_normal.tscn"),
-	"firedice": load("res://scenes/dice_fire.tscn")
+	"firedice": load("res://scenes/dice_fire.tscn"),
+	"pridedice": load("res://scenes/pride_dice.tscn"),
+	"d4": load("res://scenes/d_4.tscn"),
+	"golden_dice": load("res://scenes/golden_dice.tscn"),
+	"flowerdice" : load("res://scenes/dice_flower.tscn"),
 }
 
 
@@ -70,3 +81,19 @@ func get_random_dice(unlocked_array: Array) -> PackedScene:
 			return dice_to_scene[dice_name]
 
 	return dice_to_scene[available_dice.back()]
+
+
+func get_non_unlocked_dice_for_shop(unlocked_array: Array) -> Array:
+	var non_unlocked_dice = []
+
+	for rarity in all_dices.keys():
+		for dice_name in all_dices[rarity].keys():
+			if dice_name not in unlocked_array:
+				non_unlocked_dice.append(dice_name)
+
+	if non_unlocked_dice.is_empty():
+		push_warning("All dice unlocked, returning null...")
+		return [null, "no_dice"]
+
+	var selected_dice_name = non_unlocked_dice[randi() % non_unlocked_dice.size()]
+	return [dice_to_scene[selected_dice_name], "success"]

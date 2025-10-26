@@ -1,0 +1,24 @@
+[gd_scene load_steps=8 format=3 uid="uid://bwjxv0rsy5lvy"]
+
+[ext_resource type="PackedScene" uid="uid://bueo6claqms35" path="res://scenes/shop.tscn" id="1_1jh8j"]
+[ext_resource type="PackedScene" uid="uid://d1pij81leeg4u" path="res://scenes/dice_fire.tscn" id="2_l4oep"]
+[ext_resource type="PackedScene" uid="uid://bdto7x5d0a4by" path="res://scenes/dice_normal.tscn" id="3_f11v8"]
+[ext_resource type="PackedScene" uid="uid://bosb8nhc7jo41" path="res://scenes/dice_flower.tscn" id="4_ayvmh"]
+[ext_resource type="PackedScene" uid="uid://c1h8q55s758un" path="res://scenes/pride_dice.tscn" id="5_o3dsi"]
+[ext_resource type="PackedScene" uid="uid://51y4qiooxvv8" path="res://scenes/d_4.tscn" id="6_b4ccn"]
+[ext_resource type="PackedScene" uid="uid://bhybwgbt5qi6w" path="res://scenes/golden_dice.tscn" id="7_f7qhd"]
+
+[node name="shoptestsmth" instance=ExtResource("1_1jh8j")]
+
+[node name="dice" parent="dices/dice_container" index="0" instance=ExtResource("2_l4oep")]
+
+[node name="dice2" parent="dices/dice_container" index="1" instance=ExtResource("3_f11v8")]
+
+[node name="dice_flower" parent="dices/dice_container" index="2" instance=ExtResource("4_ayvmh")]
+position = Vector2(-1, 0)
+
+[node name="pride_dice" parent="dices/dice_container" index="3" instance=ExtResource("5_o3dsi")]
+
+[node name="d4" parent="dices/dice_container" index="4" instance=ExtResource("6_b4ccn")]
+
+[node name="golden_dice" parent="dices/dice_container" index="5" instance=ExtResource("7_f7qhd")]

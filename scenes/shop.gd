@@ -16,6 +16,7 @@ var cached_secondary: Color = Color.WHITE
 
 
 func _ready() -> void:
+	populate_dices()
 	cached_primary = Palette.get_color("primary")
 	cached_secondary = Palette.get_color("tertiary")
 	$basketicon.set_instance_shader_parameter("primary_replaced_color", cached_primary)
@@ -31,8 +32,11 @@ func _ready() -> void:
 
 	for i in %dice_container.get_children():
 		shop_items.append(i)
-
-	selected_dice = shop_items[1]
+	
+	if shop_items.size() > 1:
+		selected_dice = shop_items[1]
+	else:
+		selected_dice = shop_items[0]
 
 	await get_tree().process_frame
 
@@ -188,5 +192,10 @@ func _process(_delta: float) -> void:
 func disable_button_focus():
 	dict_dice_to_info_containers[selected_dice].buttons_active = false
 
+
 func enable_button_focus():
 	dict_dice_to_info_containers[selected_dice].buttons_active = true
+
+
+func populate_dices():
+	pass

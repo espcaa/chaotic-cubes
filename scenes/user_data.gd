@@ -12,8 +12,7 @@ var current_seed : Color
 
 @onready var RandomDiceManager = $RandomDiceManager
 
-var unlocked_dices = ["normal_dice", "dice_1", "dice_2", "dice_3", "dice_4", "dice_5", "dice_6"]
-
+var unlocked_dices = ["normal_dice"]
 
 func _process(delta: float) -> void:
 	if not paused and timer_running:
