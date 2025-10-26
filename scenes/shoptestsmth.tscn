@@ -22,4 +22,3 @@ position = Vector2(-1, 0)
 [node name="d4" parent="dices/dice_container" index="4" instance=ExtResource("6_b4ccn")]
 
 [node name="golden_dice" parent="dices/dice_container" index="5" instance=ExtResource("7_f7qhd")]
-custom_dice_name = "golden dice!"

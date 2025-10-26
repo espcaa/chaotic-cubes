@@ -3,8 +3,8 @@ extends "res://scenes/dice.gd"
 @export var custom_dice_name: String = "pride dice!"
 @export var custom_dice_description: String = "this one is rainbowy!"
 
-var dice_complete_description = "the colors are vibrant and looking at them makes you kinder, more supportive and happy overall. maybe it has some magical properties? who knows!"
-var dice_lore = "not that useful but pretty and inclusive :D"
+var dice_complete_description = "the colors are vibrant! maybe it has some kind of magical properties?"
+var dice_lore = "not that useful but pretty :D"
 
 
 func roll():
