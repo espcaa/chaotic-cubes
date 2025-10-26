@@ -1,6 +1,6 @@
 extends "res://scenes/dice.gd"
 
-@export var custom_dice_name: String = "normal dice"
+@export var custom_dice_name: String = "golden dice!"
 @export var custom_dice_description: String = "just a regular dice.."
 var dice_complete_description = "woa this dice is shiny... it must be worth a lot!!"
 var dice_lore = "might be made of gold?"

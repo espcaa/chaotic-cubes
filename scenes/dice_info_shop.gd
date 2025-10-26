@@ -8,7 +8,6 @@ var buttons_active: bool = false
 
 var modal_shown: bool = false
 
-
 func _process(delta: float) -> void:
 	%DiceNameLabel.text = dice_name
 	%DiceDescLabel.text = description
@@ -17,11 +16,9 @@ func _process(delta: float) -> void:
 	%focus_container.active = buttons_active
 	%PriceLabel.text = str(price) + "$"
 
-
 func _ready() -> void:
 	$modal.position.x -= 168
 	$modal.size.x = 640
-
 
 func show_modal():
 	if not $AnimationPlayer.is_playing():

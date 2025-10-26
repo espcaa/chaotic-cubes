@@ -4,13 +4,14 @@ extends "res://scenes/shop.gd"
 func populate_dices():
 	var shop_dices = []
 	for i in range(3):
-		var new_dice_scene = null
-		while new_dice_scene == null or new_dice_scene in shop_dices:
+		var new_dice_scene = [null, "error", 0]
+		while new_dice_scene[0] == null or new_dice_scene in shop_dices:
 			new_dice_scene = get_new_dice()
 		shop_dices.append(new_dice_scene)
 
 	for i in shop_dices:
 		var new_dice_instance = i[0].instantiate()
+		new_dice_instance.price = i[2]
 		$dices/dice_container.add_child(new_dice_instance)
 
 

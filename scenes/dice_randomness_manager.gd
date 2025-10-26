@@ -5,24 +5,24 @@ var rarity_weights = {"common": 80, "rare": 60, "epic": 40}
 var all_dices = {
 	"common":
 	{
-		"dice_1": {"weight": 10.0},
-		"dice_2": {"weight": 10.0},
-		"dice_3": {"weight": 10.0},
-		"dice_4": {"weight": 10.0},
-		"dice_5": {"weight": 10.0},
-		"dice_6": {"weight": 10.0},
-		"normal_dice": {"weight": 100.0},
+		"dice_1": {"weight": 10.0, "price": 100},
+		"dice_2": {"weight": 10.0, "price": 100},
+		"dice_3": {"weight": 10.0, "price": 100},
+		"dice_4": {"weight": 10.0, "price": 100},
+		"dice_5": {"weight": 10.0, "price": 100},
+		"dice_6": {"weight": 10.0, "price": 100},
+		"normal_dice": {"weight": 100.0, "price": 150},
 	},
 	"rare":
 	{
-		"pridedice": {"weight": 0.5},
-		"d4": {"weight": 1.0},
-		"flowerdice" : {"weight": 0.7},
+		"pridedice": {"weight": 0.5, "price": 500},
+		"d4": {"weight": 1.0, "price": 400},
+		"flowerdice": {"weight": 0.7, "price": 600},
 	},
 	"epic":
 	{
-		"firedice": {"weight": 1.0},
-		"golden_dice": {"weight": 3.0},
+		"firedice": {"weight": 1.0, "price": 1000},
+		"golden_dice": {"weight": 3.0, "price": 1500},
 	}
 }
 
@@ -38,7 +38,7 @@ var dice_to_scene = {
 	"pridedice": load("res://scenes/pride_dice.tscn"),
 	"d4": load("res://scenes/d_4.tscn"),
 	"golden_dice": load("res://scenes/golden_dice.tscn"),
-	"flowerdice" : load("res://scenes/dice_flower.tscn"),
+	"flowerdice": load("res://scenes/dice_flower.tscn"),
 }
 
 
@@ -93,7 +93,19 @@ func get_non_unlocked_dice_for_shop(unlocked_array: Array) -> Array:
 
 	if non_unlocked_dice.is_empty():
 		push_warning("All dice unlocked, returning null...")
-		return [null, "no_dice"]
+		return [null, "no_dice", 0]
 
 	var selected_dice_name = non_unlocked_dice[randi() % non_unlocked_dice.size()]
-	return [dice_to_scene[selected_dice_name], "success"]
+
+	return [
+		dice_to_scene[selected_dice_name],
+		"success",
+		all_dices[get_dice_rarity(selected_dice_name)][selected_dice_name]["price"]
+	]
+
+
+func get_dice_rarity(dice_name: String) -> String:
+	for rarity in all_dices.keys():
+		if dice_name in all_dices[rarity]:
+			return rarity
+	return "unknown"

@@ -5,6 +5,7 @@
 
 [node name="dice_5" instance=ExtResource("1_p81pk")]
 number = 5
+custom_dice_name = "static dice - five"
 
 [node name="woosh" parent="." index="5"]
 stream = ExtResource("2_nq03n")

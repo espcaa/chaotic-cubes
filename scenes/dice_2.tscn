@@ -1,12 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dqqnto5yjso7k"]
+[gd_scene load_steps=2 format=3 uid="uid://baftf41ycni55"]
 
 [ext_resource type="PackedScene" uid="uid://cr4uhm3qq7x2w" path="res://scenes/dice_6.tscn" id="1_p81pk"]
 
 [node name="dice_2" instance=ExtResource("1_p81pk")]
 number = 2
-
-[node name="CustomLabel" parent="." index="1"]
-offset_left = 4.0
-offset_top = -7.0
-offset_right = 52.0
-offset_bottom = 19.0
+custom_dice_name = "static dice - two"

@@ -5,12 +5,7 @@
 
 [node name="dice_4" instance=ExtResource("1_p81pk")]
 number = 4
-
-[node name="CustomLabel" parent="." index="1"]
-offset_left = 4.0
-offset_top = -7.0
-offset_right = 52.0
-offset_bottom = 19.0
+custom_dice_name = "static dice - four"
 
 [node name="woosh" parent="." index="5"]
 stream = ExtResource("2_xc6ge")

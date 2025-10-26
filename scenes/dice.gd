@@ -9,7 +9,7 @@ var value: Array = []
 var playing = false
 var dice_description: String = "[redacted]"
 var dice_name: String = "[redacted description]"
-
+var price: int = 10
 var dice_tooltip_width: float = 0.0
 
 

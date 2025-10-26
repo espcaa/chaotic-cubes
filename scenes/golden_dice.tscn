@@ -56,6 +56,6 @@ animations = [{
 
 [node name="golden_dice" instance=ExtResource("1_5ytxj")]
 script = ExtResource("2_0epy1")
-custom_dice_name = "normal dice"
+custom_dice_name = "golden dice!"
 custom_dice_description = "just a regular dice.."
 dice_frames = SubResource("SpriteFrames_671v5")
