@@ -659,3 +659,9 @@ func finish_winning() -> void:
 	# else uh idk
 	else:
 		pass
+
+
+func get_recent_dice_value() -> int:
+	if dice_queue.size() == 0:
+		return -1
+	return dice_queue[dice_queue.size() - 1].value[0]

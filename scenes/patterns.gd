@@ -30,7 +30,7 @@ var patterns = [
 		"name": "Double",
 		"check":
 		func(arr):
-			return arr[0]["value"] == arr[1]["value"] and not arr[0]["value"] == arr[2]["value"],
+			return arr[2]["value"] == arr[1]["value"] and not arr[0]["value"] == arr[2]["value"],
 		"multiplier": 1.2
 	},
 	{

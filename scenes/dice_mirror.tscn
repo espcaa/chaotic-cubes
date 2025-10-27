@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://4l48p4m4tt01"]
+
+[ext_resource type="PackedScene" uid="uid://bmqb4ae43griq" path="res://scenes/dice.tscn" id="1_iyue8"]
+[ext_resource type="Script" uid="uid://nbh84eygdhpi" path="res://scenes/dice_mirror.gd" id="2_45k0j"]
+
+[node name="dice_mirror" instance=ExtResource("1_iyue8")]
+script = ExtResource("2_45k0j")
+custom_dice_name = "mirror dice"
+custom_dice_description = "will always repeat the last number"
