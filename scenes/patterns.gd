@@ -11,7 +11,6 @@ var patterns = [
 				and arr[0]["name"] != "null"
 				and arr[1]["name"] != "null"
 				and arr[2]["name"] != "null"
-				and arr[0]["value"] == arr[2]["value"]
 			),
 		"multiplier": 3
 	},
@@ -29,7 +28,9 @@ var patterns = [
 	},
 	{
 		"name": "Double",
-		"check": func(arr): return arr[2]["name"] == "null" and arr[0]["value"] == arr[1]["value"],
+		"check":
+		func(arr):
+			return arr[0]["value"] == arr[1]["value"] and not arr[0]["value"] == arr[2]["value"],
 		"multiplier": 1.2
 	},
 	{
