@@ -9,6 +9,7 @@ var dice_lore = "is it a trick? or just magic?"
 
 func roll():
 	# get the last played value
+	
 
 	if playing:
 		return  # prevent rolling multiple times
@@ -35,6 +36,9 @@ func roll():
 	value.append($AnimatedSprite2D.frame + 1)  # +1 because frames are 0-based
 	emit_signal("roll_finished")
 	$AnimationPlayer.play("text")
+	
+func custom_ready() -> void:
+	$AnimatedSprite2D.frame = 7
 
 
 func set_dice_name():

@@ -18,6 +18,7 @@ var all_dices = {
 		"pridedice": {"weight": 0.5, "price": 500},
 		"d4": {"weight": 1.0, "price": 400},
 		"flowerdice": {"weight": 0.7, "price": 600},
+		"mirrordice" : {"weight": 0.8, "price": 600},
 	},
 	"epic":
 	{
@@ -39,6 +40,7 @@ var dice_to_scene = {
 	"d4": load("res://scenes/d_4.tscn"),
 	"golden_dice": load("res://scenes/golden_dice.tscn"),
 	"flowerdice": load("res://scenes/dice_flower.tscn"),
+	"mirrordice" : load("res://scenes/dice_mirror.tscn")
 }
 
 
