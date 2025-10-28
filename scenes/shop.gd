@@ -32,7 +32,7 @@ func _ready() -> void:
 
 	for i in %dice_container.get_children():
 		shop_items.append(i)
-	
+
 	if shop_items.size() > 1:
 		selected_dice = shop_items[1]
 	else:
