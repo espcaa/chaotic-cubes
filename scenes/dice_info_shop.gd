@@ -11,12 +11,13 @@ var active: bool = true
 
 var active_focus_container: Control = null
 
-var error_color : Color 
+var error_color: Color
+var gambling_percentage: int = 0
 
 
 func _ready() -> void:
 	error_color = Palette.get_color("error")
-	
+
 	$modal.position.x -= 168
 	$modal.size.x = 640
 
@@ -33,10 +34,13 @@ func _ready() -> void:
 		+ "% of chance to get it if you gamble :D"
 	)
 	%ButtonModalContainer.disable_focus_everywhere()
-	
+
 	%Slider.set_instance_shader_parameter("secondary_replaced_color", error_color)
 
+
 func _process(delta: float) -> void:
+	gambling_percentage = %Slider.value
+	%GamblingText.text = generate_gambling_string()
 	%DiceNameLabel.text = dice_name
 	%DiceDescLabel.text = description
 	%DiceLoreLabel.text = lore
@@ -44,6 +48,7 @@ func _process(delta: float) -> void:
 	%focus_container.active = buttons_active
 	if active_focus_container != null:
 		active_focus_container.active = modal_shown
+
 
 func show_modal() -> void:
 	if modal_shown:
@@ -105,3 +110,18 @@ func _on_slider_container_reached_end() -> void:
 	%ButtonModalContainer.reenable_focus()
 	active_focus_container = %ButtonModalContainer
 	%SliderContainer.disable_focus_everywhere()
+
+
+func generate_gambling_string() -> String:
+	var money_gambled = UserData.money * (gambling_percentage / 100.0)
+	var chance = money_gambled * 100 / price
+
+	var rounded_chance = round(chance * 100) / 100.0
+	var rounded_money_gambled = round(money_gambled * 100) / 100.0
+	return (
+		"You are about to gamble "
+		+ str(rounded_money_gambled)
+		+ "$ with a "
+		+ str(rounded_chance)
+		+ "% chance to win the dice!"
+	)

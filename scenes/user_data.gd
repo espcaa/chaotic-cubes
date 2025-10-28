@@ -5,7 +5,7 @@ var total_run_score: int = 0
 var paused: bool = false
 var time_run: float = 0.0
 var timer_running: bool = false
-var money: int = 0
+var money: int = 100
 var can_pause: bool = true
 
 var current_seed : Color
