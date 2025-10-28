@@ -244,6 +244,9 @@ autowrap_mode = 3
 color_role = 1
 label_text = "most quit before winning big..."
 
+[node name="HSlider" type="HSlider" parent="modal/MarginContainer/colored_container/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
 [node name="ButtonModalContainer" type="HBoxContainer" parent="modal/MarginContainer/colored_container/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
