@@ -9,17 +9,21 @@ var dice_lore = "is it a trick? or just magic?"
 
 func roll():
 	# get the last played value
-	
+
 	var last_value = get_tree().get_first_node_in_group("gameui").get_recent_dice_value()
 	if playing:
 		return  # prevent rolling multiple times
+	if last_value == -1:
+		last_value = faces[randi() % faces.size()] + 1  # +1 because frames are 0-based
 
-	$CustomLabel.label_text = str(last_value) + " mirorr!!"
+	$CustomLabel.label_text = str(last_value) + "!!"
+	$AnimatedSprite2D.frame = last_value - 1
 	value.append(last_value)
 	await get_tree().process_frame
 	emit_signal("roll_finished")
 	$AnimationPlayer.play("text")
-	
+
+
 func custom_ready() -> void:
 	$AnimatedSprite2D.frame = 7
 

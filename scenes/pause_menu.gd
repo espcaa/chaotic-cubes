@@ -11,12 +11,16 @@ func _input(event: InputEvent) -> void:
 
 
 func unpause_game() -> void:
+	if not UserData.can_pause:
+		return
 	$AnimationPlayer.play_backwards("pause")
 	await $AnimationPlayer.animation_finished
 	UserData.paused = false
 
 
 func pause_game() -> void:
+	if not UserData.can_pause:
+		return
 	$AnimationPlayer.play("pause")
 
 	UserData.paused = true
@@ -32,6 +36,9 @@ func _process(_delta: float) -> void:
 	$colored_container/MarginContainer/HBoxContainer/MarginContainer/colored_container/MarginContainer/VBoxContainer/LabelTotalMoney.text = (
 		"All of the money ever earned: " + str(UserData.money)
 	)
+	
+	if UserData.can_pause == false:
+		%VBoxContainer.active = false
 
 
 func _on_quit_pressed() -> void:

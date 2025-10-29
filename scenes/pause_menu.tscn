@@ -105,10 +105,11 @@ layout_mode = 2
 size_flags_vertical = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="colored_container/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
 script = ExtResource("3_7l7mv")
-inactive_when_paused = true
+inactive_when_not_paused = true
 
 [node name="resume" parent="colored_container/MarginContainer/HBoxContainer/VBoxContainer" instance=ExtResource("2_myx47")]
 layout_mode = 2

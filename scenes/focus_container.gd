@@ -2,6 +2,7 @@ extends Container
 
 var buttons: Array[Button] = []
 var focused_index: int = 0
+@export var inactive_when_not_paused : bool = false
 
 @export var active = true
 @export var inactive_when_paused: bool = false
@@ -42,10 +43,16 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	if inactive_when_paused:
-		if UserData.paused == false:
+		if UserData.paused:
 			active = false
 		else:
 			active = true
+	
+	if inactive_when_not_paused:
+		if UserData.paused:
+			active = true
+		else:
+			active = false
 
 	if not active:
 		disable_focus_everywhere()

@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cr4uhm3qq7x2w" path="res://scenes/dice_6.tscn" id="2_kysvu"]
 
 [node name="test_level_combo" instance=ExtResource("1_30gd3")]
+goal = 10
 
 [node name="dice_6" parent="HBoxContainer/VBoxContainer/dice_container/point" index="0" instance=ExtResource("2_kysvu")]
 

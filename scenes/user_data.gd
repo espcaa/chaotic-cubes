@@ -8,11 +8,16 @@ var timer_running: bool = false
 var money: int = 100
 var can_pause: bool = true
 
-var current_seed : Color
+var prevent_pause: bool = false
+var current_seed: Color
+var level_won: int = 0
+
+var times_without_shop: int = 0
 
 @onready var RandomDiceManager = $RandomDiceManager
 
 var unlocked_dices = ["normal_dice"]
+
 
 func _process(delta: float) -> void:
 	if not paused and timer_running:

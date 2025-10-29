@@ -70,7 +70,8 @@ func _ready() -> void:
 				info.description = i.dice_description
 			info.price = i.price
 
-	dict_dice_to_info_containers[selected_dice].buttons_active = true
+	if "buttons_active" in dict_dice_to_info_containers[selected_dice]:
+		dict_dice_to_info_containers[selected_dice].buttons_active = true
 
 
 func redraw_dices(_initial := false):

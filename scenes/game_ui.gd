@@ -651,14 +651,23 @@ func pattern_found_animation() -> void:
 func finish_winning() -> void:
 	# continue after winning
 	# if tutorial -> shop
-	print("wtf??")
 	if is_tutorial:
 		Transitioner.load_scene_with_transition(
-			"res://scenes/shop.tscn", self, Enums.ColorRole.SECONDARY
+			"res://scenes/shop_but_real.tscn", self, Enums.ColorRole.SECONDARY
 		)
 	# else uh idk
 	else:
-		pass
+		# 1/10 - times you didn't go to shop after winning
+		var rand_val = randi() % (10 - UserData.times_without_shop)
+		if rand_val == 0:
+			Transitioner.load_scene_with_transition(
+				"res://scenes/shop_but_real.tscn", self, Enums.ColorRole.SECONDARY
+			)
+			UserData.times_without_shop = 0
+		else:
+			UserData.times_without_shop += 1
+
+			# here generate a new level
 
 
 func get_recent_dice_value() -> int:

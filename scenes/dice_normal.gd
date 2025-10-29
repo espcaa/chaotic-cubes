@@ -27,7 +27,7 @@ func roll():
 	# Stop rolling
 	playing = false
 	$CustomLabel.label_text = str($AnimatedSprite2D.frame + 1) + " !!"
-	value.append(	$AnimatedSprite2D.frame + 1)  # +1 because frames are 0-based
+	value.append($AnimatedSprite2D.frame + 1)  # +1 because frames are 0-based
 	emit_signal("roll_finished")
 	$AnimationPlayer.play("text")
 

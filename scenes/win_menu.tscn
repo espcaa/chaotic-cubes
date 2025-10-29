@@ -103,6 +103,6 @@ layout_mode = 2
 bg_color = 5
 focused_outline_removed = true
 inverse_arrow_color = true
-label_text = "Quit"
+label_text = "Continue"
 
 [connection signal="pressed" from="MarginContainer/colored_container/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/FocusContainer/continue_button" to="." method="_on_continue_button_pressed"]
