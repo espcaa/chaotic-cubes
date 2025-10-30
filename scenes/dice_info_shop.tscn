@@ -1,12 +1,14 @@
-[gd_scene load_steps=14 format=3 uid="uid://oy1byqrfs26e"]
+[gd_scene load_steps=19 format=3 uid="uid://oy1byqrfs26e"]
 
 [ext_resource type="Script" uid="uid://fi7ivwxmi1mr" path="res://scenes/dice_info_shop.gd" id="1_eohv8"]
 [ext_resource type="PackedScene" uid="uid://c4x5tkis316mh" path="res://scenes/colored_container.tscn" id="1_qf42e"]
 [ext_resource type="PackedScene" uid="uid://cbmn5tiw3fr6c" path="res://scenes/custom_label.tscn" id="2_y4m1l"]
 [ext_resource type="Script" uid="uid://bmx3ays57ef7r" path="res://scenes/focus_container.gd" id="3_ou0lp"]
 [ext_resource type="PackedScene" uid="uid://d26hs8spvqyjy" path="res://scenes/custom_button.tscn" id="3_whrbq"]
+[ext_resource type="Texture2D" uid="uid://bybw5j0dt5648" path="res://assets/sparkle.png" id="6_0ky64"]
 [ext_resource type="Texture2D" uid="uid://dqq0bo56wwdod" path="res://assets/grabber.png" id="6_8378g"]
 [ext_resource type="Shader" uid="uid://hi56rfnncpf1" path="res://scenes/dice_machine.gdshader" id="6_n6wy1"]
+[ext_resource type="Texture2D" uid="uid://gfnnv4uns10g" path="res://assets/source/arrowthingy.png" id="8_i1xg8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_i1xg8"]
 shader = ExtResource("6_n6wy1")
@@ -67,6 +69,18 @@ _data = {
 &"in": SubResource("Animation_eohv8"),
 &"out": SubResource("Animation_n6wy1")
 }
+
+[sub_resource type="Gradient" id="Gradient_n6wy1"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_i1xg8"]
+gradient = SubResource("Gradient_n6wy1")
+
+[sub_resource type="Curve2D" id="Curve2D_n6wy1"]
+bake_interval = 0.1
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 256, 0)
+}
+point_count = 2
 
 [node name="dice_info_shop" type="Control"]
 layout_mode = 3
@@ -185,6 +199,16 @@ layout_mode = 2
 horizontal = true
 label_text = "Pay"
 
+[node name="cpu_left" type="CPUParticles2D" parent="."]
+texture_filter = 1
+position = Vector2(0, 424)
+scale = Vector2(4, 4)
+amount = 200
+texture = ExtResource("6_0ky64")
+lifetime = 20.0
+explosiveness = 1.0
+randomness = 1.0
+
 [node name="modal" type="Control" parent="."]
 modulate = Color(1, 1, 1, 0)
 z_index = 300
@@ -207,7 +231,8 @@ grow_horizontal = 2
 grow_vertical = 2
 color_role = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="modal"]
+[node name="modal_marg_cont" type="MarginContainer" parent="modal"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -219,55 +244,58 @@ theme_override_constants/margin_top = 100
 theme_override_constants/margin_right = 200
 theme_override_constants/margin_bottom = 100
 
-[node name="colored_container" parent="modal/MarginContainer" instance=ExtResource("1_qf42e")]
+[node name="modal_cont" parent="modal/modal_marg_cont" instance=ExtResource("1_qf42e")]
+unique_name_in_owner = true
 layout_mode = 2
 color_role = 3
 outline_enabled = true
 outline_color_role = 0
 outline_thickness = 4
 
-[node name="MarginContainer" type="MarginContainer" parent="modal/MarginContainer/colored_container"]
+[node name="ModalModesContainer" type="MarginContainer" parent="modal/modal_marg_cont/modal_cont"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="modal/MarginContainer/colored_container/MarginContainer"]
+[node name="NormalModal" type="VBoxContainer" parent="modal/modal_marg_cont/modal_cont/ModalModesContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 
-[node name="TitleUnmutableLabel" parent="modal/MarginContainer/colored_container/MarginContainer/VBoxContainer" instance=ExtResource("2_y4m1l")]
+[node name="TitleUnmutableLabel" parent="modal/modal_marg_cont/modal_cont/ModalModesContainer/NormalModal" instance=ExtResource("2_y4m1l")]
 layout_mode = 2
 font_size = 32
 label_text = "my kid? gambling?"
 
-[node name="MutableThingy" parent="modal/MarginContainer/colored_container/MarginContainer/VBoxContainer" instance=ExtResource("2_y4m1l")]
+[node name="MutableThingy" parent="modal/modal_marg_cont/modal_cont/ModalModesContainer/NormalModal" instance=ExtResource("2_y4m1l")]
 unique_name_in_owner = true
 layout_mode = 2
 autowrap_mode = 3
 label_text = "my kid? gambling?"
 
-[node name="GamblingAdvice" parent="modal/MarginContainer/colored_container/MarginContainer/VBoxContainer" instance=ExtResource("2_y4m1l")]
+[node name="GamblingAdvice" parent="modal/modal_marg_cont/modal_cont/ModalModesContainer/NormalModal" instance=ExtResource("2_y4m1l")]
 unique_name_in_owner = true
 layout_mode = 2
 autowrap_mode = 3
 color_role = 1
 label_text = "most quit before winning big..."
 
-[node name="GamblingText" parent="modal/MarginContainer/colored_container/MarginContainer/VBoxContainer" instance=ExtResource("2_y4m1l")]
+[node name="GamblingText" parent="modal/modal_marg_cont/modal_cont/ModalModesContainer/NormalModal" instance=ExtResource("2_y4m1l")]
 unique_name_in_owner = true
 layout_mode = 2
 autowrap_mode = 3
 label_text = "most quit before winning big..."
 
-[node name="MarginContainer" type="MarginContainer" parent="modal/MarginContainer/colored_container/MarginContainer/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="modal/modal_marg_cont/modal_cont/ModalModesContainer/NormalModal"]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="SliderContainer" type="VBoxContainer" parent="modal/MarginContainer/colored_container/MarginContainer/VBoxContainer/MarginContainer"]
+[node name="SliderContainer" type="VBoxContainer" parent="modal/modal_marg_cont/modal_cont/ModalModesContainer/NormalModal/MarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 script = ExtResource("3_ou0lp")
@@ -275,7 +303,7 @@ slider_only = true
 wrap_around_bottom = false
 no_wrap = true
 
-[node name="Slider" type="HSlider" parent="modal/MarginContainer/colored_container/MarginContainer/VBoxContainer/MarginContainer/SliderContainer"]
+[node name="Slider" type="HSlider" parent="modal/modal_marg_cont/modal_cont/ModalModesContainer/NormalModal/MarginContainer/SliderContainer"]
 unique_name_in_owner = true
 z_index = 10
 texture_filter = 1
@@ -291,32 +319,32 @@ theme_override_icons/grabber = ExtResource("6_8378g")
 theme_override_styles/slider = SubResource("StyleBoxFlat_n6wy1")
 step = 5.0
 
-[node name="colored_container" parent="modal/MarginContainer/colored_container/MarginContainer/VBoxContainer/MarginContainer/SliderContainer/Slider" instance=ExtResource("1_qf42e")]
+[node name="colored_container" parent="modal/modal_marg_cont/modal_cont/ModalModesContainer/NormalModal/MarginContainer/SliderContainer/Slider" instance=ExtResource("1_qf42e")]
 z_index = -1
 layout_mode = 0
 offset_top = 4.0
 offset_right = 190.0
 offset_bottom = 12.0
 
-[node name="MarginContainer" type="MarginContainer" parent="modal/MarginContainer/colored_container/MarginContainer/VBoxContainer/MarginContainer/SliderContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="modal/modal_marg_cont/modal_cont/ModalModesContainer/NormalModal/MarginContainer/SliderContainer"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="modal/MarginContainer/colored_container/MarginContainer/VBoxContainer/MarginContainer/SliderContainer/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="modal/modal_marg_cont/modal_cont/ModalModesContainer/NormalModal/MarginContainer/SliderContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="start" parent="modal/MarginContainer/colored_container/MarginContainer/VBoxContainer/MarginContainer/SliderContainer/MarginContainer/HBoxContainer" instance=ExtResource("2_y4m1l")]
+[node name="start" parent="modal/modal_marg_cont/modal_cont/ModalModesContainer/NormalModal/MarginContainer/SliderContainer/MarginContainer/HBoxContainer" instance=ExtResource("2_y4m1l")]
 layout_mode = 2
 label_text = "0% (of your money)"
 
-[node name="spacer" type="Control" parent="modal/MarginContainer/colored_container/MarginContainer/VBoxContainer/MarginContainer/SliderContainer/MarginContainer/HBoxContainer"]
+[node name="spacer" type="Control" parent="modal/modal_marg_cont/modal_cont/ModalModesContainer/NormalModal/MarginContainer/SliderContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="end" parent="modal/MarginContainer/colored_container/MarginContainer/VBoxContainer/MarginContainer/SliderContainer/MarginContainer/HBoxContainer" instance=ExtResource("2_y4m1l")]
+[node name="end" parent="modal/modal_marg_cont/modal_cont/ModalModesContainer/NormalModal/MarginContainer/SliderContainer/MarginContainer/HBoxContainer" instance=ExtResource("2_y4m1l")]
 layout_mode = 2
 label_text = "100%"
 
-[node name="ButtonModalContainer" type="VBoxContainer" parent="modal/MarginContainer/colored_container/MarginContainer/VBoxContainer"]
+[node name="ButtonModalContainer" type="VBoxContainer" parent="modal/modal_marg_cont/modal_cont/ModalModesContainer/NormalModal"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
@@ -325,11 +353,11 @@ active = false
 wrap_around_top = false
 no_wrap = true
 
-[node name="continue_button" parent="modal/MarginContainer/colored_container/MarginContainer/VBoxContainer/ButtonModalContainer" instance=ExtResource("3_whrbq")]
+[node name="continue_button" parent="modal/modal_marg_cont/modal_cont/ModalModesContainer/NormalModal/ButtonModalContainer" instance=ExtResource("3_whrbq")]
 layout_mode = 2
 label_text = "Continue"
 
-[node name="cancel_button" parent="modal/MarginContainer/colored_container/MarginContainer/VBoxContainer/ButtonModalContainer" instance=ExtResource("3_whrbq")]
+[node name="cancel_button" parent="modal/modal_marg_cont/modal_cont/ModalModesContainer/NormalModal/ButtonModalContainer" instance=ExtResource("3_whrbq")]
 layout_mode = 2
 label_text = "Cancel"
 
@@ -338,7 +366,60 @@ libraries = {
 &"": SubResource("AnimationLibrary_n6wy1")
 }
 
+[node name="reserve" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 680.0
+offset_top = -96.0
+offset_right = 720.0
+offset_bottom = -56.0
+
+[node name="GamblingContainer" type="VBoxContainer" parent="reserve"]
+unique_name_in_owner = true
+layout_mode = 2
+offset_right = 1.0
+offset_bottom = 13.0
+
+[node name="MarginContainer" type="MarginContainer" parent="reserve/GamblingContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="GambleTexture" type="TextureRect" parent="reserve/GamblingContainer/MarginContainer"]
+unique_name_in_owner = true
+texture_filter = 1
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+texture = SubResource("GradientTexture2D_i1xg8")
+
+[node name="GamblePath" type="Path2D" parent="reserve/GamblingContainer/MarginContainer"]
+unique_name_in_owner = true
+position = Vector2(0, 100)
+curve = SubResource("Curve2D_n6wy1")
+
+[node name="ArrowFollower" type="PathFollow2D" parent="reserve/GamblingContainer/MarginContainer/GamblePath"]
+unique_name_in_owner = true
+position = Vector2(236.416, 0)
+progress = 236.416
+
+[node name="ArrowSprite" type="Sprite2D" parent="reserve/GamblingContainer/MarginContainer/GamblePath/ArrowFollower"]
+unique_name_in_owner = true
+texture_filter = 1
+scale = Vector2(4, 4)
+texture = ExtResource("8_i1xg8")
+
+[node name="MarginContainer2" type="MarginContainer" parent="reserve/GamblingContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 20
+
+[node name="ResultLabel" parent="reserve/GamblingContainer/MarginContainer2" instance=ExtResource("2_y4m1l")]
+unique_name_in_owner = true
+layout_mode = 2
+autowrap_mode = 3
+label_text = ""
+
 [connection signal="pressed" from="colored_container/MarginContainer/colored_container/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/focus_container/finance_button" to="." method="_on_finance_button_pressed"]
-[connection signal="reached_end" from="modal/MarginContainer/colored_container/MarginContainer/VBoxContainer/MarginContainer/SliderContainer" to="." method="_on_slider_container_reached_end"]
-[connection signal="reached_beginning" from="modal/MarginContainer/colored_container/MarginContainer/VBoxContainer/ButtonModalContainer" to="." method="_on_button_modal_container_reached_beginning"]
-[connection signal="pressed" from="modal/MarginContainer/colored_container/MarginContainer/VBoxContainer/ButtonModalContainer/cancel_button" to="." method="_on_cancel_button_pressed"]
+[connection signal="reached_end" from="modal/modal_marg_cont/modal_cont/ModalModesContainer/NormalModal/MarginContainer/SliderContainer" to="." method="_on_slider_container_reached_end"]
+[connection signal="reached_beginning" from="modal/modal_marg_cont/modal_cont/ModalModesContainer/NormalModal/ButtonModalContainer" to="." method="_on_button_modal_container_reached_beginning"]
+[connection signal="pressed" from="modal/modal_marg_cont/modal_cont/ModalModesContainer/NormalModal/ButtonModalContainer/continue_button" to="." method="_on_continue_button_pressed"]
+[connection signal="pressed" from="modal/modal_marg_cont/modal_cont/ModalModesContainer/NormalModal/ButtonModalContainer/cancel_button" to="." method="_on_cancel_button_pressed"]

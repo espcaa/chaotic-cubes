@@ -54,3 +54,8 @@ func reset_game() -> void:
 	paused = false
 	money = 0
 	can_pause = true
+
+
+func unlock_dice(dice_name: String) -> void:
+	if dice_name not in unlocked_dices:
+		unlocked_dices.append(dice_name)
