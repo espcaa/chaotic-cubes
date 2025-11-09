@@ -151,6 +151,8 @@ func win():
 			. ColorRole
 			. SECONDARY
 		)
+		
+		continue_winning()
 
 
 func add_text_label(node: Label, text: String) -> void:
@@ -647,7 +649,6 @@ func pattern_found_animation() -> void:
 
 	return
 
-
 func finish_winning() -> void:
 	# continue after winning
 	# if tutorial -> shop
@@ -669,8 +670,17 @@ func finish_winning() -> void:
 
 			# here generate a new level
 
-
 func get_recent_dice_value() -> int:
 	if dice_queue.size() == 0:
 		return -1
 	return dice_queue[dice_queue.size() - 1].value[0]
+
+func continue_winning():
+	# decide if we need to go to the shop or not
+	var rand_shop_number = randf_range(0,1)
+	if rand_shop_number > 0.5:
+		# shop
+		pass
+	else:
+		# generate new level
+		pass

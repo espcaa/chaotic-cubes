@@ -126,6 +126,7 @@ theme_override_constants/margin_top = 20
 [node name="DiceDescLabel" parent="temp/continue_btn_info/colored_container/MarginContainer/colored_container/MarginContainer/VBoxContainer/MarginContainer" instance=ExtResource("5_8r1wq")]
 layout_mode = 2
 size_flags_vertical = 0
+text = "Buying a (or some) new dice will really help you later, but maybe you're just broke..."
 autowrap_mode = 2
 custom_color = Color(0.776471, 0, 0, 1)
 label_text = "Buying/Gambling a new dice will really help you later. Not getting one is unrecommended and might end this run sooner than expected. Chaotic Inc. won't be responsible if any of this happens."
@@ -144,3 +145,5 @@ instance_shader_parameters/replace_color_to_secondary = Color(0.909804, 0.227451
 position = Vector2(594, 310)
 scale = Vector2(4, 4)
 texture = ExtResource("6_8r1wq")
+
+[connection signal="pressed" from="temp/continue_button" to="." method="_on_continue_button_pressed"]

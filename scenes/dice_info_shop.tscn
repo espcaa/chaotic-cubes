@@ -183,16 +183,17 @@ layout_mode = 2
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 35
 
+[node name="finance_button" parent="colored_container/MarginContainer/colored_container/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer" instance=ExtResource("3_whrbq")]
+visible = false
+layout_mode = 2
+horizontal = true
+label_text = "Finance (gambling)"
+
 [node name="focus_container" type="HBoxContainer" parent="colored_container/MarginContainer/colored_container/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 script = ExtResource("3_ou0lp")
 horizontal = true
-
-[node name="finance_button" parent="colored_container/MarginContainer/colored_container/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/focus_container" instance=ExtResource("3_whrbq")]
-layout_mode = 2
-horizontal = true
-label_text = "Finance (gambling)"
 
 [node name="pay_button" parent="colored_container/MarginContainer/colored_container/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/focus_container" instance=ExtResource("3_whrbq")]
 layout_mode = 2
@@ -273,7 +274,7 @@ label_text = "my kid? gambling?"
 unique_name_in_owner = true
 layout_mode = 2
 autowrap_mode = 3
-label_text = "my kid? gambling?"
+label_text = "gambling!!!"
 
 [node name="GamblingAdvice" parent="modal/modal_marg_cont/modal_cont/ModalModesContainer/NormalModal" instance=ExtResource("2_y4m1l")]
 unique_name_in_owner = true
@@ -418,7 +419,7 @@ layout_mode = 2
 autowrap_mode = 3
 label_text = ""
 
-[connection signal="pressed" from="colored_container/MarginContainer/colored_container/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/focus_container/finance_button" to="." method="_on_finance_button_pressed"]
+[connection signal="pressed" from="colored_container/MarginContainer/colored_container/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/finance_button" to="." method="_on_finance_button_pressed"]
 [connection signal="reached_end" from="modal/modal_marg_cont/modal_cont/ModalModesContainer/NormalModal/MarginContainer/SliderContainer" to="." method="_on_slider_container_reached_end"]
 [connection signal="reached_beginning" from="modal/modal_marg_cont/modal_cont/ModalModesContainer/NormalModal/ButtonModalContainer" to="." method="_on_button_modal_container_reached_beginning"]
 [connection signal="pressed" from="modal/modal_marg_cont/modal_cont/ModalModesContainer/NormalModal/ButtonModalContainer/continue_button" to="." method="_on_continue_button_pressed"]

@@ -41,8 +41,7 @@ func _process(_delta: float) -> void:
 		%VBoxContainer.active = false
 
 
-func _on_quit_pressed() -> void:
-	UserData.paused = false
+func _on_quit_pressed() -> void:	
 	Transitioner.load_scene_with_transition(
 		"res://scenes/main_menu.tscn", get_parent(), Enums.ColorRole.SECONDARY
 	)

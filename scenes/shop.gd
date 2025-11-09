@@ -201,3 +201,8 @@ func enable_button_focus():
 
 func populate_dices():
 	pass
+
+
+func _on_continue_button_pressed() -> void:
+	# go to new level
+	pass 

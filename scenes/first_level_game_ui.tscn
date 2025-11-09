@@ -18,10 +18,4 @@ goal = 40
 
 [node name="dice6" parent="HBoxContainer/VBoxContainer/dice_container/point" index="5" instance=ExtResource("2_740n0")]
 
-[node name="BonusLabel" parent="." index="8"]
-offset_left = 168.0
-offset_top = 122.0
-offset_right = 240.0
-offset_bottom = 173.0
-
 [editable path="win_menu"]

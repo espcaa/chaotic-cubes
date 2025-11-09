@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bybb7ys5erhhf"]
+[gd_scene load_steps=9 format=3 uid="uid://bybb7ys5erhhf"]
 
 [ext_resource type="PackedScene" uid="uid://c4x5tkis316mh" path="res://scenes/colored_container.tscn" id="1_06t4h"]
 [ext_resource type="Script" uid="uid://6wb86ksbqkpe" path="res://scenes/main_menu.gd" id="1_fu7sn"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bmqb4ae43griq" path="res://scenes/dice.tscn" id="5_8ln24"]
 [ext_resource type="Script" uid="uid://bmx3ays57ef7r" path="res://scenes/focus_container.gd" id="5_oa1go"]
 [ext_resource type="PackedScene" uid="uid://cr4uhm3qq7x2w" path="res://scenes/dice_6.tscn" id="6_rtw2f"]
+[ext_resource type="PackedScene" uid="uid://yj154fkhlqwi" path="res://scenes/background_rect.tscn" id="6_tbmy8"]
 
 [node name="main_menu" type="Control"]
 layout_mode = 3
@@ -28,6 +29,16 @@ grow_horizontal = 2
 grow_vertical = 2
 color_role = 2
 
+[node name="BackgroundRect" parent="." instance=ExtResource("6_tbmy8")]
+layout_mode = 0
+offset_left = 58.0
+offset_top = 258.0
+offset_right = 124.0
+offset_bottom = 284.0
+scale = Vector2(4, 4)
+accent_key = "background"
+secondary_key = "primary"
+
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 0
 offset_right = 40.0
@@ -42,12 +53,12 @@ layout_mode = 2
 
 [node name="CustomLabel" parent="MarginContainer/VBoxContainer" instance=ExtResource("2_7vrkn")]
 layout_mode = 2
-font_size = 32
+font_size = 64
 label_text = "Chaotic Cubes!"
 
 [node name="CustomLabel2" parent="MarginContainer/VBoxContainer" instance=ExtResource("2_7vrkn")]
 layout_mode = 2
-label_text = "everything is still wip but whatever pf"
+label_text = "wild dices :p"
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -141,9 +152,12 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -40.0
-offset_right = 40.0
+offset_left = 20.0
+offset_top = -160.0
+offset_right = 60.0
+offset_bottom = -120.0
 grow_vertical = 0
+scale = Vector2(1.5, 1.5)
 
 [node name="MarginContainer" type="MarginContainer" parent="Control2"]
 layout_mode = 1
@@ -196,11 +210,6 @@ theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 0
-
-[node name="CustomLabel" parent="Control2/MarginContainer3" instance=ExtResource("2_7vrkn")]
-layout_mode = 2
-text = "please use arrows and enter to move in the ui now!"
-label_text = "please use arrows and enter to move in the ui now!"
 
 [node name="colored_container2" parent="." instance=ExtResource("1_06t4h")]
 layout_mode = 1

@@ -512,6 +512,10 @@ label_text = "Three of a kind!"
 
 [node name="BackgroundRect" parent="." instance=ExtResource("11_5kh4o")]
 layout_mode = 0
+offset_top = 1.0
+offset_right = 66.0
+offset_bottom = 41.0
 scale = Vector2(4, 2.6)
+secondary_key = "primary"
 
 [editable path="win_menu"]
